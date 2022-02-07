@@ -147,8 +147,9 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         backgroundColor: "#F2F2F2",
         borderWidth: 0,
-        paddingBottom: 20,
+        paddingVertical: Dimensions.get("window").height*2/100,
         justifyContent: "space-evenly",
         elevation: 0,
+        width: Dimensions.get("window").width*100/100,
     },
 })

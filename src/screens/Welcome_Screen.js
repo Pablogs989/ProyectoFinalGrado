@@ -1,11 +1,13 @@
 import React from 'react';
 import { Dimensions, StyleSheet, View, Image } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
 import { Appbar, Caption, Button, Paragraph, Provider, Subheading, Surface, Text, Title } from 'react-native-paper';
 import Appbar_Common from '../components/Appbar_Common';
 import Button_Medium from '../components/Button_Medium';
+import Button_EmbeddedText from '../components/Button_EmbeddedText';
 
 
-const Welcome_Screen = ({ navigation }) => {
+const Welcome_Screen = ({ navigation: {navigate} }) => {
 
     return (
         <Provider>
@@ -28,8 +30,9 @@ const Welcome_Screen = ({ navigation }) => {
                 <View style={styles.buttons}>
                     <View style={styles.box_doubleButton_Mediano}>
                         <Button_Medium titulo="Registrar" alPresionar={() => navigate('SignUp_Screen')} descripcion="Registrar" />
-                        <Button_Medium titulo="Iniciar Sessió" alPresionar={() => navigate('LogIn_Screen')} descripcion="IniciarSessio" />
+                        <Button_Medium titulo="Iniciar Sessió" alPresionar={() => navigate('LogIn_Screen')} descripcion="Iniciar Sesió" />
                     </View>
+                    <Button_EmbeddedText titulo="PoliticaPrivacitat" alPresionar={() => navigate('PrivacyPolicy_Screen')} descripcion="Politica de privacitat"></Button_EmbeddedText>
                 </View>
             </View>
         </Provider>
@@ -76,8 +79,9 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         backgroundColor: "#26528C",
         borderWidth: 0,
-        paddingBottom: 20,
+        paddingVertical: Dimensions.get("window").height*2/100,
         justifyContent: "space-evenly",
         elevation: 0,
+        width: Dimensions.get("window").width*100/100,
     },
 })

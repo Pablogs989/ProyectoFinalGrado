@@ -1,20 +1,27 @@
 import React from 'react';
 import {Dimensions, StyleSheet, View} from 'react-native';
-import {Appbar, Caption ,Button, Headline, Paragraph, Provider, Subheading, Text, Title} from 'react-native-paper';
+import {Appbar, Caption ,Button, Headline, Paragraph, Provider, Subheading, Surface, Text, Title} from 'react-native-paper';
 import Appbar_Common from '../components/Appbar_Common';
+import Button_Medium from '../components/Button_Medium';
 
 
 const Welcome_Screen = ({navigation}) => {
+
     return (
         <Provider>
             <Appbar_Common alPresionar={() => navigation.navigate("Main_Screen")} titulo="Welcome" />
             <View style={styles.box}>
-                <Surface style={styles.falseCard}>
+                {/* <View style={styles.falseCard}> */}
+                <View>
                     
 
 
                     
-                </Surface>
+                </View>
+                <View style={styles.box_doubleButton_Mediano}>
+                    <Button_Medium  titulo="Registrar" alPresionar={() => navigate('SignUp_Screen')} descripcion="Registrar" />
+                    <Button_Medium  titulo="Iniciar Sessió" alPresionar={() => navigate('LogIn_Screen')} descripcion="IniciarSessio" />
+                </View>
             </View>
         </Provider>
     );
@@ -37,5 +44,13 @@ const styles = StyleSheet.create({
         width: Dimensions.get("screen").width*90/100,
         marginTop: Dimensions.get("screen").height*2/100,
         padding: 10
-    }
+    },
+    box_doubleButton_Mediano:{
+        flexDirection: "row",
+        backgroundColor: "#26528C",
+        borderWidth: 0,
+        paddingBottom: 20,
+        justifyContent: "space-evenly",
+        elevation: 0,
+    },
 })

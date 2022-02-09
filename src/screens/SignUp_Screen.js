@@ -3,9 +3,61 @@ import { Dimensions, StyleSheet, View, KeyboardAvoidingView } from 'react-native
 import { Appbar, Caption, Button, Headline, Paragraph, Provider, Surface, Subheading, Text, Title, TextInput, HelperText } from 'react-native-paper';
 import Appbar_Common from '../components/Appbar_Common';
 import Button_Medium from '../components/Button_Medium';
+import { api } from "../utils/Api";
+import axios from "axios";
+import md5 from "md5";
+
+const SignUp_Screen = ({ navigation }) => {
+
+    const register = (email, password) => {
+        if (!hasErrors_Email() && !hasErrors_Password() && !hasErrors_Password_Config()) {
+            // console.log("a");
+            // axios
+            //     .post(api.post, {
+            //         tipo: "crearAutenticacio", 
+            //         email: email,
+            //         contrasenya: md5(password),
+            //       })
+            //     .then((response) => {
+            //         navigation.navigate("Welcome_Screen");
+
+            //     })
+            //     .catch((error) => {
+
+            //     });
 
 
-const SignUp_Screen = ({ route, navigation: { navigate } }) => {
+            axios
+                .post(api.post, {
+                    tipo: "checkEmail",
+                    email: email,
+                })
+                .then((response) => {
+                    navigation.navigate("LogIn_Screen");
+                })
+                .catch((error) => {
+                    // console.log(error.response.status);
+                    if (error != undefined) {
+                        if (error.response.status == 404) {
+                            axios
+                                .post(api.post, {
+                                    tipo: "crearAutenticacio",
+                                    email: email,
+                                    contrasenya: md5(password),
+                                })
+                                .then((response) => {
+                                    navigation.navigate("Welcome_Screen");
+
+                                })
+                                .catch((error) => {
+
+                                });
+                        }
+                    }
+                });
+        }
+        // console.log("boton")
+    }
 
     // Lógica entra Email
     const [email, setEmail] = useState('');
@@ -23,7 +75,7 @@ const SignUp_Screen = ({ route, navigation: { navigate } }) => {
         setEmail('');
     }
     const hasErrors_Email = () => {
-        let emailErroneo = !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i.test(email);
+        let emailErroneo = !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email);
         return emailErroneo;
     }
 
@@ -70,11 +122,15 @@ const SignUp_Screen = ({ route, navigation: { navigate } }) => {
     return (
         <Provider>
             <Appbar_Common alPresionar={() => navigation.navigate("Main_Screen")} titulo="Sign Up" />
-            <KeyboardAvoidingView
-                behavior={'height'}
-                style={styles.container}>
-                <View style={styles.box}>
-                    <Surface style={styles.falseCard}>
+            <View style={styles.box}>
+                <Surface style={styles.falseCard}>
+                    <KeyboardAvoidingView
+                        behavior="padding"
+                        style={styles.keyboardAvoidView}
+                        keyboardVerticalOffset={100}
+                    >
+
+
 
                         <Surface style={styles.box_TextInput}>
                             <TextInput
@@ -86,6 +142,7 @@ const SignUp_Screen = ({ route, navigation: { navigate } }) => {
                                 onFocus={handleOnFocus_Email}
                                 onChangeText={handleChangeText_Email}
                                 value={email}
+                                autoCapitalize="none"
                                 onBlur={handleOnBlur_Email}
                                 right={<TextInput.Icon name="close" onPress={handleOnPress_IconClose_Email} />}
                             />
@@ -103,6 +160,8 @@ const SignUp_Screen = ({ route, navigation: { navigate } }) => {
                                 onFocus={handleOnFocus_Password}
                                 onChangeText={handleChangeText_Password}
                                 value={password}
+                                secureTextEntry={true}
+                                autoCapitalize="none"
                                 onBlur={handleOnBlur_Password}
                                 right={<TextInput.Icon name="close" onPress={handleOnPress_IconClose_Password} />}
                             />
@@ -121,22 +180,23 @@ const SignUp_Screen = ({ route, navigation: { navigate } }) => {
                                 onFocus={handleOnFocus_Password_Config}
                                 onChangeText={handleChangeText_Password_Config}
                                 value={password_Config}
+                                secureTextEntry={true}
+                                autoCapitalize="none"
                                 onBlur={handleOnBlur_Password_Config}
                                 right={<TextInput.Icon name="close" onPress={handleOnPress_IconClose_Password_Config} />}
                             />
                             <HelperText visible={visible_Password_Config} type={hasErrors_Password_Config() ? "error" : "info"} >
-                                {hasErrors_Password_Config() ? "¡¡Error!! La contrasenya no es igual a la de arriba." : "Contrasenya vàlida"}
+                                {hasErrors_Password_Config() ? "¡¡Error!! La contrasenya no es igual a la de dalt." : "Contrasenya vàlida"}
                             </HelperText>
                         </Surface>
                         <View style={styles.box_doubleButton_Mediano}>
-                            <Button_Medium titulo="Registrar-se" alPresionar={() => navigate('Welcome_Screen')} descripcion="Registar-se" />
+                            <Button_Medium titulo="Registrar-se" alPresionar={() => register(email, password)} descripcion="Registar-se" />
 
                         </View>
+                    </KeyboardAvoidingView>
+                </Surface>
+            </View>
 
-
-                    </Surface>
-                </View>
-            </KeyboardAvoidingView>
         </Provider>
     );
 }
@@ -144,20 +204,18 @@ const SignUp_Screen = ({ route, navigation: { navigate } }) => {
 export default SignUp_Screen;
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
     box: {
         flex: 1,
         backgroundColor: '#26528C',
         height: Dimensions.get("screen").height,
-        alignItems: "center"
+        alignItems: "center",
+        justifyContent: "center",
     },
     box_TextInput: {
         backgroundColor: "#A7CAD9",
         borderWidth: 0,
         marginHorizontal: 15,
-        marginVertical: 5,
+        marginVertical: 0,
         padding: 0,
         elevation: 0,
     },
@@ -173,5 +231,11 @@ const styles = StyleSheet.create({
     },
     box_doubleButton_Mediano: {
         alignItems: 'center',
-    }
+        marginBottom: -20,
+        marginTop: -10
+    },
+    keyboardAvoidView: {
+        flex: 1,
+        justifyContent: "center",
+    },
 })

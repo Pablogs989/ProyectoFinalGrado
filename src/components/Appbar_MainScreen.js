@@ -3,7 +3,7 @@ import {StyleSheet} from 'react-native';
 import {Appbar, Avatar} from 'react-native-paper';
 // import IconAD from 'react-native-vector-icons/AntDesign';
 
-const Appbar_Pantallas = (props) => {
+const Appbar_MainScreen = (props) => {
     return(
         <Appbar.Header style={styles.fondo}>
             <Appbar.BackAction onPress={props.alPresionar} />
@@ -14,7 +14,7 @@ const Appbar_Pantallas = (props) => {
     );
 }
 
-export default Appbar_Pantallas;
+export default Appbar_MainScreen;
 
 
 const styles = StyleSheet.create({

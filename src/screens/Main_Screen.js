@@ -1,84 +1,105 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Dimensions, ScrollView, StyleSheet, View} from 'react-native';
-import {Appbar, Caption ,Button, Headline, Paragraph, Provider, Subheading, Text, Title, Surface} from 'react-native-paper';
-import Appbar_Common from '../components/Appbar_Common';
-// import FAB_Filter from '../components/FAB_Filter';
+import {Button, Headline, Provider} from 'react-native-paper';
+import Appbar_MainScreen from '../components/Appbar_MainScreen';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { array_Projects } from '../utils/ArrayProjects';
 import Card_Medium from '../components/Card_Medium';
 
 
-const Main_Screen = ({navigation}) => {
+const Main_Screen = ({route, navigation: {navigate}}) => {
 
-    const[valorCicle, setValorCicle] = useState('Tots');
+    const[valorColection, setValorColection] = useState('Tots');
+    const[valorOwner, setValorOwner] = useState('Tots');   
     const[valorFavorit, setValorFavorit] = useState('Tots');
-    const[valorVotat, setValorVotat] = useState('Tots');    
+ 
     let nuevo_Proy= array_Projects;
+    console.log("inicio --> "+valorColection+" "+valorOwner+" "+valorFavorit);
 
-    //Lógica comunicació fill-pare
-    const getValors=({cicle, favorit, votat}) => {
+    //Logica passing paremetes to routes
+    useEffect(()=>{
+        if(route?.params) {
+            const {colection, owner, favorit} = route.params;
+            setValorColection(colection);
+            setValorOwner(owner);
+            setValorFavorit(favorit);
+            console.log("if --> "+valorColection+" "+valorOwner+" "+valorFavorit);
+        }
+    }, [route?.params]);
 
-        console.log("Llista -->"+ cicle+ " "+favorit+ " "+votat);
-        setValorCicle(cicle);
-        setValorFavorit(favorit);
-        setValorVotat(votat);
-    }
+
+
+    // //Lógica comunicació fill-pare
+    // const getValors=({cicle, favorit, votat}) => {
+
+    //     console.log("Llista -->"+ cicle+ " "+favorit+ " "+votat);
+    //     setValorCicle(cicle);
+    //     setValorFavorit(favorit);
+    //     setValorVotat(votat);
+    // }
 
     //Logica de filtrat de valors en l'array
-    if (valorCicle!=='Tots'){
+    if (valorColection!=='Tots'){
         nuevo_Proy = nuevo_Proy.filter(function(item){
-            return item.cicle == valorCicle;
-         }).map(function({titol, equip, email, cicle, descripcio, logo, votat, favorit}){
-             return {titol, equip, email, cicle, descripcio, logo, votat, favorit};
+            return item.colection == valorColection;
+         }).map(function({document, date, owner, colection, file_url, favorit}){
+             return {document, date, owner, colection, file_url, favorit};
          });     
+    }
+    if (valorOwner!=='Tots') {
+        nuevo_Proy = nuevo_Proy.filter(function(item){
+            return item.owner == valorOwner;
+         }).map(function({document, date, owner, colection, file_url, favorit}){
+             return {document, date, owner, colection, file_url, favorit};
+         });  
     }
     if (valorFavorit!=='Tots'){
         nuevo_Proy = nuevo_Proy.filter(function(item){
             return item.favorit == valorFavorit;
-         }).map(function({titol, equip, email, cicle, descripcio, logo, votat, favorit}){
-             return {titol, equip, email, cicle, descripcio, logo, votat, favorit};
+         }).map(function({document, date, owner, colection, file_url, favorit}){
+             return {document, date, owner, colection, file_url, favorit};
          });
     }     
-    if (valorVotat!=='Tots') {
-        nuevo_Proy = nuevo_Proy.filter(function(item){
-            return item.votat == valorVotat;
-         }).map(function({titol, equip, email, cicle, descripcio, logo, votat, favorit}){
-             return {titol, equip, email, cicle, descripcio, logo, votat, favorit};
-         });  
-    }
+
     
 
     //Lógica per mostrar l'array filtrat amb Cards
     const listCard_Projects = nuevo_Proy.map((object, index) => (
         <View key={index}>
             <Card_Medium
-                titol={object.titol}
-                equip={object.equip}
-                cicle={object.cicle}
-                logo={object.logo}
-                votat={object.votat}
+                document={object.document}
+                date={object.date}
+                owner={object.owner}
+                colection={object.colection}
+                file={object.file_url}
+                favorit={object.favorit}
                 />
         </View>
     ));
 
 
-
-
-
-
-
-
     return (
-        <Provider>
-            <Appbar_Common alPresionar={() => navigation.navigate("Main_Screen")} titulo="Principal" />
+        <Provider >
+            <Appbar_MainScreen alPresionar={() => navigate("Main_Screen")} titulo="Principal" />
             <View style={styles.box}>
-                <ScrollView style={styles.falseCard}>
-                    {listCard_Projects}
-                </ScrollView>
-                {/* <Surface style={styles.falseCard}> 
-                </Surface>                 */}
-                {/* <FAB_Filterr tornaValors={getValors} /> */}
+                <View style={styles.falseCard}>
+                    <Headline style = {styles.box_Headline}> Mi perfil</Headline>
+                    <ScrollView showsVerticalScrollIndicator={false}>
+                        {listCard_Projects}
+                    </ScrollView>                    
+                </View>
+                <View style={styles.box_tripleButton}>
+                    <Button style={styles.boton} onPress={()=>navigate('DocRegister_Screen')}>                        
+                        <Icon name="plus" size={Dimensions.get("window").height*6/100} color={"black"}/>                                               
+                    </Button>   
+                    <Button style={styles.boton} onPress={()=>{}}>                        
+                        <Icon name="folder" size={Dimensions.get("window").height*6/100} color={"black"}/>                                               
+                    </Button>   
+                    <Button style={styles.boton} onPress={()=>navigate('Filter_MainScreen_MD')}>                        
+                        <Icon name="filter-variant" size={Dimensions.get("window").height*6/100} color={"black"}/>                                               
+                    </Button>         
+                </View>
             </View>
-
         </Provider>
     );
 }
@@ -86,6 +107,17 @@ const Main_Screen = ({navigation}) => {
 export default Main_Screen;
 
 const styles = StyleSheet.create({
+    boton:{
+        backgroundColor: '#F6C602',
+        borderColor: '#000000',
+        borderWidth: 1,
+        borderRadius: 11,
+        elevation: 10,
+        justifyContent:"center",
+        width: Dimensions.get("window").width*30/100,
+        height: Dimensions.get("window").height*8/100,
+    },
+
     box:{
         flex:1,
         backgroundColor: '#26528C',
@@ -97,59 +129,25 @@ const styles = StyleSheet.create({
         backgroundColor:'#A7CAD9',
         borderRadius:20,
         height: Dimensions.get("window").height*81/100,
-        width: Dimensions.get("window").width*90/100,
-        marginTop: Dimensions.get("window").height*2/100,
-        padding: 10
+        width: Dimensions.get("window").width*95/100,
+        marginTop: Dimensions.get("window").height*1/100,
+        paddingVertical: Dimensions.get("window").height*1/100,
     },
     box_Headline:{
-        backgroundColor: "#F2F2F2",
-        borderWidth: 0,
-        marginHorizontal: 15,
-        marginVertical: 20,
-        padding: 0,
-        alignItems: 'center',
+        backgroundColor: "#A7CAD9",
+        marginTop: Dimensions.get("window").height*0/100,
+        marginBottom: Dimensions.get("window").height*1/100,
+        alignSelf:'center',
         elevation: 0,
     },
-    box_TextInput:{
-        backgroundColor: "#F2F2F2",
-        borderWidth: 0,
-        marginHorizontal: 15,
-        marginVertical: 7,
-        padding: 0,
-        elevation: 0,
-    },
-    box_ImportLogo:{
-        backgroundColor: "#F2F2F2",
-        borderWidth: 1,
-        borderRadius: 3,
-        borderColor: 'grey',
-        marginHorizontal: 15,
-        marginVertical: 30,
-        padding: 0,
-        height: 305,
-        alignItems: 'center',
-        elevation: 0,
-    },
-    box_Icona:{
-        borderWidth: 1,
-        borderRadius: 3,
-        borderColor: 'grey',
-        marginHorizontal: 15,
-        marginTop: 20,
-        marginBottom: 5,
-        padding: 0,
-        height: 150,
-        width: 300,
-        alignItems: 'center',
-        elevation: 0,
-    },
-    box_doubleButton_Mediano:{
+    box_tripleButton:{
         flexDirection: "row",
-        backgroundColor: "#F2F2F2",
+        backgroundColor: "#26528C",
         borderWidth: 0,
-        paddingVertical: Dimensions.get("window").height*2/100,
+        paddingVertical: Dimensions.get("window").height*1.5/100,
         justifyContent: "space-evenly",
         elevation: 0,
         width: Dimensions.get("window").width*100/100,
+
     },
 })

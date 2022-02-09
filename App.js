@@ -13,6 +13,7 @@ import LogIn_Screen from './src/screens/LogIn_Screen';
 import Main_Screen from './src/screens/Main_Screen';
 import SignUp_Screen from './src/screens/SignUp_Screen';
 import Welcome_Screen from './src/screens/Welcome_Screen';
+import Filter_MainScreen_MD from './src/screens/Filter_MainScreen_MD';
 
 
 const PilaNavegacio = createNativeStackNavigator();
@@ -21,22 +22,22 @@ export default function App() {
   return (
     <NavigationContainer>
     <PilaNavegacio.Navigator screenOptions={{ headerShown: false}} initialRouteName="DocRegister_Screen">
-      <PilaNavegacio.Screen name="Main_Screen" component={Main_Screen} />
-      <PilaNavegacio.Screen name="ColeccionCreate_Screen" component={ColeccionCreate_Screen} />
-      <PilaNavegacio.Screen name="DocInput_Screen" component={DocInput_Screen} />
-      <PilaNavegacio.Screen name="DocPreview_Screen" component={DocPreview_Screen} />
-      <PilaNavegacio.Screen name="DocRegister_Screen" component={DocRegister_Screen} />
-      <PilaNavegacio.Screen name="DocViewer_Screen" component={DocViewer_Screen} />
-      <PilaNavegacio.Screen name="LogIn_Screen" component={LogIn_Screen} />
-      <PilaNavegacio.Screen name="SignUp_Screen" component={SignUp_Screen} />
-      <PilaNavegacio.Screen name="Welcome_Screen" component={Welcome_Screen} />
+      <PilaNavegacio.Group>
+        <PilaNavegacio.Screen name="Main_Screen" component={Main_Screen} />
+        <PilaNavegacio.Screen name="ColeccionCreate_Screen" component={ColeccionCreate_Screen} />
+        <PilaNavegacio.Screen name="DocInput_Screen" component={DocInput_Screen} />
+        <PilaNavegacio.Screen name="DocPreview_Screen" component={DocPreview_Screen} />
+        <PilaNavegacio.Screen name="DocRegister_Screen" component={DocRegister_Screen} />
+        <PilaNavegacio.Screen name="DocViewer_Screen" component={DocViewer_Screen} />
+        <PilaNavegacio.Screen name="LogIn_Screen" component={LogIn_Screen} />
+        <PilaNavegacio.Screen name="SignUp_Screen" component={SignUp_Screen} />
+        <PilaNavegacio.Screen name="Welcome_Screen" component={Welcome_Screen} />
+      </PilaNavegacio.Group>
+      <PilaNavegacio.Group screenOptions={{presentation: 'transparentModal'}}>
+        <PilaNavegacio.Screen name="Filter_MainScreen_MD" component={Filter_MainScreen_MD} />
+      </PilaNavegacio.Group>
     </PilaNavegacio.Navigator>
     </NavigationContainer>
-
-    // <View style={styles.container}>
-    //   <Text>Open up App.js to start working on your app!</Text>
-    //   <StatusBar style="auto" />
-    // </View>
   );
 }
 
@@ -47,14 +48,3 @@ const styles = StyleSheet.create({
   },
 });
 
-
-
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#fff',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-// });

@@ -131,14 +131,6 @@ const DocRegister_Screen = ({route, navigation: {navigate}}) => {
     }
 
 
-
-
-
-
-
-
-
-
     return (
         <Provider>
             <Appbar_Common alPresionar={() => navigate("Main_Screen")} titulo="Registro / Actualización Documento" />

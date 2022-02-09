@@ -1,8 +1,15 @@
 import React from 'react';
 import {Dimensions, StyleSheet, View} from 'react-native';
-import {Appbar, Caption ,Button, Headline, Paragraph, Provider, Subheading, Text, Title} from 'react-native-paper';
+import {Provider, Surface} from 'react-native-paper';
 import Appbar_Common from '../components/Appbar_Common';
+import ImageViewer from 'react-native-image-zoom-viewer';
 
+
+const images = [{
+    props: {
+        source: require('../assets/Logo.png')
+    }
+}]
 
 const DocViewer_Screen = ({navigation}) => {
     return (
@@ -10,10 +17,7 @@ const DocViewer_Screen = ({navigation}) => {
             <Appbar_Common alPresionar={() => navigation.navigate("Main_Screen")} titulo="Visor Documento" />
             <View style={styles.box}>
                 <Surface style={styles.falseCard}>
-                    
-
-
-                    
+                    <ImageViewer imageUrls={images}></ImageViewer>                    
                 </Surface>
             </View>
         </Provider>
@@ -34,8 +38,8 @@ const styles = StyleSheet.create({
         backgroundColor:'#A7CAD9',
         borderRadius:20,
         height: Dimensions.get("screen").height*81/100,
-        width: Dimensions.get("screen").width*90/100,
-        marginTop: Dimensions.get("screen").height*2/100,
+        width: Dimensions.get("screen").width*95/100,
+        marginTop: Dimensions.get("screen").height*1/100,
         padding: 10
     }
 })

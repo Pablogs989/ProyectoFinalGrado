@@ -38,7 +38,6 @@ const Main_Screen = ({ route, navigation: { navigate } }) => {
     axios
       .get(api.getDocuments + authentication.id)
       .then((response) => {
-        let documents = [];
         console.log(response.data);
         //   setDocuments(response.data.split(","));
         setDocuments(response.data);
@@ -50,17 +49,17 @@ const Main_Screen = ({ route, navigation: { navigate } }) => {
   }, []);
 
   //Logica passing paremetes to routes
-  useEffect(() => {
-    if (route?.params) {
-      const { colection, owner, favorit } = route.params;
-      setValorColection(colection);
-      setValorOwner(owner);
-      setValorFavorit(favorit);
-      console.log(
-        "if --> " + valorColection + " " + valorOwner + " " + valorFavorit
-      );
-    }
-  }, [route?.params]);
+  // useEffect(() => {
+  //   if (route?.params) {
+  //     const { colection, owner, favorit } = route.params;
+  //     setValorColection(colection);
+  //     setValorOwner(owner);
+  //     setValorFavorit(favorit);
+  //     console.log(
+  //       "if --> " + valorColection + " " + valorOwner + " " + valorFavorit
+  //     );
+  //   }
+  // }, [route?.params]);
 
   // //Lógica comunicació fill-pare
   // const getValors=({cicle, favorit, votat}) => {
@@ -145,7 +144,7 @@ const Main_Screen = ({ route, navigation: { navigate } }) => {
               color={"black"}
             />
           </Button>
-          <Button style={styles.boton} onPress={() => {}}>
+          {/* <Button style={styles.boton} onPress={() => {}}>
             <Icon
               name="folder"
               size={(Dimensions.get("window").height * 6) / 100}
@@ -161,7 +160,7 @@ const Main_Screen = ({ route, navigation: { navigate } }) => {
               size={(Dimensions.get("window").height * 6) / 100}
               color={"black"}
             />
-          </Button>
+          </Button> */}
         </View>
       </View>
     </Provider>

@@ -13,10 +13,12 @@ import {
 } from "react-native-paper";
 import { backgroundColor } from "react-native/Libraries/Components/View/ReactNativeStyleAttributes";
 import { api } from "../utils/Api";
+import { useNavigation } from "@react-navigation/native";
 
 const LeftContent = (props) => <Avatar.Icon {...props} icon="folder" />;
 
 const Card_Proyecto = (props) => {
+  const navigation = useNavigation();
   const [alert, setAlert] = useState(false);
   const [favorit, setFavorit] = useState(false);
 
@@ -31,11 +33,23 @@ const Card_Proyecto = (props) => {
     setFavorit(!favorit);
   };
 
+  const date = new Date(props.date);
+  const currentDate = new Date();
+  const differenceDate = currentDate.getTime() - date.getTime();
+  const warning = Math.ceil(differenceDate / (1000 * 3600 * 24));
+
   return (
-    <Card style={styles.box}>
+    <Card
+      style={styles.box}
+      onPress={() =>
+        navigation.navigate("DocViewer_Screen", {
+          image: api.apache + props.file + ".jpg",
+        })
+      }
+    >
       <View
         key={props.indexKey}
-        style={{ flexDirection: "row", maxHeight: 200 }}
+        style={{ flexDirection: "row", maxHeight: 150 }}
       >
         <View style={{ flex: 2 }}>
           <Card.Content style={{ borderWidth: 0 }}>
@@ -43,7 +57,13 @@ const Card_Proyecto = (props) => {
             <Title>{props.document}</Title>
             <View style={{ flexDirection: "row", alignItems: "baseline" }}>
               <Caption>Data: </Caption>
-              <Text>{props.date}</Text>
+              <Text>
+                {date.getDate().toString() +
+                  "-" +
+                  (date.getMonth() + 1).toString() +
+                  "-" +
+                  date.getFullYear().toString()}
+              </Text>
             </View>
             <View style={{ flexDirection: "row", alignItems: "baseline" }}>
               <Caption>Titular: </Caption>
@@ -60,22 +80,44 @@ const Card_Proyecto = (props) => {
             //  source={{ uri: 'https://picsum.photos/700' }}
             // source={props.file}
             source={{ uri: api.apache + props.file + ".jpg" }}
-            style={{ maxHeight: 140 }}
+            style={{ maxHeight: 90 }}
           />
-          <View style={{ flexDirection: "row", alignItems: "baseline" }}>
+
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "center",
+            }}
+          >
+            {warning > -10 ? (
+              <IconButton
+                icon="alert"
+                size={30}
+                // onPress={() => changeAlert()}
+                color="#FF0000"
+              />
+            ) : (
+              <></>
+            )}
             <IconButton
-              icon="alert"
+              icon="pencil"
               size={30}
-              onPress={() => changeAlert()}
-              color={alert ? "#FF0000" : "#000000"}
+              onPress={() => console.log("editar")}
+              color="#000000"
             />
-            <IconButton
+            {/* // <IconButton
+            //   icon="alert"
+            //   size={30}
+            //   onPress={() => changeAlert()}
+            //   color={alert ? "#FF0000" : "#000000"}
+            // /> */}
+            {/* <IconButton
               icon="heart"
               // color={Colors.red500}
               size={30}
               onPress={() => changeFavorit()}
               color={favorit ? "#FF0000" : "#000000"}
-            />
+            /> */}
           </View>
         </View>
       </View>

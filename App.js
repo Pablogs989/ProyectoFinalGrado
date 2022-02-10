@@ -22,7 +22,7 @@ const PilaNavegacio = createNativeStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-    <PilaNavegacio.Navigator screenOptions={{ headerShown: false}} initialRouteName="DocRegister_Screen">
+    <PilaNavegacio.Navigator screenOptions={{ headerShown: false}} initialRouteName="Welcome_Screen">
       <PilaNavegacio.Group>
         <PilaNavegacio.Screen name="Main_Screen" component={Main_Screen} />
         <PilaNavegacio.Screen name="ColeccionCreate_Screen" component={ColeccionCreate_Screen} />

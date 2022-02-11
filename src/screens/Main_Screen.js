@@ -20,13 +20,13 @@ import Card_Medium from "../components/Card_Medium";
 import axios from "axios";
 import { api } from "../utils/Api";
 import { authentication } from "../utils/Authentication";
-import {useNavigation, useIsFocused } from "@react-navigation/native"
+import { useNavigation, useIsFocused } from "@react-navigation/native"
 
 const Main_Screen = ({ route, navigation: { navigate } }) => {
-  
+
   const isFocused = useIsFocused();
   // const navigationRef=useNavigation();
-  useEffect(()=>{
+  useEffect(() => {
     // if(route.params.backPress === undefined) {route.params.backPress=false};
     // console.log(typeof route.params.backRefresh);
     // if (typeof route.params.backRefresh != "undefined"){
@@ -138,7 +138,7 @@ const Main_Screen = ({ route, navigation: { navigate } }) => {
 
   const loading = (
     <View>
-      <ActivityIndicator animating={true} color="red" size="large" />
+      <ActivityIndicator animating={true} color="#DEB202" size="large" />
     </View>
   );
 

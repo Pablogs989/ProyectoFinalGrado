@@ -49,15 +49,15 @@ const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
   const [typeDocument, setTypeDocument] = useState("Tipus de document:");
 
   const handleOnPressSalut_typeDocument = () => {
-    setTypeDocument("salut");
+    setTypeDocument("Salut");
     console.log(typeDocument);
   };
   const handleOnPressAllotjaments_typeDocument = () => {
-    setTypeDocument("allotjaments");
+    setTypeDocument("Allotjaments");
     console.log(typeDocument);
   };
   const handleOnPressDocumentacio_typeDocument = () => {
-    setTypeDocument("documentacio");
+    setTypeDocument("Documentacio");
     {
       console.log(typeDocument);
     }
@@ -150,8 +150,15 @@ const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
         size={24}
         onPress={showDatepicker}
         color="#000000"
+        style={styles.calendarIcon}
       />
-      <Text>{(date.getMonth() + 1).toString()}</Text>
+      <Text style={styles.caption}>
+        {date.getDate().toString() +
+          "-" +
+          (date.getMonth() + 1).toString() +
+          "-" +
+          date.getFullYear().toString()}
+      </Text>
       {show && (
         <DateTimePicker
           style={styles.dateTimePicker}
@@ -257,7 +264,7 @@ const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
                             }}
                         /> */}
 
-            {Platform.OS === "ios" ? { IosCalendar } : { AndroidCalendar }}
+            {Platform.OS === "ios" ? IosCalendar : AndroidCalendar}
 
             <Surface style={styles.box_ImportLogo}>
               <Surface style={styles.box_Icona}>
@@ -379,11 +386,15 @@ const styles = StyleSheet.create({
   },
   caption: {
     fontSize: 16,
+    paddingTop: 5,
   },
   list: {
     borderColor: "#858585",
     backgroundColor: "#FFFFFF",
     borderWidth: 1,
     borderRadius: 2,
+  },
+  calendarIcon: {
+    margin: 0,
   },
 });

@@ -142,6 +142,43 @@ const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
     </List.Accordion>
   );
 
+  const AndroidCalendar = (
+    <Surface style={styles.box_DatePicker}>
+      <Caption style={styles.caption}>Data de caducitat:</Caption>
+      <IconButton
+        icon="calendar"
+        size={24}
+        onPress={showDatepicker}
+        color="#000000"
+      />
+      <Text>{(date.getMonth() + 1).toString()}</Text>
+      {show && (
+        <DateTimePicker
+          style={styles.dateTimePicker}
+          testID="dateTimePicker"
+          value={date}
+          mode={mode}
+          display="default"
+          onChange={onChange}
+        />
+      )}
+    </Surface>
+  );
+
+  const IosCalendar = (
+    <Surface style={styles.box_DatePicker}>
+      <Caption style={styles.caption}>Data de caducitat:</Caption>
+      <DateTimePicker
+        style={styles.dateTimePicker}
+        testID="dateTimePicker"
+        value={date}
+        mode={mode}
+        display="default"
+        onChange={onChange}
+      />
+    </Surface>
+  );
+
   return (
     <Provider>
       <Appbar_Common
@@ -220,36 +257,7 @@ const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
                             }}
                         /> */}
 
-            <Surface style={styles.box_DatePicker}>
-              <Caption style={styles.caption}>Data de caducitat:</Caption>
-              <IconButton
-                icon="calendar"
-                size={24}
-                onPress={showDatepicker}
-                color="#000000"
-              />
-              <Text>{(date.getMonth() + 1).toString()}</Text>
-              {show && (
-                <DateTimePicker
-                  style={styles.dateTimePicker}
-                  testID="dateTimePicker"
-                  value={date}
-                  mode={mode}
-                  display="default"
-                  onChange={onChange}
-                />
-              )}
-              {/* <TextInput
-                                mode="outlined"
-                                label={"Data de caducitat:"}
-                                activeOutlineColor="#0702F0"
-                                onChangeText={handleChangeText_nameDocument}
-                                value={date.getDate().toString() + "-" + (date.getMonth() + 1).toString() + "-" + date.getFullYear().toString()}
-                                editable={false}
-
-                                right={<TextInput.Icon name='calendar' onPress={showDatepicker} />}
-                            /> */}
-            </Surface>
+            {Platform.OS === "ios" ? { IosCalendar } : { AndroidCalendar }}
 
             <Surface style={styles.box_ImportLogo}>
               <Surface style={styles.box_Icona}>

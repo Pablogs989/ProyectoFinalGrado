@@ -281,12 +281,12 @@ const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
             <View style={styles.box_doubleButton_Mediano}>
               <Button_Medium
                 titulo="Cancel"
-                onPress={() => navigate("Main_Screen")}
+                alPresionar={() => navigate("Main_Screen")}
                 descripcion="Cancel·lar"
               />
               <Button_Medium
                 titulo="Create"
-                onPress={handleOnPress_Confirmar}
+                alPresionar={handleOnPress_Confirmar}
                 descripcion="Crear"
               />
             </View>

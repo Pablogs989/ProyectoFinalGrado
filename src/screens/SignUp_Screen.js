@@ -46,7 +46,7 @@ const SignUp_Screen = ({ navigation }) => {
       //     .catch((error) => {
 
       //     });
-
+      navigation.navigate("Welcome_Screen");
       axios
         .post(api.post, {
           tipo: "checkEmail",

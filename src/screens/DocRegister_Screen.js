@@ -190,7 +190,7 @@ const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
     <Provider>
       <Appbar_Common
         alPresionar={() => navigate("Main_Screen")}
-        titulo="Registro / Actualización Documento"
+        titulo="Registre Document"
       />
       <View style={styles.box}>
         <View style={styles.falseCard}>
@@ -201,7 +201,7 @@ const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
               <TextInput
                 mode="outlined"
                 label={"Nom del document:"}
-                placeholder="Introduïsca el nom de l'equip"
+                placeholder="Introduïsca del document"
                 activeOutlineColor="#0702F0"
                 onFocus={handleOnFocus_nameDocument}
                 onChangeText={handleChangeText_nameDocument}
@@ -232,7 +232,7 @@ const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
                 activeOutlineColor="#0702F0"
                 onFocus={handleOnFocus_profile}
                 onChangeText={handleChangeText_profile}
-                value={nameDocument}
+                value={profile}
                 onBlur={handleOnBlur_profile}
                 right={
                   <TextInput.Icon

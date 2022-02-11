@@ -1,25 +1,25 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {StyleSheet, Dimensions, View} from 'react-native';
 import {Avatar, Button, Caption , Card, IconButton, Text, Title, Paragraph, Surface } from 'react-native-paper';
-import { backgroundColor } from 'react-native/Libraries/Components/View/ReactNativeStyleAttributes';
 
 
-const LeftContent = props => <Avatar.Icon {...props} icon="folder" />
-
-const Card_Proyecto = (props) => {
+const Card_Medium = (props) => {
     const [alert, setAlert] = useState(false);
-    const [favorit, setFavorit] = useState(false);
+    // const [favorit, setFavorit] = useState(false);
 
-    // if(props.favorit==="true"){
-    //     setFavorit(true);
-    // }
+    // useEffect(()=>{
+    //     if(props.favorit==="true"){
+    //         setFavorit(true);
+    //     }
+    // },[])
+
 
     const changeAlert = () => {
         setAlert(!alert);
     }
-    const changeFavorit = () => {
-        setFavorit(!favorit);
-    }
+    // const changeFavorit = () => {
+    //     setFavorit(!favorit);
+    // }
 
     return (
         <Card style={styles.box}>
@@ -45,7 +45,7 @@ const Card_Proyecto = (props) => {
                 <View style={{flex:1}}>
                     <Card.Cover
                         //  source={{ uri: 'https://picsum.photos/700' }}
-                        source={props.file}
+                        source={props.file_url}
                         style={{maxHeight: 140}}
                         />
                     <View style={{flexDirection:"row", alignItems:"baseline"}}>
@@ -55,13 +55,13 @@ const Card_Proyecto = (props) => {
                             onPress={() => changeAlert()}                            
                             color={alert ? "#FF0000" : "#000000"}
                         />
-                        <IconButton
+                        {/* <IconButton
                             icon="heart"
                             // color={Colors.red500}
                             size={30}
                             onPress={() => changeFavorit()}
                             color={favorit ? "#FF0000" : "#000000"}
-                        />
+                        /> */}
                     </View>
                 </View>
             </View>
@@ -69,7 +69,7 @@ const Card_Proyecto = (props) => {
     );
 }
 
-export default Card_Proyecto;
+export default Card_Medium;
 
 const styles = StyleSheet.create({
     box:{
@@ -77,10 +77,8 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 10,
         padding:Dimensions.get("window").width*2/100,
-        // marginHorizontal: 15,
         marginHorizontal: Dimensions.get("window").width*4/100,        
-        // marginVertical: 7,
-        marginVertical: Dimensions.get("window").height*1/100,
-        elevation: 20,        
+        marginBottom: Dimensions.get("window").height*2/100,
+        elevation: 8,        
     },
 })

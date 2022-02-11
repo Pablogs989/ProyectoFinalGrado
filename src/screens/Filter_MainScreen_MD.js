@@ -8,17 +8,20 @@ import Button_Small from '../components/Button_Small';
 const Filter_MainScreen_MD = ({navigation: {navigate}}, props) => {
 
     const [value_Colection, setValue_Colection] = React.useState("Tots");
-    const [value_Owner, setValue_Owner] = React.useState("Tots");
-    const [value_Favorit, setValue_Favorit] = React.useState("Tots");
+    // const [value_Owner, setValue_Owner] = React.useState("Tots");
+    // const [value_Favorit, setValue_Favorit] = React.useState("Tots");
 
 
     const hideDialog_Cancel = () => navigate("Main_Screen");
     const hideDialog_Confirm = () => {
         navigate({
             name: "Main_Screen", 
-            params: {colection: value_Colection, owner: value_Owner, favorit: value_Favorit}, 
+            // params: {colection: value_Colection, owner: value_Owner, favorit: value_Favorit}, 
+            params: {colection: value_Colection},
             marge: true,
         });
+        console.log("Filter_MainScreen_MD --> "+value_Colection);
+        
     }
 
     return (
@@ -26,13 +29,13 @@ const Filter_MainScreen_MD = ({navigation: {navigate}}, props) => {
             <Dialog visible={true} onDismiss={hideDialog_Cancel}>
                 <Dialog.Title style={{alignSelf:"center"}}>Opcions de Filtrat dels Documents</Dialog.Title>
                 <Dialog.Content>
-                    <Surface style={{borderWidth:1, borderRadius:10, elevation:10}}>
+                    {/* <Surface style={{borderWidth:1, borderRadius:10, elevation:10}}>
                         <RadioButton.Group onValueChange={newValue => setValue_Owner(newValue)} value={value_Owner}>
                             <RadioButton_Horizontal value="Tots" text="Tots els titulars" />
                             <RadioButton_Horizontal value="usuari" text="usuari" />
                             <RadioButton_Horizontal value="Rosa" text="Rosa" />
                         </RadioButton.Group>
-                    </Surface>
+                    </Surface> */}
                     <Surface style={{borderWidth:1, borderRadius:10, elevation:10, marginVertical:20}}>
                         <RadioButton.Group onValueChange={newValue => setValue_Colection(newValue)} value={value_Colection}>
                             <RadioButton_Horizontal value="Tots" text="Totes les coleccions" />
@@ -40,16 +43,16 @@ const Filter_MainScreen_MD = ({navigation: {navigate}}, props) => {
                             <RadioButton_Horizontal value="salut" text="salut" />
                             <RadioButton_Horizontal value="allotjament" text="allotjament" />
                             <RadioButton_Horizontal value="transport" text="transport" />
+                            <RadioButton_Horizontal value="viatjes" text="viatjes" />
                         </RadioButton.Group>
                     </Surface>
-
-                    <Surface style={{borderWidth:1, borderRadius:10, elevation:10}}>
+                    {/* <Surface style={{borderWidth:1, borderRadius:10, elevation:10}}>
                         <RadioButton.Group onValueChange={newValue => setValue_Favorit(newValue)} value={value_Favorit}>
                             <RadioButton_Horizontal value="Tots" text="Tots, favorits i no favorits per a tu" />
                             <RadioButton_Horizontal value="true" text="Favorits" />
                             <RadioButton_Horizontal value="false" text="No Favorits" />
                         </RadioButton.Group>                                
-                    </Surface>
+                    </Surface> */}
                 </Dialog.Content>
                 <Dialog.Actions  style={styles.box_doubleButton_Pequenyo}>
                     <Button_Small titulo="Cancel·lar" alPresionar={hideDialog_Cancel} descripcion="Cancel·lar" />

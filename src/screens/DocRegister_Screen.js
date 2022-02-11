@@ -14,10 +14,61 @@ import {
 import Appbar_Common from "../components/Appbar_Common";
 import Button_Medium from "../components/Button_Medium";
 import { array_Projects } from "../utils/ArrayProjects";
+import * as ImagePicker from "expo-image-picker";
+import axios from "axios";
 //import DocumentTypesList from '../components/DocumentTypesList';
 import DateTimePicker from "@react-native-community/datetimepicker";
+import {api} from "../utils/Api";
+import {authentication} from "../utils/Authentication";
+import {useNavigation} from "@react-navigation/native";
 
-const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
+const DocRegister_Screen = ({ route, navigation: { navigate }}) => {
+  const navigation = useNavigation();
+  const [photoLoaded, setPhotoLoaded] = useState(false)
+  const [photoBase64, setPhotoBase64] = useState("");
+//Logica send Image to server
+const imageToServer = async (base64) => {
+  console.log(photoLoaded)
+  if(photoLoaded) {
+    navigate("Main_Screen");
+  try {
+    const response = await axios.post(api.post, {
+      tipo: "crearDocument",
+      id_usuari: authentication.id,
+      nom_document: nameDocument,
+      data_vigent: date,
+      titular_perfil: profile,
+      coleccio: typeDocument,
+      imatge_base64: base64,
+    });
+    // console.log(response.data);
+  } catch (error) {
+    // console.log(error);
+  }
+}
+};
+
+const pickImage = async () => {
+  // No permissions request is necessary for launching the image library
+  let result = await ImagePicker.launchCameraAsync({
+    mediaTypes: ImagePicker.MediaTypeOptions.All,
+    allowsEditing: true,
+    aspect: [9, 16],
+    quality: 0.5,
+    base64: true,
+  });
+
+  // console.log(result.base64);
+  // setPhotoLoaded(false);
+  if (!result.cancelled) {
+    setPhotoLoaded(true);
+    setPhotoBase64(result.base64);
+    // insertarfoto(result.base64);
+    // setImage(result.uri);
+    // console.log(result.uri);
+  }
+};
+
   //Lógica entrada nombre documento
   const [nameDocument, setNameDocument] = useState("");
   const [visible_nameDocument, setVisible_nameDocument] = useState(false);
@@ -271,22 +322,23 @@ const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
                 <IconButton
                   icon="camera"
                   size={90}
-                  onPress={() => navigate("LogIn_Screen")}
+                  onPress={pickImage}
                 />
               </Surface>
 
               <Text>Afig la imatge pressionant sobre l'icona.</Text>
+              
             </Surface>
-
+            
             <View style={styles.box_doubleButton_Mediano}>
               <Button_Medium
                 titulo="Cancel"
-                onPress={() => navigate("Main_Screen")}
+                alPresionar={()=> navigation.navigate("Main_Screen", {backPress:true})}
                 descripcion="Cancel·lar"
               />
               <Button_Medium
                 titulo="Create"
-                onPress={handleOnPress_Confirmar}
+                alPresionar={()=> imageToServer(photoBase64)}
                 descripcion="Crear"
               />
             </View>

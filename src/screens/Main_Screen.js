@@ -20,8 +20,31 @@ import Card_Medium from "../components/Card_Medium";
 import axios from "axios";
 import { api } from "../utils/Api";
 import { authentication } from "../utils/Authentication";
+import {useNavigation, useIsFocused } from "@react-navigation/native"
 
 const Main_Screen = ({ route, navigation: { navigate } }) => {
+  
+  const isFocused = useIsFocused();
+  // const navigationRef=useNavigation();
+  useEffect(()=>{
+    // if(route.params.backPress === undefined) {route.params.backPress=false};
+    // console.log(typeof route.params.backRefresh);
+    // if (typeof route.params.backRefresh != "undefined"){
+    setLoading(true);
+    axios
+      .get(api.getDocuments + authentication.id)
+      .then((response) => {
+        // console.log(response.data);
+        //   setDocuments(response.data.split(","));
+        setDocuments(response.data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        setLoading(false);
+      });
+    // }
+  }, [isFocused])
+
   const [valorColection, setValorColection] = useState("Tots");
   const [valorOwner, setValorOwner] = useState("Tots");
   const [valorFavorit, setValorFavorit] = useState("Tots");
@@ -29,16 +52,16 @@ const Main_Screen = ({ route, navigation: { navigate } }) => {
   const [documents, setDocuments] = useState([]);
 
   let nuevo_Proy = array_Projects;
-  console.log(
-    "inicio --> " + valorColection + " " + valorOwner + " " + valorFavorit
-  );
+  // console.log(
+  //   "inicio --> " + valorColection + " " + valorOwner + " " + valorFavorit
+  // );
 
-  //Documents List & Disabling going back
+  //Documents List
   useEffect(() => {
     axios
       .get(api.getDocuments + authentication.id)
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         //   setDocuments(response.data.split(","));
         setDocuments(response.data);
         setLoading(false);

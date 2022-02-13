@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
         height: Dimensions.get("window").height*79/100,
         width: Dimensions.get("window").width*95/100,
         marginHorizontal: Dimensions.get("window").width*2.5/100,
-        paddingBottom: Dimensions.get("window").width*14/100
+        paddingBottom: Dimensions.get("window").width*14/100,
     },
     box_Headline:{
         backgroundColor: "#A7CAD9",

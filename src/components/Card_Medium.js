@@ -151,6 +151,6 @@ const styles = StyleSheet.create({
     marginHorizontal: (Dimensions.get("window").width * 4) / 100,
     // marginVertical: 7,
     marginVertical: (Dimensions.get("window").height * 1) / 100,
-    elevation: 20,
+    elevation: 4,
   },
 });

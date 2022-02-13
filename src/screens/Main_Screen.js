@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import {
   Dimensions,
+  Image,
   ScrollView,
   StyleSheet,
   View,
@@ -90,7 +91,7 @@ const Main_Screen = ({ route, navigation: { navigate } }) => {
     }
   }
 
-  //ENRIQUE - Logica per mostrar les dades dels objectes en "cards" independents per a cada "perfil_titular"
+  //Logica per mostrar les dades dels objectes en "cards" independents per a cada "perfil_titular"
   const listCard_Documents = [];
 
   for (let i = 0; i < arrayOwners.length; i++) {
@@ -155,18 +156,23 @@ const Main_Screen = ({ route, navigation: { navigate } }) => {
       {filter}
       <Appbar.Header style={styles.fondo}>
 
-        <Appbar.Action icon="magnify" size={30} style={{ width: Dimensions.get("window").width * 9 / 100 }} />
+        <Appbar.Action icon="account" size={30} onPress={() => { }}  style={{ width: Dimensions.get("window").width * 11 / 100 }} />
         <Searchbar
           placeholder="Buscar TripDocs"
           placeholderTextColor="#000"
           onChangeText={onChangeSearch}
           value={searchQuery}
-          style={{ width: Dimensions.get("window").width * 71 / 100, backgroundColor: '#A7CAD9' }}
-          iconColor='#A7CAD9'
+          style={{ width: Dimensions.get("window").width * 67 / 100, backgroundColor: '#A7CAD9' }}
+          iconColor="#000"
           inputStyle={{ color: "#000", textAlign: "auto" }}
           selectionColor={"#000"}
         />
-        <Appbar.Action icon="account" size={30} onPress={() => { }} style={{ width: Dimensions.get("window").width * 8 / 100 }} />
+        {/* <Appbar.Action icon="account" size={30} onPress={() => { }} style={{ width: Dimensions.get("window").width * 8 / 100 }} /> */}
+        <Image source={require("../assets/logoPequenyoColorInvertido.png")} 
+          style={{ maxHeight: Dimensions.get("window").width * 10 / 100, 
+                   maxWidth: Dimensions.get("window").width * 10 / 100, 
+                   marginLeft:Dimensions.get("window").width * 4 / 100,
+                   marginRight:Dimensions.get("window").width * 2 / 100 }} />
       </Appbar.Header>
 
       <View style={styles.box}>
@@ -187,9 +193,6 @@ const Main_Screen = ({ route, navigation: { navigate } }) => {
         <View style={styles.box_tripleButton}>
           <Button style={styles.boton} onPress={() => navigate('DocRegister_Screen')}>
             <Icon name="plus" size={Dimensions.get("window").height * 6 / 100} color={"black"} />
-          </Button>
-          <Button style={styles.boton} onPress={() => { }}>
-            <Icon name="folder" size={Dimensions.get("window").height * 6 / 100} color={"black"} />
           </Button>
           <Button style={styles.boton} onPress={() => setFilterDialog(true)}>
             <Icon name="filter-variant" size={Dimensions.get("window").height * 6 / 100} color={"black"} />
@@ -214,8 +217,8 @@ const styles = StyleSheet.create({
     borderRadius: 11,
     elevation: 10,
     justifyContent: "center",
-    width: Dimensions.get("window").width * 30 / 100,
-    height: Dimensions.get("window").height * 8 / 100,
+    width: Dimensions.get("window").width * 40 / 100,
+    height: Dimensions.get("window").height * 9 / 100,
   },
 
   box: {
@@ -234,7 +237,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     backgroundColor: "#26528C",
     borderWidth: 0,
-    paddingVertical: Dimensions.get("window").height * 1.5 / 100,
+    paddingTop: Dimensions.get("window").height * 1 / 100,
     justifyContent: "space-evenly",
     elevation: 0,
     width: Dimensions.get("window").width * 100 / 100,

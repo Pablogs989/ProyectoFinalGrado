@@ -19,7 +19,7 @@ import { useNavigation } from "@react-navigation/native";
 
 const LeftContent = (props) => <Avatar.Icon {...props} icon="folder" />;
 
-const Card_Proyecto = (props) => {
+const Card_Medium = (props) => {
   const navigation = useNavigation();
   const [alert, setAlert] = useState(false);
   const [favorit, setFavorit] = useState(false);
@@ -139,7 +139,7 @@ const Card_Proyecto = (props) => {
   );
 };
 
-export default Card_Proyecto;
+export default Card_Medium;
 
 const styles = StyleSheet.create({
   box: {

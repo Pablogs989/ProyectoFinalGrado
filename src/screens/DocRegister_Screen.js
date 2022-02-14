@@ -55,6 +55,8 @@ const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
   };
 
   const pickImage = async () => {
+    let permissions = await ImagePicker.requestCameraPermissionsAsync()
+
     // No permissions request is necessary for launching the image library
     let result = await ImagePicker.launchCameraAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -62,6 +64,8 @@ const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
       aspect: [9, 16],
       quality: 0.5,
       base64: true,
+      cameraPermission: "Es necessita permissos per a la cambra",
+      photosPermission: "Es necessita permissos per a la cambra",
     });
 
     if (!result.cancelled) {

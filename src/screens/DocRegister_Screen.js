@@ -17,7 +17,7 @@ import { api } from "../utils/Api";
 import { authentication } from "../utils/Authentication";
 import { useNavigation } from "@react-navigation/native";
 import Appbar_Common from "../components/Appbar_Common";
-import Button_Medium from "../components/Button_Medium";
+import Button_Small from "../components/Button_Small";
 import * as ImagePicker from "expo-image-picker";
 import axios from "axios";
 import DateTimePicker from "@react-native-community/datetimepicker";
@@ -303,12 +303,12 @@ const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
             </Surface>
 
             <View style={styles.box_doubleButton_Medium}>
-              <Button_Medium
+              <Button_Small
                 title="Cancel"
                 onPress={() => navigation.navigate("Main_Screen")}
                 description="Cancel·lar"
               />
-              <Button_Medium
+              <Button_Small
                 title="Create"
                 onPress={() => docToServer(photoBase64)}
                 description="Crear"

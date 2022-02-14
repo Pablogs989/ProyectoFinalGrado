@@ -25,9 +25,8 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 11,
         marginVertical: 10,
-        padding:0,
-        width: 160,
-        // height: 100,
+        padding: 0,
+        width: 170,
         elevation: 10,
         textAlign:"justify"
     },

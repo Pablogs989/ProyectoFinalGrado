@@ -4,6 +4,7 @@ import {
   StyleSheet,
   View,
   KeyboardAvoidingView,
+  Text
 } from "react-native";
 import {
   Provider,
@@ -12,7 +13,8 @@ import {
   HelperText,
   Portal,
   Dialog,
-  ActivityIndicator
+  ActivityIndicator,
+  Checkbox
 } from "react-native-paper";
 import { api } from "../utils/Api";
 import Appbar_Common from "../components/Appbar_Common";
@@ -26,7 +28,8 @@ const SignUp_Screen = ({ navigation }) => {
     if (
       !hasErrors_Email() &&
       !hasErrors_Password() &&
-      !hasErrors_Password_Config()
+      !hasErrors_Password_Config() &&
+      checked
     ) {
       setCreatingUser(true);
       axios
@@ -103,6 +106,8 @@ const SignUp_Screen = ({ navigation }) => {
   // Lógica entra Password_Config
   const [password_Config, setPassword_Config] = useState("");
   const [visible_Password_Config, setVisible_Password_Config] = useState(false);
+
+
   const handleOnFocus_Password_Config = () => {
     setVisible_Password_Config(false);
   };
@@ -119,6 +124,8 @@ const SignUp_Screen = ({ navigation }) => {
     let password_config_Error = !(password_Config === password);
     return password_config_Error;
   };
+  // Lógica entra checkboox
+  const [checked, setChecked] = React.useState(false);
   return (
     <Provider>
       <Portal>
@@ -226,6 +233,19 @@ const SignUp_Screen = ({ navigation }) => {
                   ? "¡¡Error!! La contrasenya no es igual a la de dalt."
                   : "Contrasenya vàlida"}
               </HelperText>
+              <View style={styles.checkbox}>
+                <Checkbox
+                  status={checked ? 'checked' : 'unchecked'}
+                  color="orange"
+                  onPress={() => {
+                    setChecked(!checked);
+                  }}
+
+                /><Text style={styles.checkboxText}>Politicas de privacidad</Text>
+
+               
+              </View>
+
             </Surface>
             <View style={styles.box_doubleButton_Medium}>
               <Button_Medium
@@ -263,7 +283,7 @@ const styles = StyleSheet.create({
   falseCard: {
     backgroundColor: "#A7CAD9",
     borderRadius: 20,
-    height: (Dimensions.get("window").height * 50) / 100,
+    height: (Dimensions.get("window").height * 55) / 100,
     width: (Dimensions.get("window").width * 90) / 100,
     marginTop: (Dimensions.get("window").height * 2) / 100,
     padding: 10,
@@ -278,4 +298,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
   },
+  checkbox: {
+    flexDirection: 'row',
+  },
+  checkboxText: {
+    paddingTop: 9,
+    paddingBottom:20
+  }
 });

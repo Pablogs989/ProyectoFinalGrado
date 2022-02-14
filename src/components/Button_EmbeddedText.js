@@ -1,22 +1,19 @@
 import React from 'react';
-import {Button} from 'react-native-paper';
-import {StyleSheet} from 'react-native';
-
+import { Button } from 'react-native-paper';
+import { StyleSheet } from 'react-native';
 
 const Button_EmbeddedText = (props) => {
     return (
         <Button
-            color = 'white'
-            title={props.titulo}
-            onPress={props.alPresionar}
+            color='white'
+            title={props.title}
+            onPress={props.onPress}
             style={styles.button}
-            >
-            {props.descripcion}
+        >
+            {props.description}
         </Button>
     );
 }
-
-
 
 export default Button_EmbeddedText;
 

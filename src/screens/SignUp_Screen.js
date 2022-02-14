@@ -145,7 +145,7 @@ const SignUp_Screen = ({ navigation }) => {
           <KeyboardAvoidingView
             behavior="padding"
             style={styles.keyboardAvoidView}
-            keyboardVerticalOffset={100}
+            keyboardVerticalOffset={50}
           >
             <Surface style={styles.box_TextInput}>
               <TextInput
@@ -171,7 +171,7 @@ const SignUp_Screen = ({ navigation }) => {
                 type={hasErrors_Email() ? "error" : "info"}
               >
                 {hasErrors_Email()
-                  ? "¡¡Error!! El email existix o no cumplix tots els parametres'."
+                  ? "¡¡Error!! El email existix o incompleix requisits."
                   : "Email vàlid"}
               </HelperText>
             </Surface>
@@ -200,7 +200,7 @@ const SignUp_Screen = ({ navigation }) => {
                 type={hasErrors_Password() ? "error" : "info"}
               >
                 {hasErrors_Password()
-                  ? "¡¡Error!! La contrasenya no cumplix els parametres de seguretat requerits"
+                  ? "¡¡Error!! La contrasenya no es segura."
                   : "Contrasenya vàlida"}
               </HelperText>
             </Surface>
@@ -230,7 +230,7 @@ const SignUp_Screen = ({ navigation }) => {
                 type={hasErrors_Password_Config() ? "error" : "info"}
               >
                 {hasErrors_Password_Config()
-                  ? "¡¡Error!! La contrasenya no es igual a la de dalt."
+                  ? "¡¡Error!! La contrasenya no coincideix."
                   : "Contrasenya vàlida"}
               </HelperText>
               <View style={styles.checkbox}>
@@ -240,10 +240,13 @@ const SignUp_Screen = ({ navigation }) => {
                   onPress={() => {
                     setChecked(!checked);
                   }}
-
-                /><Text style={styles.checkboxText}>Politicas de privacidad</Text>
-
-               
+                />
+                <Text
+                  style={styles.register_Button}
+                  onPress={() => navigation.navigate('PrivacyPolicy_Screen')}
+                  >
+                    Política de Privacitat
+                  </Text>               
               </View>
 
             </Surface>
@@ -251,7 +254,7 @@ const SignUp_Screen = ({ navigation }) => {
               <Button_Medium
                 title="Registrar-se"
                 onPress={() => register(email, password)}
-                description="Registar-se"
+                description="Registrar-se"
               />
             </View>
           </KeyboardAvoidingView>
@@ -291,8 +294,8 @@ const styles = StyleSheet.create({
   },
   box_doubleButton_Medium: {
     alignItems: "center",
-    marginBottom: -20,
-    marginTop: -10,
+    marginBottom: 0,
+    marginTop: 0,
   },
   keyboardAvoidView: {
     flex: 1,
@@ -300,9 +303,12 @@ const styles = StyleSheet.create({
   },
   checkbox: {
     flexDirection: 'row',
+    marginBottom: 12,
+    alignItems:"baseline",
   },
-  checkboxText: {
-    paddingTop: 9,
-    paddingBottom:20
-  }
+
+  register_Button: {
+    color: "#26528C",
+    textDecorationLine: "underline",
+  },
 });

@@ -27,8 +27,8 @@ const Welcome_Screen = ({ navigation: { navigate } }) => {
                 </View>
                 <View style={styles.buttons}>
                     <View style={styles.box_doubleButton_Mediano}>
-                        <Button_Medium title="Registrar" onPress={() => navigate('SignUp_Screen')} description="Registrar" />
-                        <Button_Medium title="Iniciar Sessió" onPress={() => navigate('LogIn_Screen')} description="Iniciar Sesió" />
+                        <Button_Medium title="Registrar" onPress={() => navigate('SignUp_Screen')} description="Registrar-se" />
+                        <Button_Medium title="Iniciar Sessió" onPress={() => navigate('LogIn_Screen')} description="Iniciar Sessió" />
                     </View>
                     <Button_EmbeddedText title="PoliticaPrivacitat" onPress={() => navigate('PrivacyPolicy_Screen')} description="Politica de privacitat" />
                 </View>

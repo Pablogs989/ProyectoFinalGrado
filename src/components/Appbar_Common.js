@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import {Dimensions, Image, StyleSheet } from 'react-native';
 import { Appbar } from 'react-native-paper';
 
 const Appbar_Common = (props) => {
@@ -7,7 +7,13 @@ const Appbar_Common = (props) => {
         <Appbar.Header style={styles.background}>
             <Appbar.BackAction onPress={props.onPress} />
             <Appbar.Content title={props.title} style={{ alignItems: "center" }} />
-            <Appbar.Action icon="account" size={30} onPress={() => { }} />
+            <Image source={require("../assets/logoPequenyoColorInvertido.png")}
+                style={{
+                    maxHeight: Dimensions.get("window").width * 10 / 100,
+                    maxWidth: Dimensions.get("window").width * 10 / 100,
+                    marginLeft: Dimensions.get("window").width * 4 / 100,
+                    marginRight: Dimensions.get("window").width * 2 / 100
+                }} />
         </Appbar.Header>
     );
 }

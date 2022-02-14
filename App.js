@@ -13,7 +13,6 @@ import LogIn_Screen from './src/screens/LogIn_Screen';
 import Main_Screen from './src/screens/Main_Screen';
 import SignUp_Screen from './src/screens/SignUp_Screen';
 import Welcome_Screen from './src/screens/Welcome_Screen';
-import Filter_MainScreen_MD from './src/screens/Filter_MainScreen_MD';
 import PrivacyPolicy_Screen from './src/screens/PrivacyPolicy_Screen';
 
 
@@ -22,7 +21,7 @@ const PilaNavegacio = createNativeStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-    <PilaNavegacio.Navigator screenOptions={{ headerShown: false}} initialRouteName="DocRegister_Screen">
+    <PilaNavegacio.Navigator screenOptions={{ headerShown: false}} initialRouteName="Welcome_Screen">
       <PilaNavegacio.Group>
         <PilaNavegacio.Screen name="Main_Screen" component={Main_Screen} />
         <PilaNavegacio.Screen name="ColeccionCreate_Screen" component={ColeccionCreate_Screen} />
@@ -34,9 +33,6 @@ export default function App() {
         <PilaNavegacio.Screen name="SignUp_Screen" component={SignUp_Screen} />
         <PilaNavegacio.Screen name="Welcome_Screen" component={Welcome_Screen} />
         <PilaNavegacio.Screen name="PrivacyPolicy_Screen" component={PrivacyPolicy_Screen} />
-      </PilaNavegacio.Group>
-      <PilaNavegacio.Group screenOptions={{presentation: 'transparentModal'}}>
-        <PilaNavegacio.Screen name="Filter_MainScreen_MD" component={Filter_MainScreen_MD} />
       </PilaNavegacio.Group>
     </PilaNavegacio.Navigator>
     </NavigationContainer>

@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {StyleSheet, Dimensions, View, ScrollView} from 'react-native';
-import {Card, Headline} from 'react-native-paper';
+import {Avatar, Button, Caption , Card, Headline, IconButton, Text, Title, Paragraph, Surface } from 'react-native-paper';
 import Card_Medium from './Card_Medium';
 
 
@@ -17,11 +17,25 @@ const Card_Big = (props) => {
                 date={object.data_vigent}
                 owner={object.titular_perfil}
                 colection={object.coleccio}
-                file_url={object.imatge_url}
+                file={object.imatge_url}
+                favorit={"false"}
                 />
         </View>
     ));
     
+    //Lógica per mostrar l'array filtrat amb Cards
+    // const listCard_Documents = documents.map((object, index) => (
+    //   <View key={index}>
+    //     <Card_Medium
+    //       document={object.nom_document}
+    //       date={object.data_vigent}
+    //       owner={object.titular_perfil}
+    //       colection={object.coleccio}
+    //       file={object.imatge_url}
+    //       favorit={"false"}
+    //     />
+    //   </View>
+    // ));
 
     return (
         <Card style={styles.falseCard}>
@@ -44,7 +58,7 @@ const styles = StyleSheet.create({
         height: Dimensions.get("window").height*79/100,
         width: Dimensions.get("window").width*95/100,
         marginHorizontal: Dimensions.get("window").width*2.5/100,
-        paddingBottom: Dimensions.get("window").width*14/100
+        paddingBottom: Dimensions.get("window").width*14/100,
     },
     box_Headline:{
         backgroundColor: "#A7CAD9",

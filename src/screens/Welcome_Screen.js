@@ -30,7 +30,7 @@ const Welcome_Screen = ({ navigation: {navigate} }) => {
                 <View style={styles.buttons}>
                     <View style={styles.box_doubleButton_Mediano}>
                         <Button_Medium titulo="Registrar" alPresionar={() => navigate('SignUp_Screen')} descripcion="Registrar" />
-                        <Button_Medium titulo="Iniciar Sessió" alPresionar={() => navigate('LogIn_Screen')} descripcion="Iniciar Sesió" />
+                        <Button_Medium titulo="Iniciar Sessió" alPresionar={() => navigate('LogIn_Screen')} descripcion="Inici Sessió" />
                     </View>
                     <Button_EmbeddedText titulo="PoliticaPrivacitat" alPresionar={() => navigate('PrivacyPolicy_Screen')} descripcion="Politica de privacitat"></Button_EmbeddedText>
                 </View>
@@ -63,8 +63,8 @@ const styles = StyleSheet.create({
 
     image: {
         marginTop: 100,
-        height: 200,
-        width: 310,
+        maxHeight: Dimensions.get("window").width * 60 / 100, 
+        maxWidth: Dimensions.get("window").width * 80 / 100, 
     },
 
     imageFLex: {

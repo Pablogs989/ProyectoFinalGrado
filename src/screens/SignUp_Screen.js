@@ -21,6 +21,7 @@ import Button_Medium from "../components/Button_Medium";
 import { api } from "../utils/Api";
 import axios from "axios";
 import md5 from "md5";
+import Button_EmbeddedText from "../components/Button_EmbeddedText";
 
 const SignUp_Screen = ({ navigation }) => {
   const [creatingUser, setCreatingUser] = useState(false);
@@ -147,7 +148,7 @@ const SignUp_Screen = ({ navigation }) => {
           <KeyboardAvoidingView
             behavior="padding"
             style={styles.keyboardAvoidView}
-            keyboardVerticalOffset={100}
+            keyboardVerticalOffset={30}
           >
             <Surface style={styles.box_TextInput}>
               <TextInput
@@ -173,7 +174,7 @@ const SignUp_Screen = ({ navigation }) => {
                 type={hasErrors_Email() ? "error" : "info"}
               >
                 {hasErrors_Email()
-                  ? "¡¡Error!! El email existix o no cumplix tots els parametres'."
+                  ? "¡¡Error!! Email existix o no compleix requisits."
                   : "Email vàlid"}
               </HelperText>
             </Surface>
@@ -202,7 +203,7 @@ const SignUp_Screen = ({ navigation }) => {
                 type={hasErrors_Password() ? "error" : "info"}
               >
                 {hasErrors_Password()
-                  ? "¡¡Error!! La contrasenya no cumplix els parametres de seguretat requerits"
+                  ? "¡¡Error!! La contrasenya no es segura"
                   : "Contrasenya vàlida"}
               </HelperText>
             </Surface>
@@ -232,7 +233,7 @@ const SignUp_Screen = ({ navigation }) => {
                 type={hasErrors_Password_Config() ? "error" : "info"}
               >
                 {hasErrors_Password_Config()
-                  ? "¡¡Error!! La contrasenya no es igual a la de dalt."
+                  ? "¡¡Error!! La contrasenya no coincideix."
                   : "Contrasenya vàlida"}
               </HelperText>
               <View style={styles.checkbox}>
@@ -242,10 +243,13 @@ const SignUp_Screen = ({ navigation }) => {
                   onPress={() => {
                     setChecked(!checked);
                   }}
-
-                /><Text style={styles.checkboxText}>Politicas de privacidad</Text>
-
-               
+                />
+                <Text
+                  style={styles.privacyPolicy_Button}
+                  onPress={() => navigation.navigate('PrivacyPolicy_Screen')}
+                >
+                Politica de privacitat
+                </Text>
               </View>
 
             </Surface>
@@ -253,7 +257,7 @@ const SignUp_Screen = ({ navigation }) => {
               <Button_Medium
                 titulo="Registrar-se"
                 alPresionar={() => register(email, password)}
-                descripcion="Registar-se"
+                descripcion="Registrar-se"
               />
             </View>
           </KeyboardAvoidingView>
@@ -285,7 +289,7 @@ const styles = StyleSheet.create({
   falseCard: {
     backgroundColor: "#A7CAD9",
     borderRadius: 20,
-    height: (Dimensions.get("window").height * 55) / 100,
+    height: (Dimensions.get("window").height * 60) / 100,
     width: (Dimensions.get("window").width * 90) / 100,
     marginTop: (Dimensions.get("window").height * 2) / 100,
     padding: 10,
@@ -294,7 +298,7 @@ const styles = StyleSheet.create({
   box_doubleButton_Mediano: {
     alignItems: "center",
     marginBottom: -20,
-    marginTop: -10,
+    marginTop: 0,
   },
   keyboardAvoidView: {
     flex: 1,
@@ -302,9 +306,11 @@ const styles = StyleSheet.create({
   },
   checkbox: {
     flexDirection: 'row',
+    alignItems:"baseline",
+    paddingBottom: 10,
   },
-  checkboxText: {
-    paddingTop: 9,
-    paddingBottom:20
-  }
+  privacyPolicy_Button: {
+    color: "#26528C",
+    textDecorationLine: "underline",
+  },
 });

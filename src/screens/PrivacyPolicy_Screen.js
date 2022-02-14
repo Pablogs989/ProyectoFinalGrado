@@ -32,7 +32,7 @@ const LogIn_Screen = ({ navigation }) => {
                         <Title>
                             ¿Qué datos de carácter personal se pueden recopilar?
                         </Title>
-                        <Text style={styles.text}>
+                        {/* <Text style={styles.text}> */}
                             <View>
                                 <Text style={styles.text}>
                                     -Al crear un ID, solicitar un crédito comercial, comprar un producto,
@@ -52,11 +52,11 @@ const LogIn_Screen = ({ navigation }) => {
                                     el fraude.
                                 </Text>
                             </View>
-                        </Text>
+                        {/* </Text> */}
                         <Title>
                             Propósito del tratamiento de datos de carácter personal
                         </Title>
-                        <Text style={styles.text}>
+                        {/* <Text style={styles.text}> */}
                             <View>
                                 <Text style={styles.text}>
                                     “Travel Docs” podrá utilizar los datos personales recabados para:
@@ -99,7 +99,7 @@ const LogIn_Screen = ({ navigation }) => {
                                     programas.
                                 </Text>
                             </View>
-                        </Text>
+                        {/* </Text> */}
                         <Title>
                             Recopilación y tratamiento de datos de carácter no
                             personal

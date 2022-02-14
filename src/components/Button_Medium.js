@@ -8,7 +8,7 @@ const Button_Medium = (props) => {
             mode="outlined"
             color="black"
             title={props.title}
-            onPress={props.OnPress}
+            onPress={props.onPress}
             style={styles.button}
         >
             {props.description}

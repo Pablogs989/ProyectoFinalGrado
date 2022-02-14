@@ -24,7 +24,7 @@ const Card_Big = (props) => {
     return (
         <Card style={styles.falseCard}>
             <View style={{ paddingBottom: Dimensions.get("window").height * 2 / 100 }} >
-                <Headline style={styles.box_Headline}> {props.profile}</Headline>
+                <Headline style={styles.box_Headline}>{props.owner}</Headline>
                 <ScrollView showsVerticalScrollIndicator={false} >
                     {listCard_Documents}
                 </ScrollView>

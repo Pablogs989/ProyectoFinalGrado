@@ -5,7 +5,7 @@ import { Appbar } from 'react-native-paper';
 const Appbar_Common = (props) => {
     return (
         <Appbar.Header style={styles.background}>
-            <Appbar.BackAction onPress={props.Onpress} />
+            <Appbar.BackAction onPress={props.onPress} />
             <Appbar.Content title={props.title} style={{ alignItems: "center" }} />
             <Appbar.Action icon="account" size={30} onPress={() => { }} />
         </Appbar.Header>

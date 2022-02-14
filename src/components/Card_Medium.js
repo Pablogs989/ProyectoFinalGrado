@@ -10,6 +10,8 @@ import {
   Title,
   Paragraph,
   Surface,
+  Portal,
+  Dialog,
 } from "react-native-paper";
 import { backgroundColor } from "react-native/Libraries/Components/View/ReactNativeStyleAttributes";
 import { api } from "../utils/Api";
@@ -17,7 +19,7 @@ import { useNavigation } from "@react-navigation/native";
 
 const LeftContent = (props) => <Avatar.Icon {...props} icon="folder" />;
 
-const Card_Proyecto = (props) => {
+const Card_Medium = (props) => {
   const navigation = useNavigation();
   const [alert, setAlert] = useState(false);
   const [favorit, setFavorit] = useState(false);
@@ -33,6 +35,7 @@ const Card_Proyecto = (props) => {
     setFavorit(!favorit);
   };
 
+  const [visibleWarning, setVisibleWarning] = useState(false);
   const date = new Date(props.date);
   const currentDate = new Date();
   const differenceDate = currentDate.getTime() - date.getTime();
@@ -47,6 +50,17 @@ const Card_Proyecto = (props) => {
         })
       }
     >
+      <Portal>
+        <Dialog visible={visibleWarning} dismissable={true} onDismiss={() => setVisibleWarning(false)}>
+          <Dialog.Title>Caducitat</Dialog.Title>
+          <Dialog.Content>
+            <Text>Aquest document ja ha caducat o esta a punt de caducar.</Text>
+          </Dialog.Content>
+          <Dialog.Actions>
+            <Button onPress={() => setVisibleWarning(false)}>Ok</Button>
+          </Dialog.Actions>
+        </Dialog>
+      </Portal>
       <View
         key={props.indexKey}
         style={{ flexDirection: "row", maxHeight: 150 }}
@@ -93,7 +107,7 @@ const Card_Proyecto = (props) => {
               <IconButton
                 icon="alert"
                 size={30}
-                // onPress={() => changeAlert()}
+                onPress={() => setVisibleWarning(true)}
                 color="#FF0000"
               />
             ) : (
@@ -125,7 +139,7 @@ const Card_Proyecto = (props) => {
   );
 };
 
-export default Card_Proyecto;
+export default Card_Medium;
 
 const styles = StyleSheet.create({
   box: {
@@ -137,6 +151,6 @@ const styles = StyleSheet.create({
     marginHorizontal: (Dimensions.get("window").width * 4) / 100,
     // marginVertical: 7,
     marginVertical: (Dimensions.get("window").height * 1) / 100,
-    elevation: 20,
+    elevation: 4,
   },
 });

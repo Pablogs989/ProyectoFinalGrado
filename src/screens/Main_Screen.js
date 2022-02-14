@@ -1,166 +1,202 @@
 import React, { useState, useEffect } from "react";
 import {
   Dimensions,
+  Image,
   ScrollView,
   StyleSheet,
   View,
-  BackHandler,
 } from "react-native";
 import {
+  Appbar,
   Button,
-  Headline,
   Provider,
-  Text,
+  Searchbar,
   ActivityIndicator,
+  Dialog,
+  Surface,
+  RadioButton,
+  Portal,
+  Text,
 } from "react-native-paper";
-import Appbar_MainScreen from "../components/Appbar_MainScreen";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-import { array_Projects } from "../utils/ArrayProjects";
-import Card_Medium from "../components/Card_Medium";
 import axios from "axios";
 import { api } from "../utils/Api";
 import { authentication } from "../utils/Authentication";
+import { useIsFocused } from "@react-navigation/native";
+import Card_Big from "../components/Card_Big";
+import Button_Small from '../components/Button_Small';
+
 
 const Main_Screen = ({ route, navigation: { navigate } }) => {
-  const [valorColection, setValorColection] = useState("Tots");
-  const [valorOwner, setValorOwner] = useState("Tots");
-  const [valorFavorit, setValorFavorit] = useState("Tots");
-  const [isLoading, setLoading] = useState(true);
-  const [documents, setDocuments] = useState([]);
 
-  let nuevo_Proy = array_Projects;
-  console.log(
-    "inicio --> " + valorColection + " " + valorOwner + " " + valorFavorit
-  );
-
-  //Documents List & Disabling going back
+  const isFocused = useIsFocused();
   useEffect(() => {
+    let isApiSubscribed = true;
+    if (isApiSubscribed) {
+      //Filter
+      if (route?.params) {
+        const { colection } = route.params;
+        setValorColection(colection);
+      }
+      //Loading
+      setLoading(true);
+    } else {
+      setLoading(false);
+    }
+
     axios
       .get(api.getDocuments + authentication.id)
       .then((response) => {
-        console.log(response.data);
-        //   setDocuments(response.data.split(","));
-        setDocuments(response.data);
-        setLoading(false);
+        if (isApiSubscribed) {
+          setDocuments(response.data);
+          setFilteredDocuments(response.data);
+          setLoading(false);
+        }
       })
       .catch((error) => {
-        setLoading(false);
+        if (isApiSubscribed) {
+          setLoading(false);
+        }
       });
-  }, []);
 
-  //Logica passing paremetes to routes
-  // useEffect(() => {
-  //   if (route?.params) {
-  //     const { colection, owner, favorit } = route.params;
-  //     setValorColection(colection);
-  //     setValorOwner(owner);
-  //     setValorFavorit(favorit);
-  //     console.log(
-  //       "if --> " + valorColection + " " + valorOwner + " " + valorFavorit
-  //     );
-  //   }
-  // }, [route?.params]);
+    return () => {
+      // cancel the subscription
+      isApiSubscribed = false;
+    };
+  }, [isFocused])
 
-  // //Lógica comunicació fill-pare
-  // const getValors=({cicle, favorit, votat}) => {
+  const [valorColection, setValorColection] = useState("Tots");
+  const [isLoading, setLoading] = useState(true);
+  const [documents, setDocuments] = useState([]);
+  const [filteredDocuments, setFilteredDocuments] = useState([]);
+  const [filterDialog, setFilterDialog] = useState(false);
 
-  //     console.log("Llista -->"+ cicle+ " "+favorit+ " "+votat);
-  //     setValorCicle(cicle);
-  //     setValorFavorit(favorit);
-  //     setValorVotat(votat);
-  // }
+  const [searchQuery, setSearchQuery] = React.useState('');
+  const onChangeSearch = (query) => {
+    let arr = []
+    setSearchQuery(query);
+    documents.map((project, index) => {
+      if (project.nom_document.toLowerCase().includes(query.toLowerCase())) {
+        arr.push(project);
+      }
+    })
+    setFilteredDocuments(arr);
+  };
 
-  //Logica de filtrat de valors en l'array
-  //   if (valorColection !== "Tots") {
-  //     nuevo_Proy = nuevo_Proy
-  //       .filter(function (item) {
-  //         return item.colection == valorColection;
-  //       })
-  //       .map(function ({ document, date, owner, colection, file_url, favorit }) {
-  //         return { document, date, owner, colection, file_url, favorit };
-  //       });
-  //   }
-  //   if (valorOwner !== "Tots") {
-  //     nuevo_Proy = nuevo_Proy
-  //       .filter(function (item) {
-  //         return item.owner == valorOwner;
-  //       })
-  //       .map(function ({ document, date, owner, colection, file_url, favorit }) {
-  //         return { document, date, owner, colection, file_url, favorit };
-  //       });
-  //   }
-  //   if (valorFavorit !== "Tots") {
-  //     nuevo_Proy = nuevo_Proy
-  //       .filter(function (item) {
-  //         return item.favorit == valorFavorit;
-  //       })
-  //       .map(function ({ document, date, owner, colection, file_url, favorit }) {
-  //         return { document, date, owner, colection, file_url, favorit };
-  //       });
-  //   }
+  //Lógica obtençio array amb els perfils
+  let arrayOwners = [];
+  for (let i = 0; i < documents.length; i++) {
+    if (!arrayOwners.includes(documents[i].titular_perfil)) {
+      arrayOwners.push(documents[i].titular_perfil)
+    }
+  }
 
-  //Lógica per mostrar l'array filtrat amb Cards
-  const listCard_Documents = documents.map((object, index) => (
-    <View key={index}>
-      <Card_Medium
-        document={object.nom_document}
-        date={object.data_vigent}
-        owner={object.titular_perfil}
-        colection={object.coleccio}
-        file={object.imatge_url}
-        favorit={"false"}
-      />
-    </View>
-  ));
+  //Logica per mostrar les dades dels objectes en "cards" independents per a cada "perfil_titular"
+  const listCard_Documents = [];
+
+  for (let i = 0; i < arrayOwners.length; i++) {
+    let arrayDocsSameOwner = [];
+    for (let j = 0; j < filteredDocuments.length; j++) {
+
+      if (filteredDocuments[j].titular_perfil === arrayOwners[i]) {
+        if (valorColection !== "Tots") {
+          if (filteredDocuments[j].coleccio == valorColection) {
+            arrayDocsSameOwner.push(filteredDocuments[j]);
+          }
+        } else {
+          arrayDocsSameOwner.push(filteredDocuments[j]);
+        }
+      }
+    }
+    let item = (
+      <View key={i}>
+        <Card_Big owner={arrayOwners[i]} docsSameOwner={arrayDocsSameOwner} />
+      </View>);
+    listCard_Documents.push(item);
+  }
 
   const loading = (
     <View>
-      <ActivityIndicator animating={true} color="red" size="large" />
+      <ActivityIndicator animating={true} color="#DEB202" size="large" />
     </View>
   );
 
+  const tipus = [
+    "Tots", "Identificatius", "Sanitaris", "Transports",
+    "Allotjaments", "Segurs", "Events", "Altres"
+  ]
+
+  const filter = (
+    <Portal>
+      <Dialog visible={filterDialog} onDismiss={() => setFilterDialog(false)}>
+        <Dialog.Title style={{ alignSelf: "center" }}>Opcions de Filtrat dels Documents</Dialog.Title>
+        <Dialog.Content>
+          <Surface style={{ borderWidth: 1, borderRadius: 10, elevation: 10, marginVertical: 20 }}>
+            <RadioButton.Group onValueChange={newValue => setValorColection(newValue)} value={valorColection}>
+              {tipus.map((tipus, index) => {
+                return (<Surface style={styles.view} key={index}>
+                  <RadioButton value={tipus} />
+                  <Text>{tipus}</Text>
+                </Surface>)
+              })}
+            </RadioButton.Group>
+          </Surface>
+        </Dialog.Content>
+        <Dialog.Actions style={styles.box_doubleButton_Pequenyo}>
+          <Button_Small titulo="Cancel·lar" alPresionar={() => setFilterDialog(false)} descripcion="Cancel·lar" />
+          <Button_Small titulo="Confirmar" alPresionar={() => setFilterDialog(false)} descripcion="Confirmar" />
+        </Dialog.Actions>
+      </Dialog>
+    </Portal>
+  )
+
+
   return (
     <Provider>
-      <Appbar_MainScreen
-        alPresionar={() => navigate("Main_Screen")}
-        titulo="Principal"
-      />
+      {filter}
+      <Appbar.Header style={styles.fondo}>
+
+        <Appbar.Action icon="account" size={30} onPress={() => { }}  style={{ width: Dimensions.get("window").width * 11 / 100 }} />
+        <Searchbar
+          placeholder="Buscar TripDocs"
+          placeholderTextColor="#000"
+          onChangeText={onChangeSearch}
+          value={searchQuery}
+          style={{ width: Dimensions.get("window").width * 67 / 100, backgroundColor: '#A7CAD9' }}
+          iconColor="#000"
+          inputStyle={{ color: "#000", textAlign: "auto" }}
+          selectionColor={"#000"}
+        />
+        {/* <Appbar.Action icon="account" size={30} onPress={() => { }} style={{ width: Dimensions.get("window").width * 8 / 100 }} /> */}
+        <Image source={require("../assets/logoPequenyoColorInvertido.png")} 
+          style={{ maxHeight: Dimensions.get("window").width * 10 / 100, 
+                   maxWidth: Dimensions.get("window").width * 10 / 100, 
+                   marginLeft:Dimensions.get("window").width * 4 / 100,
+                   marginRight:Dimensions.get("window").width * 2 / 100 }} />
+      </Appbar.Header>
+
       <View style={styles.box}>
-        <View style={styles.falseCard}>
-          <Headline style={styles.box_Headline}> Mi perfil</Headline>
-          <ScrollView showsVerticalScrollIndicator={false}>
-            {/* {listCard_Projects} */}
+        <View style={styles.spaceCard}>
+
+          <ScrollView
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+            scrollEventThrottle={200}
+            decelerationRate="fast"
+            pagingEnabled
+          >
             {isLoading ? loading : listCard_Documents}
           </ScrollView>
         </View>
+
+
         <View style={styles.box_tripleButton}>
-          <Button
-            style={styles.boton}
-            onPress={() => navigate("DocRegister_Screen")}
-          >
-            <Icon
-              name="plus"
-              size={(Dimensions.get("window").height * 6) / 100}
-              color={"black"}
-            />
+          <Button style={styles.boton} onPress={() => navigate('DocRegister_Screen')}>
+            <Icon name="plus" size={Dimensions.get("window").height * 6 / 100} color={"black"} />
           </Button>
-          {/* <Button style={styles.boton} onPress={() => {}}>
-            <Icon
-              name="folder"
-              size={(Dimensions.get("window").height * 6) / 100}
-              color={"black"}
-            />
+          <Button style={styles.boton} onPress={() => setFilterDialog(true)}>
+            <Icon name="filter-variant" size={Dimensions.get("window").height * 6 / 100} color={"black"} />
           </Button>
-          <Button
-            style={styles.boton}
-            onPress={() => navigate("Filter_MainScreen_MD")}
-          >
-            <Icon
-              name="filter-variant"
-              size={(Dimensions.get("window").height * 6) / 100}
-              color={"black"}
-            />
-          </Button> */}
         </View>
       </View>
     </Provider>
@@ -170,46 +206,51 @@ const Main_Screen = ({ route, navigation: { navigate } }) => {
 export default Main_Screen;
 
 const styles = StyleSheet.create({
+  fondo: {
+    backgroundColor: '#26528C',
+    alignSelf: "center"
+  },
   boton: {
-    backgroundColor: "#F6C602",
-    borderColor: "#000000",
+    backgroundColor: '#F6C602',
+    borderColor: '#000000',
     borderWidth: 1,
     borderRadius: 11,
     elevation: 10,
     justifyContent: "center",
-    width: (Dimensions.get("window").width * 30) / 100,
-    height: (Dimensions.get("window").height * 8) / 100,
+    width: Dimensions.get("window").width * 40 / 100,
+    height: Dimensions.get("window").height * 9 / 100,
   },
 
   box: {
     flex: 1,
-    backgroundColor: "#26528C",
+    backgroundColor: '#26528C',
     height: Dimensions.get("window").height,
-    alignItems: "center",
+    alignItems: "center"
   },
 
-  falseCard: {
-    backgroundColor: "#A7CAD9",
-    borderRadius: 20,
-    height: (Dimensions.get("window").height * 81) / 100,
-    width: (Dimensions.get("window").width * 95) / 100,
-    marginTop: (Dimensions.get("window").height * 1) / 100,
-    paddingVertical: (Dimensions.get("window").height * 1) / 100,
+  spaceCard: {
+    height: Dimensions.get("window").height * 81 / 100,
+    paddingVertical: Dimensions.get("window").height * 1 / 100,
   },
-  box_Headline: {
-    backgroundColor: "#A7CAD9",
-    marginTop: (Dimensions.get("window").height * 0) / 100,
-    marginBottom: (Dimensions.get("window").height * 1) / 100,
-    alignSelf: "center",
-    elevation: 0,
-  },
+
   box_tripleButton: {
     flexDirection: "row",
     backgroundColor: "#26528C",
     borderWidth: 0,
-    paddingVertical: (Dimensions.get("window").height * 1.5) / 100,
+    paddingTop: Dimensions.get("window").height * 1 / 100,
     justifyContent: "space-evenly",
     elevation: 0,
-    width: (Dimensions.get("window").width * 100) / 100,
+    width: Dimensions.get("window").width * 100 / 100,
+
   },
+  box_doubleButton_Pequenyo: {
+    flexDirection: "row",
+    paddingBottom: 15,
+    justifyContent: "space-evenly",
+  },
+  view: {
+    flexDirection: "row",
+    alignItems: "baseline",
+    backgroundColor: "transparent"
+  }
 });

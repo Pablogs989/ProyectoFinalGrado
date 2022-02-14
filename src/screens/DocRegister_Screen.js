@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Dimensions, ScrollView, StyleSheet, View } from "react-native";
+import { Dimensions, ScrollView, StyleSheet, View, Image, TouchableOpacity } from "react-native";
 import {
   HelperText,
   IconButton,
@@ -10,14 +10,67 @@ import {
   Caption,
   List,
   Button,
+  Portal,
+  Dialog,
+  Paragraph,
+  ActivityIndicator,
 } from "react-native-paper";
 import Appbar_Common from "../components/Appbar_Common";
 import Button_Medium from "../components/Button_Medium";
 import { array_Projects } from "../utils/ArrayProjects";
+import * as ImagePicker from "expo-image-picker";
+import axios from "axios";
 //import DocumentTypesList from '../components/DocumentTypesList';
 import DateTimePicker from "@react-native-community/datetimepicker";
+import { api } from "../utils/Api";
+import { authentication } from "../utils/Authentication";
+import { useNavigation } from "@react-navigation/native";
 
 const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
+  const navigation = useNavigation();
+  const [photo, setPhoto] = useState("");
+  const [photoLoaded, setPhotoLoaded] = useState(false)
+  const [photoBase64, setPhotoBase64] = useState("");
+  const [creatingDocument, setCreatingDocument] = useState(false);
+  //Logica send Image to server
+  const docToServer = async (base64) => {
+    console.log(photoLoaded)
+    if (photoLoaded) {
+      try {
+        setCreatingDocument(true);
+        const response = await axios.post(api.post, {
+          tipo: "crearDocument",
+          id_usuari: authentication.id,
+          nom_document: nameDocument,
+          data_vigent: date,
+          titular_perfil: profile,
+          coleccio: typeDocument,
+          imatge_base64: base64,
+        });
+        setCreatingDocument(false);
+        navigate("Main_Screen");
+      } catch (error) {
+      }
+    }
+  };
+
+  const pickImage = async () => {
+    // No permissions request is necessary for launching the image library
+    let result = await ImagePicker.launchCameraAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [9, 16],
+      quality: 0.5,
+      base64: true,
+    });
+
+    if (!result.cancelled) {
+      setPhoto(result.uri);
+      setPhotoLoaded(true);
+      setPhotoBase64(result.base64);
+    }
+  };
+
   //Lógica entrada nombre documento
   const [nameDocument, setNameDocument] = useState("");
   const [visible_nameDocument, setVisible_nameDocument] = useState(false);
@@ -34,33 +87,12 @@ const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
   const handleOnPress_IconClose_nameDocument = () => {
     setNameDocument("");
   };
-  const esValido = () => {
-    return;
-  };
   const esEspacio = (x) => {
     return x === " ";
   };
   const hasErrors_nameDocument = () => {
     let arrayName = nameDocument.split("");
     return arrayName.every(esEspacio);
-  };
-
-  //Lógica tipo documentos
-  const [typeDocument, setTypeDocument] = useState("Tipus de document:");
-
-  const handleOnPressSalut_typeDocument = () => {
-    setTypeDocument("Salut");
-    console.log(typeDocument);
-  };
-  const handleOnPressAllotjaments_typeDocument = () => {
-    setTypeDocument("Allotjaments");
-    console.log(typeDocument);
-  };
-  const handleOnPressDocumentacio_typeDocument = () => {
-    setTypeDocument("Documentacio");
-    {
-      console.log(typeDocument);
-    }
   };
 
   //Lógica entrada perfil
@@ -104,41 +136,30 @@ const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
     showMode("date");
   };
 
-  //Lógica afegir proyecte a array proyectes
-  let newDocument = {
-    typeDocument: "",
-    nameDocument: "",
-    date: "",
-    profile: "",
-    image: "",
-  };
-  const handleOnPress_Confirmar = () => {
-    newDocument.typeDocument = typeDocument;
-    newDocument.nameDocument = nameDocument;
-    newDocument.date = date;
-    newDocument.profile = profile;
-    newDocument.image = require("../assets/library_music_22762.png");
-    array_Projects.push(newDocument);
-    navigate("Main_Screen");
-  };
-
+  //Logic Picker
+  //Lógica tipo documentos
+  const tipus = [
+    "Identificatius", "Sanitaris", "Transports",
+    "Allotjaments", "Segurs", "Events", "Altres"
+  ]
+  const [typeDocument, setTypeDocument] = useState("Tipus de document:");
+  const handleOnPress_typeDocument = (types) => {
+    setTypeDocument(types);
+    setExpanded(false);
+  }
+  const [expanded, setExpanded] = useState(false)
   const DocumentTypesList = (
-    <List.Accordion style={styles.list} title={typeDocument}>
-      <List.Item
-        style={styles.list}
-        title="Salut"
-        onPress={handleOnPressSalut_typeDocument}
-      />
-      <List.Item
-        style={styles.list}
-        title="Allotjaments"
-        onPress={handleOnPressAllotjaments_typeDocument}
-      />
-      <List.Item
-        style={styles.list}
-        title="Documentació"
-        onPress={handleOnPressDocumentacio_typeDocument}
-      />
+    <List.Accordion style={styles.list} title={typeDocument} expanded={expanded} onPress={() => expanded ? setExpanded(false) : setExpanded(true)}>
+      {tipus.map((tipus, index) => {
+        return (<List.Item
+          key={index}
+          style={styles.list}
+          title={tipus}
+          onPress={() => handleOnPress_typeDocument(tipus)}
+        >
+
+        </List.Item>)
+      })}
     </List.Accordion>
   );
 
@@ -186,8 +207,26 @@ const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
     </Surface>
   );
 
+  const ImageLoaded = (
+    // <TouchableHighlight onPress={pickImage}>
+    <TouchableOpacity onPress={pickImage}>
+      <Image source={{ uri: photo }} resizeMode="cover" style={styles.image} />
+    </TouchableOpacity>
+    ///* </TouchableHighlight> */}
+  )
+
+
+
   return (
     <Provider>
+      <Portal>
+        <Dialog visible={creatingDocument} dismissable={false}>
+          <Dialog.Title>Creant Document</Dialog.Title>
+          <Dialog.Content>
+            <ActivityIndicator animating={true} color="#DEB202" size="large" />
+          </Dialog.Content>
+        </Dialog>
+      </Portal>
       <Appbar_Common
         alPresionar={() => navigate("Main_Screen")}
         titulo="Registre Document"
@@ -248,60 +287,40 @@ const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
                 {hasErrors_profile() ? "¡¡Error!! Nom no vàlid." : "Nom vàlid"}
               </HelperText>
             </Surface>
-
-            {/* <DatePicker
-                            modal
-                            mode="date"
-                            open={open}
-                            date={date}
-                            onConfirm={(date) => {
-                                setOpen(false)
-                                setDate(date)
-                                console.log(date)
-                            }}
-                            onCancel={() => {
-                                setOpen(false)
-                            }}
-                        /> */}
-
             {Platform.OS === "ios" ? IosCalendar : AndroidCalendar}
-
             <Surface style={styles.box_ImportLogo}>
               <Surface style={styles.box_Icona}>
-                <IconButton
+                {!photoLoaded ? <IconButton
                   icon="camera"
                   size={90}
-                  onPress={() => navigate("LogIn_Screen")}
-                />
+                  onPress={pickImage}
+                /> :
+                  ImageLoaded
+                }
+
               </Surface>
 
               <Text>Afig la imatge pressionant sobre l'icona.</Text>
+
             </Surface>
 
             <View style={styles.box_doubleButton_Mediano}>
               <Button_Medium
                 titulo="Cancel"
-                alPresionar={() => navigate("Main_Screen")}
+                alPresionar={() => navigation.navigate("Main_Screen", { backPress: true })}
                 descripcion="Cancel·lar"
               />
               <Button_Medium
                 titulo="Create"
-                alPresionar={handleOnPress_Confirmar}
+                alPresionar={() => docToServer(photoBase64)}
                 descripcion="Crear"
               />
             </View>
           </ScrollView>
         </View>
       </View>
-    </Provider>
-    //     <Provider>
-    //     <Appbar_Pantallas alPresionar={() => navigate("P1_Principal")} titulo="Registre Projectes"/>
+    </Provider >
 
-    //     <Surface style={styles.box_Headline}>
-    //         <Headline style={{textAlign:'center'}}>Registra les Dades del teu Projecte</Headline>
-    //     </Surface>
-
-    // </Provider>
   );
 };
 
@@ -362,6 +381,7 @@ const styles = StyleSheet.create({
     height: 166,
     width: 300,
     alignItems: "center",
+    justifyContent: "center",
     elevation: 0,
   },
   box_doubleButton_Mediano: {
@@ -397,4 +417,8 @@ const styles = StyleSheet.create({
   calendarIcon: {
     margin: 0,
   },
+  image: {
+    width: 100,
+    height: 100,
+  }
 });

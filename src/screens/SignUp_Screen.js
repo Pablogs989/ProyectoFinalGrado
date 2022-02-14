@@ -6,18 +6,13 @@ import {
   KeyboardAvoidingView,
 } from "react-native";
 import {
-  Appbar,
-  Caption,
-  Button,
-  Headline,
-  Paragraph,
   Provider,
   Surface,
-  Subheading,
-  Text,
-  Title,
   TextInput,
   HelperText,
+  Portal,
+  Dialog,
+  ActivityIndicator
 } from "react-native-paper";
 import Appbar_Common from "../components/Appbar_Common";
 import Button_Medium from "../components/Button_Medium";
@@ -26,27 +21,14 @@ import axios from "axios";
 import md5 from "md5";
 
 const SignUp_Screen = ({ navigation }) => {
+  const [creatingUser, setCreatingUser] = useState(false);
   const register = (email, password) => {
     if (
       !hasErrors_Email() &&
       !hasErrors_Password() &&
       !hasErrors_Password_Config()
     ) {
-      // console.log("a");
-      // axios
-      //     .post(api.post, {
-      //         tipo: "crearAutenticacio",
-      //         email: email,
-      //         contrasenya: md5(password),
-      //       })
-      //     .then((response) => {
-      //         navigation.navigate("Welcome_Screen");
-
-      //     })
-      //     .catch((error) => {
-
-      //     });
-
+      setCreatingUser(true);
       axios
         .post(api.post, {
           tipo: "checkEmail",
@@ -68,7 +50,7 @@ const SignUp_Screen = ({ navigation }) => {
                 .then((response) => {
                   navigation.navigate("Welcome_Screen");
                 })
-                .catch((error) => {});
+                .catch((error) => { });
             }
           }
         });
@@ -141,8 +123,16 @@ const SignUp_Screen = ({ navigation }) => {
   };
   return (
     <Provider>
+      <Portal>
+        <Dialog visible={creatingUser} dismissable={false}>
+          <Dialog.Title>Creant Usuari</Dialog.Title>
+          <Dialog.Content>
+            <ActivityIndicator animating={true} color="#DEB202" size="large" />
+          </Dialog.Content>
+        </Dialog>
+      </Portal>
       <Appbar_Common
-        alPresionar={() => navigation.navigate("Main_Screen")}
+        alPresionar={() => navigation.navigate("Welcome_Screen")}
         titulo="Sign Up"
       />
       <View style={styles.box}>

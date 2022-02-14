@@ -63,8 +63,8 @@ const styles = StyleSheet.create({
 
     image: {
         marginTop: 100,
-        height: 200,
-        width: 310,
+        height: 225,
+        width: 315,
     },
 
     imageFLex: {

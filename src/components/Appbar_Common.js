@@ -19,12 +19,11 @@ const Appbar_Pantallas = (props) => {
     );
 }
 
-export default Appbar_Pantallas;
-
+export default Appbar_Common;
 
 const styles = StyleSheet.create({
-    fondo:{
+    background: {
         backgroundColor: '#26528C',
     },
-    
+
 })

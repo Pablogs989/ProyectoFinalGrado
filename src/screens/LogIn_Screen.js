@@ -5,36 +5,28 @@ import {
   View,
   KeyboardAvoidingView,
 } from "react-native";
-import { Header } from "@react-navigation/native-stack";
 import {
-  Appbar,
-  Caption,
-  Button,
-  Headline,
-  Paragraph,
   Surface,
   Provider,
-  Subheading,
   TextInput,
   Text,
-  Title,
   HelperText,
 } from "react-native-paper";
+import { authentication } from "../utils/Authentication";
+import { api } from "../utils/Api";
 import Appbar_Common from "../components/Appbar_Common";
 import md5 from "md5";
 import Button_Medium from "../components/Button_Medium";
 import axios from "axios";
-import { authentication } from "../utils/Authentication";
-import { api } from "../utils/Api";
 
 const LogIn_Screen = ({ navigation }) => {
   //Login
   const login = (email, password) => {
     axios
       .post(api.post, {
-        tipo: "autenticacio",
+        type: "authentication",
         email: email,
-        contrasenya: md5(password),
+        password: md5(password),
       })
       .then((response) => {
         navigation.navigate("Main_Screen");
@@ -43,24 +35,17 @@ const LogIn_Screen = ({ navigation }) => {
         authentication.authenticated = true;
       })
       .catch((error) => {
-        // console.log(error.response.status);
         if (error != undefined) {
           if (error.response.status == 404) {
             setAxiosError("Inici de sessio invalid");
           }
         }
       });
-    // const response = axios.post("http://40.118.51.225:5000/pi", {
-    //   tipo: "autenticacio",
-    //   email: email,
-    //   contrasenya: md5(password),
-    // });
-    id = "a";
   };
-  //Logica error login
+  //Logic error login
   const [axiosError, setAxiosError] = useState("");
 
-  // Lógica entra Email
+  // Logic Email input
   const [email, setEmail] = useState("");
   const [visible_Email, setVisible_Email] = useState(false);
   const handleOnFocus_Email = () => {
@@ -75,12 +60,8 @@ const LogIn_Screen = ({ navigation }) => {
   const handleOnPress_IconClose_Email = () => {
     setEmail("");
   };
-  const hasErrors_Email = () => {
-    let emailErroneo = !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email);
-    return emailErroneo;
-  };
 
-  //Logica Password
+  //Logic Password
   const [password, setPassword] = useState("");
   const [visible_Password, setVisible_Password] = useState(false);
   const handleOnFocus_Password = () => {
@@ -99,8 +80,8 @@ const LogIn_Screen = ({ navigation }) => {
   return (
     <Provider>
       <Appbar_Common
-        alPresionar={() => navigation.navigate("Welcome_Screen")}
-        titulo="Log In"
+        onPress={() => navigation.navigate("Welcome_Screen")}
+        title="Log In"
       />
       <View style={styles.box}>
         <Surface style={styles.falseCard}>
@@ -156,9 +137,9 @@ const LogIn_Screen = ({ navigation }) => {
             </Surface>
             <View style={styles.box_Button}>
               <Button_Medium
-                titulo="Iniciar Sessio"
-                alPresionar={() => login(email, password)}
-                descripcion="Confirmar"
+                title="Iniciar Sessio"
+                onPress={() => login(email, password)}
+                description="Confirmar"
               />
             </View>
             <View style={styles.register_Box}>

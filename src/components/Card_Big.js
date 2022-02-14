@@ -1,50 +1,34 @@
-import React, {useState, useEffect} from 'react';
-import {StyleSheet, Dimensions, View, ScrollView} from 'react-native';
-import {Avatar, Button, Caption , Card, Headline, IconButton, Text, Title, Paragraph, Surface } from 'react-native-paper';
+import React from 'react';
+import { StyleSheet, Dimensions, View, ScrollView } from 'react-native';
+import { Card, Headline } from 'react-native-paper';
 import Card_Medium from './Card_Medium';
 
 
 
 const Card_Big = (props) => {
 
-    let nuevo_Proy= props.docsSameOwner;
 
     //Lógica per mostrar l'array filtrat amb Cards
-    const listCard_Projects = nuevo_Proy.map((object, index) => (
+    const listCard_Documents = props.docsSameOwner.map((object, index) => (
         <View key={index}>
             <Card_Medium
-                document={object.nom_document}
-                date={object.data_vigent}
-                owner={object.titular_perfil}
-                colection={object.coleccio}
-                file={object.imatge_url}
-                favorit={"false"}
-                />
+                doc_name={object.doc_name}
+                effective_date={object.effective_date}
+                profile={object.profile}
+                collection={object.collection}
+                img_url={object.img_url}
+            />
         </View>
     ));
-    
-    //Lógica per mostrar l'array filtrat amb Cards
-    // const listCard_Documents = documents.map((object, index) => (
-    //   <View key={index}>
-    //     <Card_Medium
-    //       document={object.nom_document}
-    //       date={object.data_vigent}
-    //       owner={object.titular_perfil}
-    //       colection={object.coleccio}
-    //       file={object.imatge_url}
-    //       favorit={"false"}
-    //     />
-    //   </View>
-    // ));
 
     return (
         <Card style={styles.falseCard}>
-                <View style={{paddingBottom: Dimensions.get("window").height*2/100}} >
-                    <Headline style = {styles.box_Headline}> {props.owner}</Headline>
-                    <ScrollView showsVerticalScrollIndicator={false} >
-                        {listCard_Projects}
-                    </ScrollView>
-                </View>
+            <View style={{ paddingBottom: Dimensions.get("window").height * 2 / 100 }} >
+                <Headline style={styles.box_Headline}>{props.owner}</Headline>
+                <ScrollView showsVerticalScrollIndicator={false} >
+                    {listCard_Documents}
+                </ScrollView>
+            </View>
         </Card>
     );
 }
@@ -52,18 +36,18 @@ const Card_Big = (props) => {
 export default Card_Big;
 
 const styles = StyleSheet.create({
-    falseCard:{
-        backgroundColor:'#A7CAD9',
-        borderRadius:20,
-        height: Dimensions.get("window").height*79/100,
-        width: Dimensions.get("window").width*95/100,
-        marginHorizontal: Dimensions.get("window").width*2.5/100,
-        paddingBottom: Dimensions.get("window").width*14/100,
+    falseCard: {
+        backgroundColor: '#A7CAD9',
+        borderRadius: 20,
+        height: Dimensions.get("window").height * 79 / 100,
+        width: Dimensions.get("window").width * 95 / 100,
+        marginHorizontal: Dimensions.get("window").width * 2.5 / 100,
+        paddingBottom: Dimensions.get("window").width * 14 / 100,
     },
-    box_Headline:{
+    box_Headline: {
         backgroundColor: "#A7CAD9",
-        marginVertical: Dimensions.get("window").height*1.5/100,
-        alignSelf:'center',
+        marginVertical: Dimensions.get("window").height * 1.5 / 100,
+        alignSelf: 'center',
         elevation: 0,
     },
 })

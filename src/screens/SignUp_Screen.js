@@ -16,9 +16,9 @@ import {
   ActivityIndicator,
   Checkbox
 } from "react-native-paper";
+import { api } from "../utils/Api";
 import Appbar_Common from "../components/Appbar_Common";
 import Button_Medium from "../components/Button_Medium";
-import { api } from "../utils/Api";
 import axios from "axios";
 import md5 from "md5";
 import Button_EmbeddedText from "../components/Button_EmbeddedText";
@@ -35,21 +35,20 @@ const SignUp_Screen = ({ navigation }) => {
       setCreatingUser(true);
       axios
         .post(api.post, {
-          tipo: "checkEmail",
+          type: "checkEmail",
           email: email,
         })
         .then((response) => {
           navigation.navigate("LogIn_Screen");
         })
         .catch((error) => {
-          // console.log(error.response.status);
           if (error != undefined) {
             if (error.response.status == 404) {
               axios
                 .post(api.post, {
-                  tipo: "crearAutenticacio",
+                  type: "createAuthentication",
                   email: email.toLowerCase(),
-                  contrasenya: md5(password),
+                  password: md5(password),
                 })
                 .then((response) => {
                   navigation.navigate("Welcome_Screen");
@@ -59,7 +58,6 @@ const SignUp_Screen = ({ navigation }) => {
           }
         });
     }
-    // console.log("boton")
   };
 
   // Lógica entra Email
@@ -78,8 +76,8 @@ const SignUp_Screen = ({ navigation }) => {
     setEmail("");
   };
   const hasErrors_Email = () => {
-    let emailErroneo = !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email);
-    return emailErroneo;
+    let emailError = !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email);
+    return emailError;
   };
 
   // Lógica entra Password
@@ -98,12 +96,12 @@ const SignUp_Screen = ({ navigation }) => {
     setPassword("");
   };
   const hasErrors_Password = () => {
-    let passwordErroneo =
+    let passwordError =
       !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#.])[A-Za-z\d@$!%*?&.]{8,}$/i.test(
         password
       );
 
-    return passwordErroneo;
+    return passwordError;
   };
 
   // Lógica entra Password_Config
@@ -124,8 +122,8 @@ const SignUp_Screen = ({ navigation }) => {
     setPassword_Config("");
   };
   const hasErrors_Password_Config = () => {
-    let password_config_Erroneo = !(password_Config === password);
-    return password_config_Erroneo;
+    let password_config_Error = !(password_Config === password);
+    return password_config_Error;
   };
   // Lógica entra checkboox
   const [checked, setChecked] = React.useState(false);
@@ -140,8 +138,8 @@ const SignUp_Screen = ({ navigation }) => {
         </Dialog>
       </Portal>
       <Appbar_Common
-        alPresionar={() => navigation.navigate("Welcome_Screen")}
-        titulo="Sign Up"
+        onPress={() => navigation.navigate("Welcome_Screen")}
+        title="Sign Up"
       />
       <View style={styles.box}>
         <Surface style={styles.falseCard}>
@@ -253,7 +251,7 @@ const SignUp_Screen = ({ navigation }) => {
               </View>
 
             </Surface>
-            <View style={styles.box_doubleButton_Mediano}>
+            <View style={styles.box_doubleButton_Medium}>
               <Button_Medium
                 titulo="Registrar-se"
                 alPresionar={() => register(email, password)}
@@ -295,7 +293,7 @@ const styles = StyleSheet.create({
     padding: 10,
     justifyContent: "center",
   },
-  box_doubleButton_Mediano: {
+  box_doubleButton_Medium: {
     alignItems: "center",
     marginBottom: -20,
     marginTop: 0,

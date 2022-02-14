@@ -1,16 +1,16 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
-import {Button} from 'react-native-paper';
+import { StyleSheet } from 'react-native';
+import { Button } from 'react-native-paper';
 
 const Button_Small = (props) => {
     return (
-        <Button             
-            mode="outlined" 
-            color="black" 
-            title={props.titulo} 
-            onPress={props.alPresionar} 
-            style={styles.boton}
-            >
+        <Button
+            mode="outlined"
+            color="black"
+            title={props.title}
+            onPress={props.onPress}
+            style={styles.button}
+        >
             {props.descripcion}
         </Button>
     );
@@ -19,7 +19,7 @@ const Button_Small = (props) => {
 export default Button_Small;
 
 const styles = StyleSheet.create({
-    boton:{
+    button: {
         backgroundColor: '#F6C602',
         borderColor: '#000000',
         borderWidth: 1,

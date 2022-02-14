@@ -9,22 +9,19 @@ import {
   TextInput,
   Caption,
   List,
-  Button,
   Portal,
   Dialog,
-  Paragraph,
   ActivityIndicator,
 } from "react-native-paper";
-import Appbar_Common from "../components/Appbar_Common";
-import Button_Medium from "../components/Button_Medium";
-import { array_Projects } from "../utils/ArrayProjects";
-import * as ImagePicker from "expo-image-picker";
-import axios from "axios";
-//import DocumentTypesList from '../components/DocumentTypesList';
-import DateTimePicker from "@react-native-community/datetimepicker";
 import { api } from "../utils/Api";
 import { authentication } from "../utils/Authentication";
 import { useNavigation } from "@react-navigation/native";
+import Appbar_Common from "../components/Appbar_Common";
+import Button_Medium from "../components/Button_Medium";
+import * as ImagePicker from "expo-image-picker";
+import axios from "axios";
+import DateTimePicker from "@react-native-community/datetimepicker";
+
 
 const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
   const navigation = useNavigation();
@@ -32,20 +29,19 @@ const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
   const [photoLoaded, setPhotoLoaded] = useState(false)
   const [photoBase64, setPhotoBase64] = useState("");
   const [creatingDocument, setCreatingDocument] = useState(false);
-  //Logica send Image to server
+  //Logic send Image to server
   const docToServer = async (base64) => {
-    console.log(photoLoaded)
     if (photoLoaded) {
       try {
         setCreatingDocument(true);
         const response = await axios.post(api.post, {
-          tipo: "crearDocument",
-          id_usuari: authentication.id,
-          nom_document: nameDocument,
-          data_vigent: date,
-          titular_perfil: profile,
-          coleccio: typeDocument,
-          imatge_base64: base64,
+          type: "createDocument",
+          user_id: authentication.id,
+          doc_name: nameDocument,
+          effective_date: date,
+          profile: profile,
+          collection: typeDocument,
+          img_base64: base64,
         });
         setCreatingDocument(false);
         navigate("Main_Screen");
@@ -75,7 +71,7 @@ const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
     }
   };
 
-  //Lógica entrada nombre documento
+  //Logic Document Name
   const [nameDocument, setNameDocument] = useState("");
   const [visible_nameDocument, setVisible_nameDocument] = useState(false);
   const handleOnFocus_nameDocument = () => {
@@ -91,15 +87,15 @@ const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
   const handleOnPress_IconClose_nameDocument = () => {
     setNameDocument("");
   };
-  const esEspacio = (x) => {
+  const isSpace = (x) => {
     return x === " ";
   };
   const hasErrors_nameDocument = () => {
     let arrayName = nameDocument.split("");
-    return arrayName.every(esEspacio);
+    return arrayName.every(isSpace);
   };
 
-  //Lógica entrada perfil
+  //Logic Profile Name
   const [profile, setProfile] = useState("");
   const [visible_profile, setVisible_profile] = useState(false);
   const handleOnFocus_profile = () => {
@@ -116,11 +112,11 @@ const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
     setProfile("");
   };
   const hasErrors_profile = () => {
-    let arrayName = nameDocument.split("");
-    return arrayName.every(esEspacio);
+    let arrayName = profile.split("");
+    return arrayName.every(isSpace);
   };
 
-  //Lógica Datepicker
+  //Logic DatePicker
   const [date, setDate] = useState(new Date());
   const [mode, setMode] = useState("date");
   const [show, setShow] = useState(false);
@@ -141,8 +137,8 @@ const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
   };
 
   //Logic Picker
-  //Lógica tipo documentos
-  const tipus = [
+  //Logic Document Types
+  const types = [
     "Identificatius", "Sanitaris", "Transports",
     "Allotjaments", "Segurs", "Events", "Altres"
   ]
@@ -154,12 +150,12 @@ const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
   const [expanded, setExpanded] = useState(false)
   const DocumentTypesList = (
     <List.Accordion style={styles.list} title={typeDocument} expanded={expanded} onPress={() => expanded ? setExpanded(false) : setExpanded(true)}>
-      {tipus.map((tipus, index) => {
+      {types.map((types, index) => {
         return (<List.Item
           key={index}
           style={styles.list}
-          title={tipus}
-          onPress={() => handleOnPress_typeDocument(tipus)}
+          title={types}
+          onPress={() => handleOnPress_typeDocument(types)}
         >
 
         </List.Item>)
@@ -212,11 +208,9 @@ const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
   );
 
   const ImageLoaded = (
-    // <TouchableHighlight onPress={pickImage}>
     <TouchableOpacity onPress={pickImage}>
       <Image source={{ uri: photo }} resizeMode="cover" style={styles.image} />
     </TouchableOpacity>
-    ///* </TouchableHighlight> */}
   )
 
 
@@ -232,8 +226,8 @@ const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
         </Dialog>
       </Portal>
       <Appbar_Common
-        alPresionar={() => navigate("Main_Screen")}
-        titulo="Registre Document"
+        onPress={() => navigate("Main_Screen")}
+        title="Registre Document"
       />
       <View style={styles.box}>
         <View style={styles.falseCard}>
@@ -293,7 +287,7 @@ const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
             </Surface>
             {Platform.OS === "ios" ? IosCalendar : AndroidCalendar}
             <Surface style={styles.box_ImportLogo}>
-              <Surface style={styles.box_Icona}>
+              <Surface style={styles.box_Icon}>
                 {!photoLoaded ? <IconButton
                   icon="camera"
                   size={90}
@@ -308,16 +302,16 @@ const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
 
             </Surface>
 
-            <View style={styles.box_doubleButton_Mediano}>
+            <View style={styles.box_doubleButton_Medium}>
               <Button_Medium
-                titulo="Cancel"
-                alPresionar={() => navigation.navigate("Main_Screen", { backPress: true })}
-                descripcion="Cancel·lar"
+                title="Cancel"
+                onPress={() => navigation.navigate("Main_Screen")}
+                description="Cancel·lar"
               />
               <Button_Medium
-                titulo="Create"
-                alPresionar={() => docToServer(photoBase64)}
-                descripcion="Crear"
+                title="Create"
+                onPress={() => docToServer(photoBase64)}
+                description="Crear"
               />
             </View>
           </ScrollView>
@@ -375,7 +369,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     elevation: 0,
   },
-  box_Icona: {
+  box_Icon: {
     borderWidth: 1,
     borderRadius: 3,
     borderColor: "grey",
@@ -388,7 +382,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     elevation: 0,
   },
-  box_doubleButton_Mediano: {
+  box_doubleButton_Medium: {
     flexDirection: "row",
     backgroundColor: "#A7CAD9",
     borderWidth: 0,

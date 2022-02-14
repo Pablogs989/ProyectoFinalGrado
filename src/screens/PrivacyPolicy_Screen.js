@@ -1,13 +1,13 @@
 import React from 'react';
 import { Dimensions, StyleSheet, View, ScrollView } from 'react-native';
-import { Appbar, Caption, Button, Headline, Paragraph, Surface, Provider, Subheading, Text, Title } from 'react-native-paper';
+import { Surface, Provider, Text, Title } from 'react-native-paper';
 import Appbar_Common from '../components/Appbar_Common';
 
 
 const LogIn_Screen = ({ navigation }) => {
     return (
         <Provider>
-            <Appbar_Common alPresionar={() => navigation.navigate("Welcome_Screen")} titulo="Politica de privacitat" />
+            <Appbar_Common onPress={() => navigation.navigate("Welcome_Screen")} title="Politica de privacitat" />
             <View style={styles.box}>
                 <Surface style={styles.falseCard}>
                     <ScrollView>

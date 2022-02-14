@@ -1,25 +1,22 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
-import {Appbar, Avatar} from 'react-native-paper';
-// import IconAD from 'react-native-vector-icons/AntDesign';
+import { StyleSheet } from 'react-native';
+import { Appbar } from 'react-native-paper';
 
-const Appbar_Pantallas = (props) => {
-    return(
-        <Appbar.Header style={styles.fondo}>
-            <Appbar.BackAction onPress={props.alPresionar} />
-            <Appbar.Content title={props.titulo} style={{alignItems:"center"}}/>
-            {/* <Avatar.Image size={40} style={{marginRight:10}} source={require('../assets/logoFlorida.jpg')} /> */}
-            <Appbar.Action icon="account" size={30} onPress={()=>{}}/>
+const Appbar_Common = (props) => {
+    return (
+        <Appbar.Header style={styles.background}>
+            <Appbar.BackAction onPress={props.onPress} />
+            <Appbar.Content title={props.title} style={{ alignItems: "center" }} />
+            <Appbar.Action icon="account" size={30} onPress={() => { }} />
         </Appbar.Header>
     );
 }
 
-export default Appbar_Pantallas;
-
+export default Appbar_Common;
 
 const styles = StyleSheet.create({
-    fondo:{
+    background: {
         backgroundColor: '#26528C',
     },
-    
+
 })

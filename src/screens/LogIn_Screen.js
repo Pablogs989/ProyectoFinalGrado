@@ -47,6 +47,7 @@ const LogIn_Screen = ({ navigation }) => {
 
   // Logic Email input
   const [email, setEmail] = useState("");
+  const [visible_Email, setVisible_Email] = useState(false);
   const handleOnFocus_Email = () => {
     setVisible_Email(false);
   };
@@ -62,6 +63,7 @@ const LogIn_Screen = ({ navigation }) => {
 
   //Logic Password
   const [password, setPassword] = useState("");
+  const [visible_Password, setVisible_Password] = useState(false);
   const handleOnFocus_Password = () => {
     setVisible_Password(false);
   };
@@ -135,9 +137,9 @@ const LogIn_Screen = ({ navigation }) => {
             </Surface>
             <View style={styles.box_Button}>
               <Button_Medium
-                titulo="Iniciar Sessio"
-                alPresionar={() => login(email, password)}
-                descripcion="Confirmar"
+                title="Iniciar Sessio"
+                onPress={() => login(email, password)}
+                description="Confirmar"
               />
             </View>
             <View style={styles.register_Box}>

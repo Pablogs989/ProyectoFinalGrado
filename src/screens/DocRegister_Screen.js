@@ -51,6 +51,7 @@ const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
   };
 
   const pickImage = async () => {
+    let permissions = await ImagePicker.requestCameraPermissionsAsync();
     // No permissions request is necessary for launching the image library
     let result = await ImagePicker.launchCameraAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -108,7 +109,7 @@ const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
     setProfile("");
   };
   const hasErrors_profile = () => {
-    let arrayName = nameDocument.split("");
+    let arrayName = profile.split("");
     return arrayName.every(isSpace);
   };
 

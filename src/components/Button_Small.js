@@ -11,7 +11,7 @@ const Button_Small = (props) => {
             onPress={props.onPress}
             style={styles.button}
         >
-            {props.descripcion}
+            {props.description}
         </Button>
     );
 }

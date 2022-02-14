@@ -76,7 +76,7 @@ const Main_Screen = ({ route, navigation: { navigate } }) => {
     let arr = []
     setSearchQuery(query);
     documents.map((project, index) => {
-      if (project.nom_document.toLowerCase().includes(query.toLowerCase())) {
+      if (project.doc_name.toLowerCase().includes(query.toLowerCase())) {
         arr.push(project);
       }
     })
@@ -86,8 +86,8 @@ const Main_Screen = ({ route, navigation: { navigate } }) => {
   //Lógica obtençio array amb els perfils
   let arrayOwners = [];
   for (let i = 0; i < documents.length; i++) {
-    if (!arrayOwners.includes(documents[i].titular_perfil)) {
-      arrayOwners.push(documents[i].titular_perfil)
+    if (!arrayOwners.includes(documents[i].profile)) {
+      arrayOwners.push(documents[i].profile)
     }
   }
 
@@ -98,9 +98,9 @@ const Main_Screen = ({ route, navigation: { navigate } }) => {
     let arrayDocsSameOwner = [];
     for (let j = 0; j < filteredDocuments.length; j++) {
 
-      if (filteredDocuments[j].titular_perfil === arrayOwners[i]) {
+      if (filteredDocuments[j].profile === arrayOwners[i]) {
         if (collectionValue !== "Tots") {
-          if (filteredDocuments[j].coleccio == collectionValue) {
+          if (filteredDocuments[j].collection == collectionValue) {
             arrayDocsSameOwner.push(filteredDocuments[j]);
           }
         } else {

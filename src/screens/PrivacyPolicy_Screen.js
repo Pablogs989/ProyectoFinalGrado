@@ -32,10 +32,9 @@ const LogIn_Screen = ({ navigation }) => {
                         <Title>
                             ¿Qué datos de carácter personal se pueden recopilar?
                         </Title>
-                        <Text style={styles.text}>
                             <View>
                                 <Text style={styles.text}>
-                                    -Al crear un ID, solicitar un crédito comercial, comprar un producto,
+                                    - Al crear un ID, solicitar un crédito comercial, comprar un producto,
                                     descargar una actualización de software, se recopilan diferentes
                                     datos, como nombre, dirección postal, número de teléfono,
                                     dirección de correo electrónico o los datos de la tarjeta de crédito.
@@ -43,7 +42,7 @@ const LogIn_Screen = ({ navigation }) => {
                             </View>
                             <View>
                                 <Text style={styles.text}>
-                                    -Cuando se comparten contenidos con familiares y amigos o se
+                                    - Cuando se comparten contenidos con familiares y amigos o se
                                     invita a otras personas a participar en los servicios o foros,
                                     pueden recogerse los datos que facilitamos sobre esas personas,
                                     como su nombre, domicilio, correo electrónico y número de
@@ -52,11 +51,9 @@ const LogIn_Screen = ({ navigation }) => {
                                     el fraude.
                                 </Text>
                             </View>
-                        </Text>
                         <Title>
                             Propósito del tratamiento de datos de carácter personal
                         </Title>
-                        <Text style={styles.text}>
                             <View>
                                 <Text style={styles.text}>
                                     “Travel Docs” podrá utilizar los datos personales recabados para:
@@ -64,14 +61,14 @@ const LogIn_Screen = ({ navigation }) => {
                             </View>
                             <View>
                                 <Text style={styles.text}>
-                                    -Los datos de carácter personal recopilados permiten mantenerle
+                                    - Los datos de carácter personal recopilados permiten mantenerle
                                     informado acerca de los últimos productos, las actualizaciones
                                     de software disponibles y los próximos eventos.
                                 </Text>
                             </View>
                             <View>
                                 <Text style={styles.text}>
-                                    -También se utilizan los datos de carácter personal como ayuda
+                                    - También se utilizan los datos de carácter personal como ayuda
                                     para elaborar, perfeccionar, gestionar,
                                     proporcionar y mejorar los productos, servicios, contenidos y
                                     publicidad, y con el propósito de evitar pérdidas y fraudes.
@@ -79,14 +76,14 @@ const LogIn_Screen = ({ navigation }) => {
                             </View>
                             <View>
                                 <Text style={styles.text}>
-                                    -Pueden utilizarse los datos de carácter personal para
+                                    - Pueden utilizarse los datos de carácter personal para
                                     comprobar la identidad, colaborar en la identificación de
                                     usuarios y decidir los servicios apropiados.
                                 </Text>
                             </View>
                             <View>
                                 <Text style={styles.text}>
-                                    -También se utilizan esos datos de carácter personal
+                                    - También se utilizan esos datos de carácter personal
                                     con propósitos internos, incluyendo auditorías, análisis de datos
                                     y sondeos, para mejorar los productos, servicios y
                                     comunicaciones a clientes.
@@ -94,12 +91,11 @@ const LogIn_Screen = ({ navigation }) => {
                             </View>
                             <View>
                                 <Text style={styles.text}>
-                                    -Si participa en un sorteo, un concurso o una promoción, pueden
+                                    - Si participa en un sorteo, un concurso o una promoción, pueden
                                     usarse los datos proporcionados para administrar estos
                                     programas.
                                 </Text>
                             </View>
-                        </Text>
                         <Title>
                             Recopilación y tratamiento de datos de carácter no
                             personal
@@ -117,7 +113,7 @@ const LogIn_Screen = ({ navigation }) => {
                         </View>
                         <View>
                             <Text style={styles.text}>
-                                -Datos tales como profesión, idioma, código postal, identificador
+                                - Datos tales como profesión, idioma, código postal, identificador
                                 único de dispositivo, etc. para comprender mejor la conducta de
                                 nuestros clientes y mejorar nuestros productos, servicios y
                                 anuncios publicitarios.
@@ -125,7 +121,7 @@ const LogIn_Screen = ({ navigation }) => {
                         </View>
                         <View>
                             <Text style={styles.text}>
-                                -Datos sobre cómo se usan determinados servicios, incluidas las
+                                - Datos sobre cómo se usan determinados servicios, incluidas las
                                 consultas de búsqueda. Esta información se puede utilizar para
                                 incrementar la importancia de los resultados que aportan los
                                 servicios ofrecidos.
@@ -133,7 +129,7 @@ const LogIn_Screen = ({ navigation }) => {
                         </View>
                         <View>
                             <Text style={styles.text}>
-                                -Datos sobre cómo usa su dispositivo y las aplicaciones para
+                                - Datos sobre cómo usa su dispositivo y las aplicaciones para
                                 facilitar a los desarrolladores la mejora de esas aplicaciones.
                                 Si juntamos datos de carácter no personal con datos personales, los
                                 datos mezclados serán tratados como datos personales mientras sigan

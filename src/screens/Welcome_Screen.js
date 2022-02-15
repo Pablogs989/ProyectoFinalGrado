@@ -1,6 +1,6 @@
 import React from 'react';
-import { Dimensions, StyleSheet, View, Image } from 'react-native';
-import { Provider, Subheading } from 'react-native-paper';
+import { Dimensions, StyleSheet, View, Image,Text } from 'react-native';
+import { Provider} from 'react-native-paper';
 import Button_Medium from '../components/Button_Medium';
 import Button_EmbeddedText from '../components/Button_EmbeddedText';
 
@@ -15,22 +15,15 @@ const Welcome_Screen = ({ navigation: { navigate } }) => {
                 </View>
 
                 <View style={styles.description}>
-                    <Subheading style={styles.subheading}></Subheading>
-                    <Subheading style={styles.subheading}>Una App per gestionar tots els</Subheading>
-                    <Subheading style={styles.subheading}>documents necesaris</Subheading>
-                    <Subheading style={styles.subheading}>per al teu viatge.</Subheading>
-                    <Subheading style={styles.subheading}>Una App per a trobar-los, una</Subheading>
-                    <Subheading style={styles.subheading}>App per a atraure'ls a tots i</Subheading>
-                    <Subheading style={styles.subheading}>lligar-los en les tenebres en la</Subheading>
-                    <Subheading style={styles.subheading}>Terra de Mordor on s'estenen</Subheading>
-                    <Subheading style={styles.subheading}>les Ombres.</Subheading>
+                    <Text style={styles.subheading}>{"\n"}Una App per gestionar tots els {"\n"} documents necesaris {"\n"}per al teu viatge.{"\n"} Una App per a trobar-los, una {"\n"} App per a atraure'ls a tots i {"\n"} lligar-los en les tenebres en la{"\n"}Terra de Mordor on s'estenen {"\n"} les Ombres.</Text>
                 </View>
                 <View style={styles.buttons}>
                     <View style={styles.box_doubleButton_Mediano}>
                         <Button_Medium title="Registrar" onPress={() => navigate('SignUp_Screen')} description="Registrar-se" />
                         <Button_Medium title="Iniciar Sessió" onPress={() => navigate('LogIn_Screen')} description="Iniciar Sessió" />
                     </View>
-                    <Button_EmbeddedText title="PoliticaPrivacitat" onPress={() => navigate('PrivacyPolicy_Screen')} description="Politica de privacitat" />
+                    <Button_EmbeddedText
+                     onPress={() => navigate('PrivacyPolicy_Screen')} description="Politica de privacitat" />
                 </View>
             </View>
         </Provider>
@@ -56,7 +49,9 @@ const styles = StyleSheet.create({
         color: 'white',
         textAlign: 'center',
         fontSize: 20,
-        padding: 1
+        padding: 1,
+        lineHeight: 35,
+        paddingTop:20,
     },
 
     image: {

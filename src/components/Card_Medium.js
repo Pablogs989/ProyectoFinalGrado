@@ -17,7 +17,7 @@ const Card_Medium = (props) => {
       style={styles.box}
       onPress={() =>
         navigation.navigate("DocViewer_Screen", {
-          image: api.apache + props.img_url + ".jpg",
+          image: api.apache + props.img_url + ".jpg" + '?' + new Date(),
         })
       }
     >
@@ -63,7 +63,7 @@ const Card_Medium = (props) => {
 
         <View style={{ flex: 1 }}>
           <Card.Cover
-            source={{ uri: api.apache + props.img_url + ".jpg" }}
+            source={{ uri: api.apache + props.img_url + ".jpg" + '?' + new Date() }}
             style={{ maxHeight: 90 }}
           />
 
@@ -87,7 +87,14 @@ const Card_Medium = (props) => {
             <IconButton
               icon="pencil"
               size={30}
-              onPress={() => console.log("editar")}
+              onPress={() => navigation.navigate("DocUpdateRemove_Screen",
+                {
+                  doc_name: props.doc_name,
+                  effective_date: props.effective_date,
+                  profile: props.profile,
+                  collection: props.collection,
+                  img_url: props.img_url
+                })}
               color="#000000"
             />
           </View>

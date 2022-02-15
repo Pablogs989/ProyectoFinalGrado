@@ -55,6 +55,7 @@ const Main_Screen = ({ route, navigation: { navigate } }) => {
       })
       .catch((error) => {
         if (isApiSubscribed) {
+          setDocuments([]);
           setLoading(false);
         }
       });

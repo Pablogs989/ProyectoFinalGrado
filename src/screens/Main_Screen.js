@@ -1,22 +1,9 @@
 import React, { useState, useEffect } from "react";
 import {
-  Dimensions,
-  Image,
-  ScrollView,
-  StyleSheet,
-  View,
+  Dimensions, Image, ScrollView, StyleSheet, View,
 } from "react-native";
 import {
-  Appbar,
-  Button,
-  Provider,
-  Searchbar,
-  ActivityIndicator,
-  Dialog,
-  Surface,
-  RadioButton,
-  Portal,
-  Text,
+  Appbar, Button, Provider, Searchbar, ActivityIndicator, Dialog, Surface, RadioButton, Portal, Text,
 } from "react-native-paper";
 import { api } from "../utils/Api";
 import { authentication } from "../utils/Authentication";
@@ -25,6 +12,8 @@ import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import axios from "axios";
 import Card_Big from "../components/Card_Big";
 import Button_Small from '../components/Button_Small';
+
+import { useTranslation } from "react-i18next";
 
 
 const Main_Screen = ({ route, navigation: { navigate } }) => {
@@ -121,11 +110,8 @@ const Main_Screen = ({ route, navigation: { navigate } }) => {
       <ActivityIndicator animating={true} color="#DEB202" size="large" />
     </View>
   );
+  const types = t("types", { returnObjects: true });
 
-  const types = [
-    "Tots", "Identificatius", "Sanitaris", "Transports",
-    "Allotjaments", "Segurs", "Events", "Altres"
-  ]
 
   const filter = (
     <Portal>
@@ -151,6 +137,7 @@ const Main_Screen = ({ route, navigation: { navigate } }) => {
     </Portal>
   )
 
+  const { t } = useTranslation();
 
   return (
     <Provider>

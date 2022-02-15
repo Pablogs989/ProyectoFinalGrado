@@ -1,26 +1,17 @@
 import React, { useState } from "react";
 import {
-  Dimensions,
-  StyleSheet,
-  View,
-  KeyboardAvoidingView,
-  Text
+  Dimensions, StyleSheet, View, KeyboardAvoidingView, Text
 } from "react-native";
 import {
-  Provider,
-  Surface,
-  TextInput,
-  HelperText,
-  Portal,
-  Dialog,
-  ActivityIndicator,
-  Checkbox
+  Provider, Surface, TextInput, HelperText, Portal, Dialog, ActivityIndicator, Checkbox
 } from "react-native-paper";
 import { api } from "../utils/Api";
 import Appbar_Common from "../components/Appbar_Common";
 import Button_Medium from "../components/Button_Medium";
 import axios from "axios";
 import md5 from "md5";
+
+import { useTranslation } from "react-i18next";
 
 const SignUp_Screen = ({ navigation }) => {
   const [creatingUser, setCreatingUser] = useState(false);
@@ -126,7 +117,10 @@ const SignUp_Screen = ({ navigation }) => {
   };
   // Lógica entra checkboox
   const [checked, setChecked] = React.useState(false);
+
+  const { t } = useTranslation();
   return (
+    
     <Provider>
       <Portal>
         <Dialog visible={creatingUser} dismissable={false}>
@@ -138,7 +132,7 @@ const SignUp_Screen = ({ navigation }) => {
       </Portal>
       <Appbar_Common
         onPress={() => navigation.navigate("Welcome_Screen")}
-        title="Sign Up"
+        title={t("Sign_Up")}
       />
       <View style={styles.box}>
         <Surface style={styles.falseCard}>
@@ -150,8 +144,8 @@ const SignUp_Screen = ({ navigation }) => {
             <Surface style={styles.box_TextInput}>
               <TextInput
                 mode="outlined"
-                label={"Email:"}
-                placeholder="Introduïsca el email"
+                label={t("Sing_Up_Email")}
+                placeholder={t("Palceholder_Email")}
                 activeOutlineColor="#0702F0"
                 keyboardType="email-address"
                 onFocus={handleOnFocus_Email}
@@ -178,8 +172,8 @@ const SignUp_Screen = ({ navigation }) => {
             <Surface style={styles.box_TextInput}>
               <TextInput
                 mode="outlined"
-                label={"Contrasenya:"}
-                placeholder="Introduïsca la contrasenya"
+                label={t("Sing_Up_Password")}
+                placeholder={t("Palceholder_Password")}
                 activeOutlineColor="#0702F0"
                 keyboardType="default"
                 onFocus={handleOnFocus_Password}
@@ -200,7 +194,7 @@ const SignUp_Screen = ({ navigation }) => {
                 type={hasErrors_Password() ? "error" : "info"}
               >
                 {hasErrors_Password()
-                  ? "¡¡Error!! La contrasenya no es segura."
+                  ? t("Sing_Up_Password_Confirm")
                   : "Contrasenya vàlida"}
               </HelperText>
             </Surface>
@@ -208,8 +202,8 @@ const SignUp_Screen = ({ navigation }) => {
             <Surface style={styles.box_TextInput}>
               <TextInput
                 mode="outlined"
-                label={"Confirma Contrasenya:"}
-                placeholder="Confirma la contrasenya"
+                label={t("Sing_Up_Password_Confirm")}
+                placeholder={t("Palceholder_Password_Confirm")}
                 activeOutlineColor="#0702F0"
                 keyboardType="default"
                 onFocus={handleOnFocus_Password_Config}
@@ -245,16 +239,16 @@ const SignUp_Screen = ({ navigation }) => {
                   style={styles.register_Button}
                   onPress={() => navigation.navigate('PrivacyPolicy_Screen')}
                   >
-                    Política de Privacitat
+                    {t("Privacy_Policy")}
                   </Text>               
               </View>
 
             </Surface>
             <View style={styles.box_doubleButton_Medium}>
               <Button_Medium
-                title="Registrar-se"
+                title={t("Text_Register")}
                 onPress={() => register(email, password)}
-                description="Registrar-se"
+                description={t("Text_Register")}
               />
             </View>
           </KeyboardAvoidingView>

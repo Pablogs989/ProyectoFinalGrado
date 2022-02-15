@@ -46,7 +46,7 @@ i18n
 
 export default function App() {
 
-  const { t } = useTranslation();
+  
 
   // const types = t("lol", { returnObjects: true });
   const language = i18n.language;

@@ -19,12 +19,25 @@ const Welcome_Screen = ({ navigation: { navigate } }) => {
 
                 <View style={styles.description}>
 
-                    {welcome_Screen.map((text, index) => {
+                    {/* {welcome_Screen.map((text, index) => {
 
                         return <Text key={index} style={styles.subheading}>{text}</Text>
 
-                    })}
-
+                    })} */}
+                    <Text
+                        numberOfLines={3}
+                        adjustsFontSizeToFit
+                        style={styles.subheading}
+                        >
+                        Una App per gestionar tots els documents necesaris per al teu viatge.
+                    </Text>
+                    <Text
+                        numberOfLines={4}
+                        adjustsFontSizeToFit
+                        style={styles.subheading}
+                        >
+                        Una App per a trobar-los, una App per a atraure'ls a tots i lligar-los en les tenebres en la Terra de Mordor on s'estenen les Ombres.
+                    </Text>
 
                 </View>
                 <View style={styles.buttons}>
@@ -47,32 +60,33 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#26528C',
         height: Dimensions.get("screen").height,
-        alignItems: "center"
+        alignItems: "stretch"
     },
 
+    imageFLex: {
+        flex: 5,
+        justifyContent:"flex-end",
+        alignItems:"center",
+    },
+
+    image: {
+        maxHeight: Dimensions.get("window").width * 60 / 100,
+        maxWidth: Dimensions.get("window").width * 80 / 100,
+
+    },
 
     description: {
-        flex: 4,
-        paddingTop: 40
+        flex: 5,
+        paddingVertical: Dimensions.get("window").height * 5 / 100,
+        paddingHorizontal: Dimensions.get("window").width * 6 / 100,
+        justifyContent:"center",
     },
 
     subheading: {
         color: 'white',
         textAlign: 'center',
-        fontSize: 20,
-        padding: 1,
-        lineHeight: 15,
-        paddingTop: 22,
-    },
-
-    image: {
-        marginTop: 100,
-        maxHeight: Dimensions.get("window").width * 60 / 100, 
-        maxWidth: Dimensions.get("window").width * 80 / 100, 
-    },
-
-    imageFLex: {
-        flex: 4,
+        fontSize: 30,
+        paddingVertical: Dimensions.get("window").height * 1 / 100,
     },
 
     buttons: {
@@ -81,11 +95,9 @@ const styles = StyleSheet.create({
 
     box_doubleButton_Mediano: {
         flexDirection: "row",
-        backgroundColor: "#26528C",
         borderWidth: 0,
-        paddingVertical: Dimensions.get("window").height * 2 / 100,
         justifyContent: "space-evenly",
         elevation: 0,
-        width: Dimensions.get("window").width * 100 / 100,
+
     },
 })

@@ -87,6 +87,10 @@
       "Main_Screen_Buscador":"Buscar TripDocs",
       "Main_Screen_Cancel":"Cancel·lar",
       "Main_Screen_Confirm":"Confirmar",
+      "Main_Screen_UserDialog_Title": "Informació D'usuari",
+      "Main_Screen_UserDialog_SignOut": "Cerrar Sessió",
+      "Main_Screen_UserDialog_Valencian": "Valencia",
+      "Main_Screen_UserDialog_English": "Angles",
 
       "DocViewer_Screen":"Visor Documento",
       "DocPreview_Screen":"Vista prèvia document",
@@ -118,6 +122,10 @@
       
       "DocUpRe_Screen_Button":"Actualitzar Document",
       "DocUpRe_Screen_Deleting":"Borrant Document",
+      "DocUpRe_Screen_DeletingConfirmation_Title":"Confirmacio",
+      "DocUpRe_Screen_DeletingConfirmation_Text":"Segur que vols borrar el Document?",
+      "DocUpRe_Screen_DeletingConfirmation_Yes":"Si",
+      "DocUpRe_Screen_DeletingConfirmation_No":"No",
       "DocUpRe_Screen_Updating":"Actualitzant Document",
       "DocUpRe_Screen_Doc":"Nom del document:",
       "DocUpRe_Screen_Doc_Placeholder":"Introduïsca del document",

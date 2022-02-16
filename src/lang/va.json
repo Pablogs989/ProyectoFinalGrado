@@ -1,10 +1,13 @@
 {
     "translation": {
-      "Welcome_Screen": ["Una App per gestionar tots els","documents necesaris","per al teu viatge.","Una App per a trobar-los, una ","App per a atraure'ls a tots i","lligar-los en les tenebres en la","Terra de Mordor on s'estenen","les Ombres."],
+
+      "Welcome_Screen_Title": " Una App per gestionar tots els documents necessaris per al teu viatge.",
+      "Welcome_Screen_SubTitle": " Una App per a trobar-los, una App per a atraure'ls a tots i lligar-los en les tenebres en la Terra de Mordor on s'estenen les Ombres.",
+
       "Text_Register":"Registrar-se",
       "Text_Login":"Iniciar sesió",
       
-      "Privacy_Policy":"Politiques de privacitat",
+      "Privacy_Policy":"Polítiques de privacitat",
       "Text_PrivacyPolicy":[
         "Recollida i tractament de dades de caràcter personal",
         "Les dades de caràcter personal són els que poden ser utilitzats per a identificar a una persona o posar-se en contacte amb ella.'TripDocs' pot sol·licitar dades personals d'usuaris en accedir a aplicacions de l'empresa o d'altres empreses afiliades així com la possibilitat que entre aquestes empreses puguen compartir aqueixes dades per a millorar els productes i serveis oferits. Si no es faciliten aqueixes dades personals, en molts casos no podrem oferir els productes o serveis sol·licitats. Aquests són alguns exemples de les categories de dades de caràcter personal que 'TripDocs' pot recollir i la finalitat per als quals pot dur a terme el tractament d'aquestes dades.",
@@ -51,13 +54,13 @@
         "'TripDocs' garantirà l'exactitud i la qualitat de les dades personals, es conservaran durant el temps necessari per a complir els fins per als quals van ser recaptats, llevat que la llei exigisca conservar-los durant més temps.",
 
         "Accés a les dades de caràcter personal",
-        "Respecte a les dades de caràcter personal que conservem, “*Travel *Docs” li ofereix accés a ells per a qualsevol fi, incloent les sol·licituds de rectificació en cas que siguen incorrectes o d'eliminació en cas de no estar obligats a conservar-los per imperatiu legal o per raons legítimes de negoci. Ens reservem el dret a no tramitar aquelles sol·licituds que siguen improcedents o vexatòries, que posen en risc la privacitat de tercers, que resulten inviables o per a les quals la legislació local no exigisca dret d'accés. Les sol·licituds d'accés, rectificació o eliminació podran enviar-se a la nostra adreça *XXDIRECCIONXX o en el compte de correu electrònic *XXMAILXX.",
+        "Respecte a les dades de caràcter personal que conservem, 'TripDocs' li ofereix accés a ells per a qualsevol fi, incloent les sol·licituds de rectificació en cas que siguen incorrectes o d'eliminació en cas de no estar obligats a conservar-los per imperatiu legal o per raons legítimes de negoci. Ens reservem el dret a no tramitar aquelles sol·licituds que siguen improcedents o vexatòries, que posen en risc la privacitat de tercers, que resulten inviables o per a les quals la legislació local no exigisca dret d'accés. Les sol·licituds d'accés, rectificació o eliminació podran enviar-se a la nostra adreça *XXDIRECCIONXX o en el compte de correu electrònic *XXMAILXX.",
 
         "Xiquets i educació",
         "'TripDocs' és conscient de la necessitat d'establir precaucions addicionals per a preservar la privacitat i la seguretat dels menors que utilitzen les aplicacions i exigir consentiment dels seus progenitors en cas que no tinguen l'edat mínima exigida per la legislació (a Espanya, 14 anys). Si s'han recopilat dades personals d'un menor de 14 anys, sense el consentiment necessari, s'ha d'eliminar aqueixa informació al més prompte possible",
 
         "Serveis de localització",
-        "Per a prestar serveis de localització “*Travel *Docs” podrà reunir, utilitzar i compartir dades exactes sobre ubicacions, incloent la situació geogràfica en temps real del seu ordinador o del seu dispositiu. Llevat que ens donen el seu consentiment, aquestes dades de localització es recullen de manera anònima de manera que no poden utilitzar-se per a identificar-lo personalment, i són usats per a subministrar i millorar els seus productes i serveis de localització.",
+        "Per a prestar serveis de localització 'TripDocs' podrà reunir, utilitzar i compartir dades exactes sobre ubicacions, incloent la situació geogràfica en temps real del seu ordinador o del seu dispositiu. Llevat que ens donen el seu consentiment, aquestes dades de localització es recullen de manera anònima de manera que no poden utilitzar-se per a identificar-lo personalment, i són usats per a subministrar i millorar els seus productes i serveis de localització.",
         "Pàgines web i serveis de tercers",
         "Les aplicacions poden contindre enllaços a pàgines web, productes i serveis de tercers. També poden utilitzar o oferir productes o serveis de tercers. La recollida de dades per part de tercers, introduint de dades sobre ubicacions geogràfiques o dades de contacte, es guiarà per les seues respectives polítiques de privacitat. Li recomanem consultar les polítiques de privacitat d'aqueixos tercers."
 
@@ -72,11 +75,11 @@
       "Sign_Up_Password":"Contrasenya",
       "Palceholder_Password":"Introduïsca la contrasenya",
       "Sign_Up_Password_HasError":"¡¡Error!! La contrasenya no cumplix els requisits necesaris.",
-      "Sign_Up_Password_HasCorrect":"Cntrasenya correcta",
+      "Sign_Up_Password_HasCorrect":"Contrasenya correcta",
       "Sign_Up_Password_Confirm":"Confirmar contrasenya",
       "Palceholder_Password_Confirm":"Confirma la contrasenya",
       "Sign_Up_Password_Confirm_HasError":"¡¡Error!! La contrasenya no coincideix.",
-      "Sign_Up_Password_Confirm_HasCorrect":"Cntrasenya correcta",
+      "Sign_Up_Password_Confirm_HasCorrect":"Contrasenya correcta",
       "Sign_Up_Button_Text":"Registrar-se",
 
       "Login_Screen_Text":"No tens compte?",
@@ -88,7 +91,7 @@
       "Main_Screen_Cancel":"Cancel·lar",
       "Main_Screen_Confirm":"Confirmar",
 
-      "DocViewer_Screen":"Visor Documento",
+      "DocViewer_Screen":"Visor Document",
       "DocPreview_Screen":"Vista prèvia document",
       "DocInput_Screen":"Escàner",
       "DocColection_Screen":"Col·lecció",

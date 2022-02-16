@@ -18,11 +18,11 @@ import {
   Portal,
   Text,
 } from "react-native-paper";
-import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-import axios from "axios";
 import { api } from "../utils/Api";
 import { authentication } from "../utils/Authentication";
 import { useIsFocused } from "@react-navigation/native";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import axios from "axios";
 import Card_Big from "../components/Card_Big";
 import Button_Small from '../components/Button_Small';
 
@@ -36,7 +36,7 @@ const Main_Screen = ({ route, navigation: { navigate } }) => {
       //Filter
       if (route?.params) {
         const { colection } = route.params;
-        setValorColection(colection);
+        setCollectionValue(colection);
       }
       //Loading
       setLoading(true);
@@ -55,6 +55,7 @@ const Main_Screen = ({ route, navigation: { navigate } }) => {
       })
       .catch((error) => {
         if (isApiSubscribed) {
+          setDocuments([]);
           setLoading(false);
         }
       });
@@ -65,7 +66,7 @@ const Main_Screen = ({ route, navigation: { navigate } }) => {
     };
   }, [isFocused])
 
-  const [valorColection, setValorColection] = useState("Tots");
+  const [collectionValue, setCollectionValue] = useState("Tots");
   const [isLoading, setLoading] = useState(true);
   const [documents, setDocuments] = useState([]);
   const [filteredDocuments, setFilteredDocuments] = useState([]);
@@ -76,7 +77,7 @@ const Main_Screen = ({ route, navigation: { navigate } }) => {
     let arr = []
     setSearchQuery(query);
     documents.map((project, index) => {
-      if (project.nom_document.toLowerCase().includes(query.toLowerCase())) {
+      if (project.doc_name.toLowerCase().includes(query.toLowerCase())) {
         arr.push(project);
       }
     })
@@ -86,8 +87,8 @@ const Main_Screen = ({ route, navigation: { navigate } }) => {
   //Lógica obtençio array amb els perfils
   let arrayOwners = [];
   for (let i = 0; i < documents.length; i++) {
-    if (!arrayOwners.includes(documents[i].titular_perfil)) {
-      arrayOwners.push(documents[i].titular_perfil)
+    if (!arrayOwners.includes(documents[i].profile)) {
+      arrayOwners.push(documents[i].profile)
     }
   }
 
@@ -98,9 +99,9 @@ const Main_Screen = ({ route, navigation: { navigate } }) => {
     let arrayDocsSameOwner = [];
     for (let j = 0; j < filteredDocuments.length; j++) {
 
-      if (filteredDocuments[j].titular_perfil === arrayOwners[i]) {
-        if (valorColection !== "Tots") {
-          if (filteredDocuments[j].coleccio == valorColection) {
+      if (filteredDocuments[j].profile === arrayOwners[i]) {
+        if (collectionValue !== "Tots") {
+          if (filteredDocuments[j].collection == collectionValue) {
             arrayDocsSameOwner.push(filteredDocuments[j]);
           }
         } else {
@@ -121,7 +122,7 @@ const Main_Screen = ({ route, navigation: { navigate } }) => {
     </View>
   );
 
-  const tipus = [
+  const types = [
     "Tots", "Identificatius", "Sanitaris", "Transports",
     "Allotjaments", "Segurs", "Events", "Altres"
   ]
@@ -132,19 +133,19 @@ const Main_Screen = ({ route, navigation: { navigate } }) => {
         <Dialog.Title style={{ alignSelf: "center" }}>Opcions de Filtrat dels Documents</Dialog.Title>
         <Dialog.Content>
           <Surface style={{ borderWidth: 1, borderRadius: 10, elevation: 10, marginVertical: 20 }}>
-            <RadioButton.Group onValueChange={newValue => setValorColection(newValue)} value={valorColection}>
-              {tipus.map((tipus, index) => {
+            <RadioButton.Group onValueChange={newValue => setCollectionValue(newValue)} value={collectionValue}>
+              {types.map((types, index) => {
                 return (<Surface style={styles.view} key={index}>
-                  <RadioButton value={tipus} />
-                  <Text>{tipus}</Text>
+                  <RadioButton value={types} />
+                  <Text>{types}</Text>
                 </Surface>)
               })}
             </RadioButton.Group>
           </Surface>
         </Dialog.Content>
-        <Dialog.Actions style={styles.box_doubleButton_Pequenyo}>
-          <Button_Small titulo="Cancel·lar" alPresionar={() => setFilterDialog(false)} descripcion="Cancel·lar" />
-          <Button_Small titulo="Confirmar" alPresionar={() => setFilterDialog(false)} descripcion="Confirmar" />
+        <Dialog.Actions style={styles.box_doubleButton_Small}>
+          <Button_Small title="Cancel·lar" onPress={() => setFilterDialog(false)} description="Cancel·lar" />
+          <Button_Small title="Confirmar" onPress={() => setFilterDialog(false)} description="Confirmar" />
         </Dialog.Actions>
       </Dialog>
     </Portal>
@@ -154,9 +155,9 @@ const Main_Screen = ({ route, navigation: { navigate } }) => {
   return (
     <Provider>
       {filter}
-      <Appbar.Header style={styles.fondo}>
+      <Appbar.Header style={styles.background}>
 
-        <Appbar.Action icon="account" size={30} onPress={() => { }}  style={{ width: Dimensions.get("window").width * 11 / 100 }} />
+        <Appbar.Action icon="account" size={30} onPress={() => { }} style={{ width: Dimensions.get("window").width * 11 / 100 }} />
         <Searchbar
           placeholder="Buscar TripDocs"
           placeholderTextColor="#000"
@@ -167,12 +168,14 @@ const Main_Screen = ({ route, navigation: { navigate } }) => {
           inputStyle={{ color: "#000", textAlign: "auto" }}
           selectionColor={"#000"}
         />
-        {/* <Appbar.Action icon="account" size={30} onPress={() => { }} style={{ width: Dimensions.get("window").width * 8 / 100 }} /> */}
-        <Image source={require("../assets/logoPequenyoColorInvertido.png")} 
-          style={{ maxHeight: Dimensions.get("window").width * 10 / 100, 
-                   maxWidth: Dimensions.get("window").width * 10 / 100, 
-                   marginLeft:Dimensions.get("window").width * 4 / 100,
-                   marginRight:Dimensions.get("window").width * 2 / 100 }} />
+
+        <Image source={require("../assets/logoPequenyoColorInvertido.png")}
+          style={{
+            maxHeight: Dimensions.get("window").width * 10 / 100,
+            maxWidth: Dimensions.get("window").width * 10 / 100,
+            marginLeft: Dimensions.get("window").width * 4 / 100,
+            marginRight: Dimensions.get("window").width * 2 / 100
+          }} />
       </Appbar.Header>
 
       <View style={styles.box}>
@@ -191,10 +194,10 @@ const Main_Screen = ({ route, navigation: { navigate } }) => {
 
 
         <View style={styles.box_tripleButton}>
-          <Button style={styles.boton} onPress={() => navigate('DocRegister_Screen')}>
+          <Button style={styles.button} onPress={() => navigate('DocRegister_Screen')}>
             <Icon name="plus" size={Dimensions.get("window").height * 6 / 100} color={"black"} />
           </Button>
-          <Button style={styles.boton} onPress={() => setFilterDialog(true)}>
+          <Button style={styles.button} onPress={() => setFilterDialog(true)}>
             <Icon name="filter-variant" size={Dimensions.get("window").height * 6 / 100} color={"black"} />
           </Button>
         </View>
@@ -206,11 +209,11 @@ const Main_Screen = ({ route, navigation: { navigate } }) => {
 export default Main_Screen;
 
 const styles = StyleSheet.create({
-  fondo: {
+  background: {
     backgroundColor: '#26528C',
     alignSelf: "center"
   },
-  boton: {
+  button: {
     backgroundColor: '#F6C602',
     borderColor: '#000000',
     borderWidth: 1,
@@ -243,7 +246,7 @@ const styles = StyleSheet.create({
     width: Dimensions.get("window").width * 100 / 100,
 
   },
-  box_doubleButton_Pequenyo: {
+  box_doubleButton_Small: {
     flexDirection: "row",
     paddingBottom: 15,
     justifyContent: "space-evenly",

@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Dimensions, StyleSheet, View } from "react-native";
 import { Provider, Surface } from "react-native-paper";
+import { useNavigation } from "@react-navigation/native";
 import Appbar_Common from "../components/Appbar_Common";
 import ImageViewer from "react-native-image-zoom-viewer";
-import { useNavigation } from "@react-navigation/native";
 
 const DocViewer_Screen = (props) => {
   const navigation = useNavigation();
@@ -11,8 +11,8 @@ const DocViewer_Screen = (props) => {
   return (
     <Provider>
       <Appbar_Common
-        alPresionar={() => navigation.navigate("Main_Screen")}
-        titulo="Visor Documento"
+        onPress={() => navigation.navigate("Main_Screen")}
+        title="Visor Documento"
       />
       <View style={styles.box}>
         <Surface style={styles.falseCard}>

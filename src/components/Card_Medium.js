@@ -1,42 +1,13 @@
 import React, { useState } from "react";
 import { StyleSheet, Dimensions, View } from "react-native";
-import {
-  Avatar,
-  Button,
-  Caption,
-  Card,
-  IconButton,
-  Text,
-  Title,
-  Paragraph,
-  Surface,
-  Portal,
-  Dialog,
-} from "react-native-paper";
-import { backgroundColor } from "react-native/Libraries/Components/View/ReactNativeStyleAttributes";
+import { Button, Caption, Card, IconButton, Text, Title, Portal, Dialog } from "react-native-paper";
 import { api } from "../utils/Api";
 import { useNavigation } from "@react-navigation/native";
 
-const LeftContent = (props) => <Avatar.Icon {...props} icon="folder" />;
-
 const Card_Medium = (props) => {
   const navigation = useNavigation();
-  const [alert, setAlert] = useState(false);
-  const [favorit, setFavorit] = useState(false);
-
-  // if(props.favorit==="true"){
-  //     setFavorit(true);
-  // }
-
-  const changeAlert = () => {
-    setAlert(!alert);
-  };
-  const changeFavorit = () => {
-    setFavorit(!favorit);
-  };
-
   const [visibleWarning, setVisibleWarning] = useState(false);
-  const date = new Date(props.date);
+  const date = new Date(props.effective_date);
   const currentDate = new Date();
   const differenceDate = currentDate.getTime() - date.getTime();
   const warning = Math.ceil(differenceDate / (1000 * 3600 * 24));
@@ -46,7 +17,7 @@ const Card_Medium = (props) => {
       style={styles.box}
       onPress={() =>
         navigation.navigate("DocViewer_Screen", {
-          image: api.apache + props.file + ".jpg",
+          image: api.apache + props.img_url + ".jpg" + '?' + new Date(),
         })
       }
     >
@@ -68,7 +39,7 @@ const Card_Medium = (props) => {
         <View style={{ flex: 2 }}>
           <Card.Content style={{ borderWidth: 0 }}>
             <Caption>Document: </Caption>
-            <Title>{props.document}</Title>
+            <Title>{props.doc_name}</Title>
             <View style={{ flexDirection: "row", alignItems: "baseline" }}>
               <Caption>Data: </Caption>
               <Text>
@@ -81,19 +52,18 @@ const Card_Medium = (props) => {
             </View>
             <View style={{ flexDirection: "row", alignItems: "baseline" }}>
               <Caption>Titular: </Caption>
-              <Text>{props.owner}</Text>
+              <Text>{props.profile}</Text>
             </View>
             <View style={{ flexDirection: "row", alignItems: "baseline" }}>
               <Caption>Colec·ció: </Caption>
-              <Text>{props.colection}</Text>
+              <Text>{props.collection}</Text>
             </View>
           </Card.Content>
         </View>
+
         <View style={{ flex: 1 }}>
           <Card.Cover
-            //  source={{ uri: 'https://picsum.photos/700' }}
-            // source={props.file}
-            source={{ uri: api.apache + props.file + ".jpg" }}
+            source={{ uri: api.apache + props.img_url + ".jpg" + '?' + new Date() }}
             style={{ maxHeight: 90 }}
           />
 
@@ -113,25 +83,20 @@ const Card_Medium = (props) => {
             ) : (
               <></>
             )}
+
             <IconButton
               icon="pencil"
               size={30}
-              onPress={() => console.log("editar")}
+              onPress={() => navigation.navigate("DocUpdateRemove_Screen",
+                {
+                  doc_name: props.doc_name,
+                  effective_date: props.effective_date,
+                  profile: props.profile,
+                  collection: props.collection,
+                  img_url: props.img_url
+                })}
               color="#000000"
             />
-            {/* // <IconButton
-            //   icon="alert"
-            //   size={30}
-            //   onPress={() => changeAlert()}
-            //   color={alert ? "#FF0000" : "#000000"}
-            // /> */}
-            {/* <IconButton
-              icon="heart"
-              // color={Colors.red500}
-              size={30}
-              onPress={() => changeFavorit()}
-              color={favorit ? "#FF0000" : "#000000"}
-            /> */}
           </View>
         </View>
       </View>
@@ -147,9 +112,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 10,
     padding: (Dimensions.get("window").width * 2) / 100,
-    // marginHorizontal: 15,
     marginHorizontal: (Dimensions.get("window").width * 4) / 100,
-    // marginVertical: 7,
     marginVertical: (Dimensions.get("window").height * 1) / 100,
     elevation: 4,
   },

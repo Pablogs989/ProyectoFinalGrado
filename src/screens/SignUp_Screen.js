@@ -4,6 +4,7 @@ import {
   StyleSheet,
   View,
   KeyboardAvoidingView,
+  Text
 } from "react-native";
 import {
   Provider,
@@ -12,11 +13,12 @@ import {
   HelperText,
   Portal,
   Dialog,
-  ActivityIndicator
+  ActivityIndicator,
+  Checkbox
 } from "react-native-paper";
+import { api } from "../utils/Api";
 import Appbar_Common from "../components/Appbar_Common";
 import Button_Medium from "../components/Button_Medium";
-import { api } from "../utils/Api";
 import axios from "axios";
 import md5 from "md5";
 
@@ -26,26 +28,26 @@ const SignUp_Screen = ({ navigation }) => {
     if (
       !hasErrors_Email() &&
       !hasErrors_Password() &&
-      !hasErrors_Password_Config()
+      !hasErrors_Password_Config() &&
+      checked
     ) {
       setCreatingUser(true);
       axios
         .post(api.post, {
-          tipo: "checkEmail",
+          type: "checkEmail",
           email: email,
         })
         .then((response) => {
           navigation.navigate("LogIn_Screen");
         })
         .catch((error) => {
-          // console.log(error.response.status);
           if (error != undefined) {
             if (error.response.status == 404) {
               axios
                 .post(api.post, {
-                  tipo: "crearAutenticacio",
+                  type: "createAuthentication",
                   email: email.toLowerCase(),
-                  contrasenya: md5(password),
+                  password: md5(password),
                 })
                 .then((response) => {
                   navigation.navigate("Welcome_Screen");
@@ -55,7 +57,6 @@ const SignUp_Screen = ({ navigation }) => {
           }
         });
     }
-    // console.log("boton")
   };
 
   // Lógica entra Email
@@ -74,8 +75,8 @@ const SignUp_Screen = ({ navigation }) => {
     setEmail("");
   };
   const hasErrors_Email = () => {
-    let emailErroneo = !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email);
-    return emailErroneo;
+    let emailError = !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email);
+    return emailError;
   };
 
   // Lógica entra Password
@@ -94,17 +95,19 @@ const SignUp_Screen = ({ navigation }) => {
     setPassword("");
   };
   const hasErrors_Password = () => {
-    let passwordErroneo =
+    let passwordError =
       !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#.])[A-Za-z\d@$!%*?&.]{8,}$/i.test(
         password
       );
 
-    return passwordErroneo;
+    return passwordError;
   };
 
   // Lógica entra Password_Config
   const [password_Config, setPassword_Config] = useState("");
   const [visible_Password_Config, setVisible_Password_Config] = useState(false);
+
+
   const handleOnFocus_Password_Config = () => {
     setVisible_Password_Config(false);
   };
@@ -118,9 +121,11 @@ const SignUp_Screen = ({ navigation }) => {
     setPassword_Config("");
   };
   const hasErrors_Password_Config = () => {
-    let password_config_Erroneo = !(password_Config === password);
-    return password_config_Erroneo;
+    let password_config_Error = !(password_Config === password);
+    return password_config_Error;
   };
+  // Lógica entra checkboox
+  const [checked, setChecked] = React.useState(false);
   return (
     <Provider>
       <Portal>
@@ -132,15 +137,15 @@ const SignUp_Screen = ({ navigation }) => {
         </Dialog>
       </Portal>
       <Appbar_Common
-        alPresionar={() => navigation.navigate("Welcome_Screen")}
-        titulo="Sign Up"
+        onPress={() => navigation.navigate("Welcome_Screen")}
+        title="Sign Up"
       />
       <View style={styles.box}>
         <Surface style={styles.falseCard}>
           <KeyboardAvoidingView
             behavior="padding"
             style={styles.keyboardAvoidView}
-            keyboardVerticalOffset={100}
+            keyboardVerticalOffset={50}
           >
             <Surface style={styles.box_TextInput}>
               <TextInput
@@ -166,7 +171,7 @@ const SignUp_Screen = ({ navigation }) => {
                 type={hasErrors_Email() ? "error" : "info"}
               >
                 {hasErrors_Email()
-                  ? "¡¡Error!! El email existix o no cumplix tots els parametres'."
+                  ? "¡¡Error!! El email existix o incompleix requisits."
                   : "Email vàlid"}
               </HelperText>
             </Surface>
@@ -195,7 +200,7 @@ const SignUp_Screen = ({ navigation }) => {
                 type={hasErrors_Password() ? "error" : "info"}
               >
                 {hasErrors_Password()
-                  ? "¡¡Error!! La contrasenya no cumplix els parametres de seguretat requerits"
+                  ? "¡¡Error!! La contrasenya no es segura."
                   : "Contrasenya vàlida"}
               </HelperText>
             </Surface>
@@ -225,15 +230,31 @@ const SignUp_Screen = ({ navigation }) => {
                 type={hasErrors_Password_Config() ? "error" : "info"}
               >
                 {hasErrors_Password_Config()
-                  ? "¡¡Error!! La contrasenya no es igual a la de dalt."
+                  ? "¡¡Error!! La contrasenya no coincideix."
                   : "Contrasenya vàlida"}
               </HelperText>
+              <View style={styles.checkbox}>
+                <Checkbox
+                  status={checked ? 'checked' : 'unchecked'}
+                  color="orange"
+                  onPress={() => {
+                    setChecked(!checked);
+                  }}
+                />
+                <Text
+                  style={styles.register_Button}
+                  onPress={() => navigation.navigate('PrivacyPolicy_Screen')}
+                  >
+                    Política de Privacitat
+                  </Text>               
+              </View>
+
             </Surface>
-            <View style={styles.box_doubleButton_Mediano}>
+            <View style={styles.box_doubleButton_Medium}>
               <Button_Medium
-                titulo="Registrar-se"
-                alPresionar={() => register(email, password)}
-                descripcion="Registar-se"
+                title="Registrar-se"
+                onPress={() => register(email, password)}
+                description="Registrar-se"
               />
             </View>
           </KeyboardAvoidingView>
@@ -265,19 +286,29 @@ const styles = StyleSheet.create({
   falseCard: {
     backgroundColor: "#A7CAD9",
     borderRadius: 20,
-    height: (Dimensions.get("window").height * 50) / 100,
+    height: (Dimensions.get("window").height * 55) / 100,
     width: (Dimensions.get("window").width * 90) / 100,
     marginTop: (Dimensions.get("window").height * 2) / 100,
     padding: 10,
     justifyContent: "center",
   },
-  box_doubleButton_Mediano: {
+  box_doubleButton_Medium: {
     alignItems: "center",
-    marginBottom: -20,
-    marginTop: -10,
+    marginBottom: 0,
+    marginTop: 0,
   },
   keyboardAvoidView: {
     flex: 1,
     justifyContent: "center",
+  },
+  checkbox: {
+    flexDirection: 'row',
+    marginBottom: 12,
+    alignItems:"baseline",
+  },
+
+  register_Button: {
+    color: "#26528C",
+    textDecorationLine: "underline",
   },
 });

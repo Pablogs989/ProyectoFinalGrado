@@ -18,12 +18,21 @@ const Welcome_Screen = ({ navigation: { navigate } }) => {
                 </View>
 
                 <View style={styles.description}>
-
-                    {welcome_Screen.map((text, index) => {
-
-                        return <Text key={index} style={styles.subheading}>{text}</Text>
-
-                    })}
+                
+                    <Text
+                        numberOfLines={3}
+                        adjustsFontSizeToFit
+                        style={styles.subheading}
+                        >
+                        {t("Welcome_Screen_Title")}
+                    </Text>
+                    <Text
+                        numberOfLines={4}
+                        adjustsFontSizeToFit
+                        style={styles.subheading}
+                        >
+                            {t("Welcome_Screen_SubTitle")}
+                    </Text>
 
 
                 </View>
@@ -47,32 +56,33 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#26528C',
         height: Dimensions.get("screen").height,
-        alignItems: "center"
+        alignItems: "stretch"
     },
 
+    imageFLex: {
+        flex: 5,
+        justifyContent:"flex-end",
+        alignItems:"center",
+    },
+
+    image: {
+        maxHeight: Dimensions.get("window").width * 60 / 100,
+        maxWidth: Dimensions.get("window").width * 80 / 100,
+
+    },
 
     description: {
-        flex: 4,
-        paddingTop: 40
+        flex: 5,
+        paddingVertical: Dimensions.get("window").height * 5 / 100,
+        paddingHorizontal: Dimensions.get("window").width * 6 / 100,
+        justifyContent:"center",
     },
 
     subheading: {
         color: 'white',
         textAlign: 'center',
-        fontSize: 20,
-        padding: 1,
-        lineHeight: 15,
-        paddingTop: 22,
-    },
-
-    image: {
-        marginTop: 100,
-        height: 225,
-        width: 315,
-    },
-
-    imageFLex: {
-        flex: 4,
+        fontSize: 30,
+        paddingVertical: Dimensions.get("window").height * 1 / 100,
     },
 
     buttons: {
@@ -81,11 +91,9 @@ const styles = StyleSheet.create({
 
     box_doubleButton_Mediano: {
         flexDirection: "row",
-        backgroundColor: "#26528C",
         borderWidth: 0,
-        paddingVertical: Dimensions.get("window").height * 2 / 100,
         justifyContent: "space-evenly",
         elevation: 0,
-        width: Dimensions.get("window").width * 100 / 100,
+
     },
 })

@@ -17,7 +17,7 @@ import { useTranslation } from "react-i18next";
 
 
 const Main_Screen = ({ route, navigation: { navigate } }) => {
-
+  const { t } = useTranslation();
   const isFocused = useIsFocused();
   useEffect(() => {
     let isApiSubscribed = true;
@@ -110,13 +110,12 @@ const Main_Screen = ({ route, navigation: { navigate } }) => {
       <ActivityIndicator animating={true} color="#DEB202" size="large" />
     </View>
   );
-  const types = t("types", { returnObjects: true });
-
+  const types = t("Types", { returnObjects: true });
 
   const filter = (
     <Portal>
       <Dialog visible={filterDialog} onDismiss={() => setFilterDialog(false)}>
-        <Dialog.Title style={{ alignSelf: "center" }}>Opcions de Filtrat dels Documents</Dialog.Title>
+        <Dialog.Title style={{ alignSelf: "center" }}>{t("Main_Screen_Filter_Title")}</Dialog.Title>
         <Dialog.Content>
           <Surface style={{ borderWidth: 1, borderRadius: 10, elevation: 10, marginVertical: 20 }}>
             <RadioButton.Group onValueChange={newValue => setCollectionValue(newValue)} value={collectionValue}>
@@ -130,14 +129,14 @@ const Main_Screen = ({ route, navigation: { navigate } }) => {
           </Surface>
         </Dialog.Content>
         <Dialog.Actions style={styles.box_doubleButton_Small}>
-          <Button_Small title="Cancel·lar" onPress={() => setFilterDialog(false)} description="Cancel·lar" />
-          <Button_Small title="Confirmar" onPress={() => setFilterDialog(false)} description="Confirmar" />
+          <Button_Small title={t("Main_Screen_Cancel")} onPress={() => setFilterDialog(false)} description={t("Main_Screen_Cancel")} />
+          <Button_Small title={t("Main_Screen_Confirm")} onPress={() => setFilterDialog(false)} description={t("Main_Screen_Confirm")} />
         </Dialog.Actions>
       </Dialog>
     </Portal>
   )
 
-  const { t } = useTranslation();
+  
 
   return (
     <Provider>
@@ -146,7 +145,7 @@ const Main_Screen = ({ route, navigation: { navigate } }) => {
 
         <Appbar.Action icon="account" size={30} onPress={() => { }} style={{ width: Dimensions.get("window").width * 11 / 100 }} />
         <Searchbar
-          placeholder="Buscar TripDocs"
+          placeholder={t("Main_Screen_Buscador")}
           placeholderTextColor="#000"
           onChangeText={onChangeSearch}
           value={searchQuery}

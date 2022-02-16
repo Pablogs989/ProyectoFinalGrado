@@ -25,12 +25,12 @@ const Welcome_Screen = ({ navigation: { navigate } }) => {
                             
                         })}
 
-                    <Text style={styles.subheading}>{"\n"}Una App per gestionar tots els {"\n"} documents necesaris {"\n"}per al teu viatge.{"\n"} Una App per a trobar-los, una {"\n"} App per a atraure'ls a tots i {"\n"} lligar-los en les tenebres en la{"\n"}Terra de Mordor on s'estenen {"\n"} les Ombres.</Text>
+                    
                 </View>
                 <View style={styles.buttons}>
                     <View style={styles.box_doubleButton_Mediano}>
-                        <Button_Medium title="Registrar" onPress={() => navigate('SignUp_Screen')} description={t("Text_register")} />
-                        <Button_Medium title="Iniciar Sessió" onPress={() => navigate('LogIn_Screen')} description={t("Text_register")} />
+                        <Button_Medium title={t("Text_Login")} onPress={() => navigate('SignUp_Screen')} description={t("Text_Register")} />
+                        <Button_Medium title={t("Text_Login")} onPress={() => navigate('LogIn_Screen')} description={t("Text_Login")} />
                     </View>
                     <Button_EmbeddedText
                      onPress={() => navigate('PrivacyPolicy_Screen')} description={t("Privacy_Policy")} />
@@ -53,6 +53,7 @@ const styles = StyleSheet.create({
 
     description: {
         flex: 4,
+        paddingTop:40
     },
 
     subheading: {
@@ -60,8 +61,8 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 20,
         padding: 1,
-        lineHeight: 35,
-        paddingTop:20,
+        lineHeight: 15,
+        paddingTop:22,
     },
 
     image: {

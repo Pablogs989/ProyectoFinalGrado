@@ -122,14 +122,6 @@ const SignUp_Screen = ({ navigation }) => {
   return (
     
     <Provider>
-      <Portal>
-        <Dialog visible={creatingUser} dismissable={false}>
-          <Dialog.Title>Creant Usuari</Dialog.Title>
-          <Dialog.Content>
-            <ActivityIndicator animating={true} color="#DEB202" size="large" />
-          </Dialog.Content>
-        </Dialog>
-      </Portal>
       <Appbar_Common
         onPress={() => navigation.navigate("Welcome_Screen")}
         title={t("Sign_Up")}
@@ -165,8 +157,8 @@ const SignUp_Screen = ({ navigation }) => {
                 type={hasErrors_Email() ? "error" : "info"}
               >
                 {hasErrors_Email()
-                  ? "¡¡Error!! El email existix o incompleix requisits."
-                  : "Email vàlid"}
+                  ? t("Sing_Up_Email_HasError")
+                  : t("Sing_Up_Email_HasCorrect")}
               </HelperText>
             </Surface>
             <Surface style={styles.box_TextInput}>
@@ -194,8 +186,8 @@ const SignUp_Screen = ({ navigation }) => {
                 type={hasErrors_Password() ? "error" : "info"}
               >
                 {hasErrors_Password()
-                  ? t("Sing_Up_Password_Confirm")
-                  : "Contrasenya vàlida"}
+                  ? t("Sing_Up_Password_HasError")
+                  : t("Sing_Up_Password_HasCorrect")}
               </HelperText>
             </Surface>
 
@@ -224,8 +216,8 @@ const SignUp_Screen = ({ navigation }) => {
                 type={hasErrors_Password_Config() ? "error" : "info"}
               >
                 {hasErrors_Password_Config()
-                  ? "¡¡Error!! La contrasenya no coincideix."
-                  : "Contrasenya vàlida"}
+                  ? t("Sing_Up_Password_Confirm_HasError")
+                  : t("Sing_Up_Password_Confirm_HasCorrect")}
               </HelperText>
               <View style={styles.checkbox}>
                 <Checkbox

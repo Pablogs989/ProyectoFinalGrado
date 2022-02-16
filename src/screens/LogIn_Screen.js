@@ -1,25 +1,16 @@
 import React, { useState } from "react";
-import {
-  Dimensions,
-  StyleSheet,
-  View,
-  KeyboardAvoidingView,
-} from "react-native";
-import {
-  Surface,
-  Provider,
-  TextInput,
-  Text,
-  HelperText,
-} from "react-native-paper";
+import { Dimensions, StyleSheet, View, KeyboardAvoidingView,} from "react-native";
+import { Surface, Provider, TextInput, Text, HelperText,} from "react-native-paper";
 import { authentication } from "../utils/Authentication";
 import { api } from "../utils/Api";
 import Appbar_Common from "../components/Appbar_Common";
 import md5 from "md5";
 import Button_Medium from "../components/Button_Medium";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 const LogIn_Screen = ({ navigation }) => {
+  const { t } = useTranslation();
   //Login
   const login = (email, password) => {
     axios
@@ -37,7 +28,7 @@ const LogIn_Screen = ({ navigation }) => {
       .catch((error) => {
         if (error != undefined) {
           if (error.response.status == 404) {
-            setAxiosError("Inici de sessio invalid");
+            setAxiosError(t("Login_Screen_Error"));
           }
         }
       });
@@ -81,7 +72,7 @@ const LogIn_Screen = ({ navigation }) => {
     <Provider>
       <Appbar_Common
         onPress={() => navigation.navigate("Welcome_Screen")}
-        title="Log In"
+        title={t("Text_Login")}
       />
       <View style={styles.box}>
         <Surface style={styles.falseCard}>
@@ -97,8 +88,8 @@ const LogIn_Screen = ({ navigation }) => {
 
               <TextInput
                 mode="outlined"
-                label={"Email:"}
-                placeholder="Introduïsca el email"
+                label={t("Sing_Up_Email")}
+                placeholder={t("Palceholder_Email")}
                 activeOutlineColor="#0702F0"
                 keyboardType="email-address"
                 onFocus={handleOnFocus_Email}
@@ -117,8 +108,8 @@ const LogIn_Screen = ({ navigation }) => {
             <Surface style={styles.box_TextInput}>
               <TextInput
                 mode="outlined"
-                label={"Contrasenya:"}
-                placeholder="Contrasenya"
+                label={t("Sing_Up_Password")}
+                placeholder={t("Palceholder_Password")}
                 activeOutlineColor="#0702F0"
                 keyboardType="default"
                 onFocus={handleOnFocus_Password}
@@ -129,7 +120,7 @@ const LogIn_Screen = ({ navigation }) => {
                 autoCapitalize="none"
                 right={
                   <TextInput.Icon
-                    name="close"
+                    name={t("DocUpRe_Screen_Close")}
                     onPress={handleOnPress_IconClose_Password}
                   />
                 }
@@ -137,18 +128,18 @@ const LogIn_Screen = ({ navigation }) => {
             </Surface>
             <View style={styles.box_Button}>
               <Button_Medium
-                title="Iniciar Sessio"
+                title={t("Main_Screen_Confirm")}
                 onPress={() => login(email, password)}
-                description="Confirmar"
+                description={t("Main_Screen_Confirm")}
               />
             </View>
             <View style={styles.register_Box}>
-              <Text>No tens compte? </Text>
+              <Text>{t("Login_Screen_Text")} </Text>
               <Text
                 style={styles.register_Button}
                 onPress={() => navigation.navigate("SignUp_Screen")}
               >
-                Registrat
+                {t("Text_Register")}
               </Text>
             </View>
           </KeyboardAvoidingView>

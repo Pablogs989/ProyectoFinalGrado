@@ -21,9 +21,10 @@ import Button_Small from "../components/Button_Small";
 import * as ImagePicker from "expo-image-picker";
 import axios from "axios";
 import DateTimePicker from "@react-native-community/datetimepicker";
-
+import { useTranslation } from "react-i18next";
 
 const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
+  const { t } = useTranslation();
   const navigation = useNavigation();
   const [photo, setPhoto] = useState("");
   const [photoLoaded, setPhotoLoaded] = useState(false)
@@ -138,10 +139,7 @@ const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
 
   //Logic Picker
   //Logic Document Types
-  const types = [
-    "Identificatius", "Sanitaris", "Transports",
-    "Allotjaments", "Segurs", "Events", "Altres"
-  ]
+  const types = t("Types_Put", { returnObjects: true });
   const [typeDocument, setTypeDocument] = useState("Tipus de document:");
   const handleOnPress_typeDocument = (types) => {
     setTypeDocument(types);
@@ -219,7 +217,7 @@ const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
     <Provider>
       <Portal>
         <Dialog visible={creatingDocument} dismissable={false}>
-          <Dialog.Title>Creant Document</Dialog.Title>
+          <Dialog.Title>{t("DocRegister_Screen_Update")}</Dialog.Title>
           <Dialog.Content>
             <ActivityIndicator animating={true} color="#DEB202" size="large" />
           </Dialog.Content>
@@ -227,7 +225,7 @@ const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
       </Portal>
       <Appbar_Common
         onPress={() => navigate("Main_Screen")}
-        title="Registre Document"
+        title={t("DocRegister_Screen_Button")}
       />
       <View style={styles.box}>
         <View style={styles.falseCard}>
@@ -237,8 +235,8 @@ const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
             <Surface style={styles.box_TextInput}>
               <TextInput
                 mode="outlined"
-                label={"Nom del document:"}
-                placeholder="Introduïsca del document"
+                label={t("DocUpRe_Screen_Doc")}
+                placeholder={t("DocUpRe_Screen_Doc_Placeholder")}
                 activeOutlineColor="#0702F0"
                 onFocus={handleOnFocus_nameDocument}
                 onChangeText={handleChangeText_nameDocument}
@@ -246,26 +244,26 @@ const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
                 onBlur={handleOnBlur_nameDocument}
                 right={
                   <TextInput.Icon
-                    name="close"
+                    name={t("DocUpRe_Screen_Close")}
                     onPress={handleOnPress_IconClose_nameDocument}
                   />
                 }
               />
               <HelperText
                 visible={visible_nameDocument}
-                type={hasErrors_nameDocument() ? "error" : "info"}
+                type={hasErrors_nameDocument() ? t("DocUpRe_Screen_Error") : t("DocUpRe_Screen_Info")}
               >
                 {hasErrors_nameDocument()
-                  ? "¡¡Error!! Nom no vàlid."
-                  : "Nom vàlid"}
+                  ? t("DocUpRe_Screen_HasError")
+                  : t("DocUpRe_Screen_HasCorrect")}
               </HelperText>
             </Surface>
 
             <Surface style={styles.box_TextInput}>
               <TextInput
                 mode="outlined"
-                label={"Perfil:"}
-                placeholder="Introduïsca el propietari del document"
+                label={t("DocUpRe_Screen_Profile_Doc")}
+                placeholder={t("DocUpRe_Screen_Profile_Doc_Placeholder")}
                 activeOutlineColor="#0702F0"
                 onFocus={handleOnFocus_profile}
                 onChangeText={handleChangeText_profile}
@@ -273,16 +271,16 @@ const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
                 onBlur={handleOnBlur_profile}
                 right={
                   <TextInput.Icon
-                    name="close"
+                    name={t("DocUpRe_Screen_Close")}
                     onPress={handleOnPress_IconClose_profile}
                   />
                 }
               />
               <HelperText
                 visible={visible_profile}
-                type={hasErrors_profile() ? "error" : "info"}
+                type={hasErrors_profile() ? t("DocUpRe_Screen_Error") : t("DocUpRe_Screen_Info")}
               >
-                {hasErrors_profile() ? "¡¡Error!! Nom no vàlid." : "Nom vàlid"}
+                {hasErrors_profile() ? t("DocUpRe_Screen_HasError") : t("DocUpRe_Screen_HasCorrect")}
               </HelperText>
             </Surface>
             {Platform.OS === "ios" ? IosCalendar : AndroidCalendar}
@@ -298,20 +296,20 @@ const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
 
               </Surface>
 
-              <Text>Afig la imatge pressionant sobre l'icona.</Text>
+              <Text>{t("DocRegister_Screen_Text_Img")}</Text>
 
             </Surface>
 
             <View style={styles.box_doubleButton_Medium}>
               <Button_Small
-                title="Cancel"
+                title={t("Main_Screen_Cancel")}
                 onPress={() => navigation.navigate("Main_Screen")}
-                description="Cancel·lar"
+                description={t("Main_Screen_Cancel")}
               />
               <Button_Small
-                title="Create"
+                title={t("Main_Screen_Create")}
                 onPress={() => docToServer(photoBase64)}
-                description="Crear"
+                description={t("Main_Screen_Create")}
               />
             </View>
           </ScrollView>

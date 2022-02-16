@@ -178,7 +178,7 @@ const DocUpdateRemove_Screen = (props) => {
 
   const AndroidCalendar = (
     <Surface style={styles.box_DatePicker}>
-      <Caption style={styles.caption}>Data de caducitat:</Caption>
+      <Caption style={styles.caption}>{t("DocRegister_Screem_Effective_Date")}</Caption>
       <IconButton
         icon="calendar"
         size={24}
@@ -208,7 +208,7 @@ const DocUpdateRemove_Screen = (props) => {
 
   const IosCalendar = (
     <Surface style={styles.box_DatePicker}>
-      <Caption style={styles.caption}>Data de caducitat:</Caption>
+      <Caption style={styles.caption}>{t("DocRegister_Screem_Effective_Date")}</Caption>
       <DateTimePicker
         style={styles.dateTimePicker}
         testID="dateTimePicker"

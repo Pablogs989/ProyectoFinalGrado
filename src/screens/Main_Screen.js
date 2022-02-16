@@ -20,6 +20,7 @@ import { useTranslation } from "react-i18next";
 
 const Main_Screen = ({ route, navigation: { navigate } }) => {
   const { t } = useTranslation();
+  const types = t("Types", { returnObjects: true });
   const isFocused = useIsFocused();
   useEffect(() => {
     let isApiSubscribed = true;
@@ -64,7 +65,7 @@ const Main_Screen = ({ route, navigation: { navigate } }) => {
 
   }, [isFocused])
 
-  const [collectionValue, setCollectionValue] = useState("Tots");
+  const [collectionValue, setCollectionValue] = useState(types[0]);
   const [isLoading, setLoading] = useState(true);
   const [documents, setDocuments] = useState([]);
   const [filteredDocuments, setFilteredDocuments] = useState([]);
@@ -98,7 +99,7 @@ const Main_Screen = ({ route, navigation: { navigate } }) => {
     for (let j = 0; j < filteredDocuments.length; j++) {
 
       if (filteredDocuments[j].profile === arrayOwners[i]) {
-        if (collectionValue !== "Tots") {
+        if (collectionValue !== types[0]) {
           if (filteredDocuments[j].collection == collectionValue) {
             arrayDocsSameOwner.push(filteredDocuments[j]);
           }
@@ -119,7 +120,7 @@ const Main_Screen = ({ route, navigation: { navigate } }) => {
       <ActivityIndicator animating={true} color="#DEB202" size="large" />
     </View>
   );
-  const types = t("Types", { returnObjects: true });
+
 
   const filter = (
     <Dialog visible={filterDialog} onDismiss={() => setFilterDialog(false)}>
@@ -169,13 +170,19 @@ const Main_Screen = ({ route, navigation: { navigate } }) => {
             left={props => <Image style={{ width: 24, height: 24, marginTop: 6 }} source={{ uri: english[1] }} />}
             onPress={() => {
               setUserInfoDetails(english)
-              // i18n.changeLanguage("en");
+              i18n.changeLanguage("en");
+              setCollectionValue("All")
             }}
           /> : <List.Item
             style={styles.list}
             title={valencia[0]}
             left={props => <Image style={{ width: 24, height: 24, marginTop: 6 }} source={{ uri: valencia[1] }} />}
-            onPress={() => setUserInfoDetails(valencia)}
+            onPress={() => {
+              setUserInfoDetails(valencia)
+              i18n.changeLanguage("va");
+              setCollectionValue("Tots")
+            }
+            }
           />}
 
 

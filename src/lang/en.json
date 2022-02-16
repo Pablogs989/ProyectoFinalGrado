@@ -91,6 +91,10 @@
     "Main_Screen_Buscador":"Search TripDocs",
     "Main_Screen_Cancel":"Cancel",
     "Main_Screen_Confirm":"Confirm",
+    "Main_Screen_UserDialog_Title": "User Information",
+      "Main_Screen_UserDialog_SignOut": "Log Out",
+      "Main_Screen_UserDialog_Valencian": "Valencian",
+      "Main_Screen_UserDialog_English": "English",
 
     "DocViewer_Screen":"Document Viewer",
     "DocPreview_Screen":"Document preview",
@@ -105,7 +109,7 @@
     ],
 
     "DocRegister_Screen_Title":"Register Document",
-    "DocRegister_Screen_Creating":"Creat Document",
+    "DocRegister_Screen_Creating":"Creating Document",
     "DocRegister_Screen_Doc_Name":"Name of the document: ",
     "DocRegister_Screen_Doc_Placeholder":"Enter the name of the document",
     "DocRegister_Screen_Profile":"Profile: ",
@@ -120,6 +124,10 @@
     
     "DocUpRe_Screen_Button":"Update Document",
     "DocUpRe_Screen_Deleting":"Delete Document",
+    "DocUpRe_Screen_DeletingConfirmation_Title":"Confirmation",
+    "DocUpRe_Screen_DeletingConfirmation_Text":"Are you sure you want to delete the document?",
+    "DocUpRe_Screen_DeletingConfirmation_Yes":"Yes",
+    "DocUpRe_Screen_DeletingConfirmation_No":"No",
     "DocUpRe_Screen_Updating":"Updating Document",
     "DocUpRe_Screen_Doc":"Name of the document:",
     "DocUpRe_Screen_Doc_Placeholder":"Enter from document",

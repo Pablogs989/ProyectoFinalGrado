@@ -1,29 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { Dimensions, ScrollView, StyleSheet, View, Image, TouchableOpacity } from "react-native";
 import {
-  HelperText,
-  IconButton,
-  Provider,
-  Surface,
-  Text,
-  TextInput,
-  Caption,
-  List,
-  Portal,
-  Dialog,
-  ActivityIndicator,
+  HelperText, IconButton, Provider, Surface, Text, TextInput, Caption, List, Portal, Dialog, ActivityIndicator,
 } from "react-native-paper";
 import { api } from "../utils/Api";
-import { authentication } from "../utils/Authentication";
 import { useNavigation } from "@react-navigation/native";
 import Appbar_Common from "../components/Appbar_Common";
 import Button_Small from "../components/Button_Small";
 import * as ImagePicker from "expo-image-picker";
 import axios from "axios";
 import DateTimePicker from "@react-native-community/datetimepicker";
+import { useTranslation } from "react-i18next";
 
 
 const DocUpdateRemove_Screen = (props) => {
+  const { t } = useTranslation();
   //Logic Remove Doc
   const [removingDocument, setRemovingDocument] = useState(false);
   const removeDoc = async (base64) => {
@@ -162,10 +153,7 @@ const DocUpdateRemove_Screen = (props) => {
 
   //Logic Picker
   //Logic Document Types
-  const types = [
-    "Identificatius", "Sanitaris", "Transports",
-    "Allotjaments", "Segurs", "Events", "Altres"
-  ]
+  const types = t("Types_Put", { returnObjects: true });
   const [typeDocument, setTypeDocument] = useState(parameters.collection);
   const handleOnPress_typeDocument = (types) => {
     setTypeDocument(types);
@@ -243,13 +231,13 @@ const DocUpdateRemove_Screen = (props) => {
     <Provider>
       <Portal>
         <Dialog visible={updatingDocument} dismissable={false}>
-          <Dialog.Title>Actualitzant Document</Dialog.Title>
+          <Dialog.Title>{t("DocUpRe_Screen_Updating")}</Dialog.Title>
           <Dialog.Content>
             <ActivityIndicator animating={true} color="#DEB202" size="large" />
           </Dialog.Content>
         </Dialog>
         <Dialog visible={removingDocument} dismissable={false}>
-          <Dialog.Title>Borrant Document</Dialog.Title>
+          <Dialog.Title>{t("DocUpRe_Screen_Deleting")}</Dialog.Title>
           <Dialog.Content>
             <ActivityIndicator animating={true} color="#DEB202" size="large" />
           </Dialog.Content>
@@ -257,7 +245,7 @@ const DocUpdateRemove_Screen = (props) => {
       </Portal>
       <Appbar_Common
         onPress={() => navigation.navigate("Main_Screen")}
-        title="Actualitzar Document"
+        title={t("DocUpRe_Screen_Button")}
       />
       <View style={styles.box}>
         <View style={styles.falseCard}>
@@ -267,8 +255,8 @@ const DocUpdateRemove_Screen = (props) => {
             <Surface style={styles.box_TextInput}>
               <TextInput
                 mode="outlined"
-                label={"Nom del document:"}
-                placeholder="Introduïsca del document"
+                label={t("DocUpRe_Screen_Doc")}
+                placeholder={t("DocUpRe_Screen_Doc_Placeholder")}
                 activeOutlineColor="#0702F0"
                 onFocus={handleOnFocus_nameDocument}
                 onChangeText={handleChangeText_nameDocument}
@@ -286,16 +274,16 @@ const DocUpdateRemove_Screen = (props) => {
                 type={hasErrors_nameDocument() ? "error" : "info"}
               >
                 {hasErrors_nameDocument()
-                  ? "¡¡Error!! Nom no vàlid."
-                  : "Nom vàlid"}
+                  ? t("DocUpRe_Screen_HasError")
+                  : t("DocUpRe_Screen_HasCorrect")}
               </HelperText>
             </Surface>
 
             <Surface style={styles.box_TextInput}>
               <TextInput
                 mode="outlined"
-                label={"Perfil:"}
-                placeholder="Introduïsca el propietari del document"
+                label={t("DocUpRe_Screen_Profile_Doc")}
+                placeholder={t("DocUpRe_Screen_Profile_Doc_Placeholder")}
                 activeOutlineColor="#0702F0"
                 onFocus={handleOnFocus_profile}
                 onChangeText={handleChangeText_profile}
@@ -312,7 +300,7 @@ const DocUpdateRemove_Screen = (props) => {
                 visible={visible_profile}
                 type={hasErrors_profile() ? "error" : "info"}
               >
-                {hasErrors_profile() ? "¡¡Error!! Nom no vàlid." : "Nom vàlid"}
+                {hasErrors_profile() ? t("DocUpRe_Screen_HasError") : t("DocUpRe_Screen_HasCorrect")}
               </HelperText>
             </Surface>
             {Platform.OS === "ios" ? IosCalendar : AndroidCalendar}
@@ -328,20 +316,20 @@ const DocUpdateRemove_Screen = (props) => {
 
               </Surface>
 
-              <Text>Afig la imatge pressionant sobre l'icona.</Text>
+              <Text>{t("DocUpRe_Screen_Img_Text")}</Text>
 
             </Surface>
 
             <View style={styles.box_doubleButton_Medium}>
               <Button_Small
-                title="Borrar"
+                title={t("DocUpRe_Screen_Delete_Button")}
                 onPress={() => removeDoc(photoBase64)}
-                description="Borrar"
+                description={t("DocUpRe_Screen_Delete_Button")}
               />
               <Button_Small
-                title="Actualiztar"
+                title={t("DocUpRe_Screen_Update_Button")}
                 onPress={() => updateDoc(photoBase64)}
-                description="Actualitzar"
+                description={t("DocUpRe_Screen_Update_Button")}
               />
             </View>
           </ScrollView>

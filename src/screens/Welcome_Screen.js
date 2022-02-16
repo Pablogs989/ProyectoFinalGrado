@@ -1,12 +1,15 @@
 import React from 'react';
-import { Dimensions, StyleSheet, View, Image } from 'react-native';
-import { Provider, Subheading } from 'react-native-paper';
+import { Dimensions, StyleSheet, View, Image, Text } from 'react-native';
+import { Provider } from 'react-native-paper';
 import Button_Medium from '../components/Button_Medium';
 import Button_EmbeddedText from '../components/Button_EmbeddedText';
 
+import { useTranslation } from "react-i18next";
 
 const Welcome_Screen = ({ navigation: { navigate } }) => {
 
+    const { t } = useTranslation();
+    const welcome_Screen = t("Welcome_Screen", { returnObjects: true });
     return (
         <Provider>
             <View style={styles.box}>
@@ -15,22 +18,22 @@ const Welcome_Screen = ({ navigation: { navigate } }) => {
                 </View>
 
                 <View style={styles.description}>
-                    <Subheading style={styles.subheading}></Subheading>
-                    <Subheading style={styles.subheading}>Una App per gestionar tots els</Subheading>
-                    <Subheading style={styles.subheading}>documents necesaris</Subheading>
-                    <Subheading style={styles.subheading}>per al teu viatge.</Subheading>
-                    <Subheading style={styles.subheading}>Una App per a trobar-los, una</Subheading>
-                    <Subheading style={styles.subheading}>App per a atraure'ls a tots i</Subheading>
-                    <Subheading style={styles.subheading}>lligar-los en les tenebres en la</Subheading>
-                    <Subheading style={styles.subheading}>Terra de Mordor on s'estenen</Subheading>
-                    <Subheading style={styles.subheading}>les Ombres.</Subheading>
+
+                    {welcome_Screen.map((text, index) => {
+
+                        return <Text key={index} style={styles.subheading}>{text}</Text>
+
+                    })}
+
+
                 </View>
                 <View style={styles.buttons}>
                     <View style={styles.box_doubleButton_Mediano}>
-                        <Button_Medium title="Registrar" onPress={() => navigate('SignUp_Screen')} description="Registrar-se" />
-                        <Button_Medium title="Iniciar Sessió" onPress={() => navigate('LogIn_Screen')} description="Iniciar Sessió" />
+                        <Button_Medium title={t("Text_Login")} onPress={() => navigate('SignUp_Screen')} description={t("Text_Register")} />
+                        <Button_Medium title={t("Text_Login")} onPress={() => navigate('LogIn_Screen')} description={t("Text_Login")} />
                     </View>
-                    <Button_EmbeddedText title="PoliticaPrivacitat" onPress={() => navigate('PrivacyPolicy_Screen')} description="Politica de privacitat" />
+                    <Button_EmbeddedText
+                        onPress={() => navigate('PrivacyPolicy_Screen')} description={t("Privacy_Policy")} />
                 </View>
             </View>
         </Provider>
@@ -50,13 +53,16 @@ const styles = StyleSheet.create({
 
     description: {
         flex: 4,
+        paddingTop: 40
     },
 
     subheading: {
         color: 'white',
         textAlign: 'center',
         fontSize: 20,
-        padding: 1
+        padding: 1,
+        lineHeight: 15,
+        paddingTop: 22,
     },
 
     image: {

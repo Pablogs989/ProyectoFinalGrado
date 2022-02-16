@@ -1,0 +1,140 @@
+{
+    "translation": {
+      "Welcome_Screen": ["Una App per gestionar tots els","documents necesaris","per al teu viatge.","Una App per a trobar-los, una ","App per a atraure'ls a tots i","lligar-los en les tenebres en la","Terra de Mordor on s'estenen","les Ombres."],
+      "Text_Register":"Registrar-se",
+      "Text_Login":"Iniciar sesió",
+      
+      "Privacy_Policy":"Politiques de privacitat",
+      "Text_PrivacyPolicy":[
+        "Recollida i tractament de dades de caràcter personal",
+        "Les dades de caràcter personal són els que poden ser utilitzats per a identificar a una persona o posar-se en contacte amb ella.'TripDocs' pot sol·licitar dades personals d'usuaris en accedir a aplicacions de l'empresa o d'altres empreses afiliades així com la possibilitat que entre aquestes empreses puguen compartir aqueixes dades per a millorar els productes i serveis oferits. Si no es faciliten aqueixes dades personals, en molts casos no podrem oferir els productes o serveis sol·licitats. Aquests són alguns exemples de les categories de dades de caràcter personal que 'TripDocs' pot recollir i la finalitat per als quals pot dur a terme el tractament d'aquestes dades.",
+
+        "Quines dades de caràcter personal es poden recopilar?",
+        "- En crear un ID, sol·licitara un crèdit comercial, comprar un producte, descarregar una actualització de programara, es recopilen diferents dades, com a nom, adreça postal, número de telèfon, adreça de correu electrònic o les dades de la targeta de crèdit.",
+        "- Quan es comparteixen continguts amb familiars i amics o es convida a altres persones a participar en els serveis o fòrums, poden recollir-se les dades que facilitem sobre aqueixes persones, com el seu nom, domicili, correu electrònic i número de telèfon . S'utilitzaran aquestes dades per a completar les seues comandes, mostrar-li el producte o servei corresponent o per a combatre el frau.",
+
+        "Propòsit del tractament de dades de caràcter personal",
+        "'TripDocs' podrà utilitzar les dades personals recaptades per a:",
+        "- Les dades de caràcter personal recopilats permeten mantindre-li informat sobre els últims productes, les actualitzacions de programari disponible i els pròxims esdeveniments.",
+
+        "- També s'utilitzen les dades de caràcter personal com a ajuda per a elaborar, perfeccionar, gestionar, proporcionar i millorar els productes, serveis, continguts i publicitat, i amb el propòsit d'evitar pèrdues i fraus.",
+
+        "- Poden utilitzar-se les dades de caràcter personal per a comprovar la identitat, col·laborar en la identificació d'usuaris i decidir els serveis apropiats.",
+
+        "- També s'utilitzen aqueixes dades de caràcter personal amb propòsits interns, incloent auditories, anàlisis de dades i sondejos, per a millorar els productes, serveis i comunicacions a clients.",
+
+        "- Si participa en un sorteig, un concurs o una promoció, poden usar-se les dades proporcionades per a administrar aquests programes.",
+
+        "Recopilació i tractament de dades de caràcter no personal",
+        "'TripDocs' també recopilarà dades d'una manera que, per si mateixos, no poden ser associats directament a una persona determinada. Aquestes dades de caràcter no personal es poden recopilar, tractar, transferir i publicar amb qualsevol intenció. Aquests són alguns exemples de les classes de dades de caràcter no personal que 'TripDocs' pot recopilar i els fins per als quals es realitza el seu tractament:",
+
+        "- Dades com ara professió, idioma, codi postal, identificador únic de dispositiu, etc. per a comprendre millor la conducta dels nostres clients i millorar els nostres productes, serveis i anuncis publicitaris.",
+
+        "- Dades sobre com s'usen determinats serveis, incloses les consultes de cerca. Aquesta informació es pot utilitzar per a incrementar la importància dels resultats que aporten els serveis oferits.",
+
+        "- Dades sobre com usa el seu dispositiu i les aplicacions per a facilitar als desenvolupadors la millora d'aqueixes aplicacions. Si ajuntem dades de caràcter no personal amb dades personals, les dades mesclades seran tractats com a dades personals mentre continuen estant combinats.",
+        
+        "Divulgació a tercers",
+        "Ocasionalment 'TripDocs' pot facilitar determinades dades de caràcter personal a socis estratègics que treballen amb nosaltres per a proveir productes i serveis o ens ajuden en les nostres activitats de màrqueting. No es compartiran les dades amb cap tercer per als seus propis fins de màrqueting.",
+
+        
+        "Proveïdors de serveis",
+        "'TripDocs' compartirà dades de caràcter personal amb empreses que s'ocupen, entre altres activitats, de prestar serveis de tractament de dades, concedir crèdits, tramitar comandes de clients, presentar els seus productes, millorar dades de clients, subministrar serveis d'atenció al client, avaluar el seu interés en productes i serveis i realitzar investigacions sobre clients o el seu grau de satisfacció.",
+
+        "Uns altres tercers",
+        "És possible que 'TripDocs' divulgue dades de caràcter personal per mandat legal, en el marc d'un procés judicial o per petició d'una autoritat pública, tant dins com fora del seu país de residència. Igualment es pot publicar informació personal si és necessària o convenient per motius de seguretat nacional, per a acatar la legislació vigent o per altres raons rellevants d'ordre públic.",
+
+        "Protecció de dades de caràcter personal",
+        "'TripDocs' garantirà la protecció de les dades personals mitjançant xifratge durant el trànsit i, els allotjats en instal·lacions, amb mesures de seguretat físiques. En usar uns certs productes, serveis o aplicacions o en publicar opinions en fòrums, sales de xat o xarxes socials, el contingut i les dades de caràcter personal que es compartisca seran visible per a altres usuaris, que tindran la possibilitat de llegir-los, compilar-los o usar-los. Vosté serà responsable de les dades de caràcter personal que distribuïsca o proporcione en aquests casos.",
+        
+        "Integritat i conservació de dades de caràcter personal",
+        "'TripDocs' garantirà l'exactitud i la qualitat de les dades personals, es conservaran durant el temps necessari per a complir els fins per als quals van ser recaptats, llevat que la llei exigisca conservar-los durant més temps.",
+
+        "Accés a les dades de caràcter personal",
+        "Respecte a les dades de caràcter personal que conservem, “*Travel *Docs” li ofereix accés a ells per a qualsevol fi, incloent les sol·licituds de rectificació en cas que siguen incorrectes o d'eliminació en cas de no estar obligats a conservar-los per imperatiu legal o per raons legítimes de negoci. Ens reservem el dret a no tramitar aquelles sol·licituds que siguen improcedents o vexatòries, que posen en risc la privacitat de tercers, que resulten inviables o per a les quals la legislació local no exigisca dret d'accés. Les sol·licituds d'accés, rectificació o eliminació podran enviar-se a la nostra adreça *XXDIRECCIONXX o en el compte de correu electrònic *XXMAILXX.",
+
+        "Xiquets i educació",
+        "'TripDocs' és conscient de la necessitat d'establir precaucions addicionals per a preservar la privacitat i la seguretat dels menors que utilitzen les aplicacions i exigir consentiment dels seus progenitors en cas que no tinguen l'edat mínima exigida per la legislació (a Espanya, 14 anys). Si s'han recopilat dades personals d'un menor de 14 anys, sense el consentiment necessari, s'ha d'eliminar aqueixa informació al més prompte possible",
+
+        "Serveis de localització",
+        "Per a prestar serveis de localització “*Travel *Docs” podrà reunir, utilitzar i compartir dades exactes sobre ubicacions, incloent la situació geogràfica en temps real del seu ordinador o del seu dispositiu. Llevat que ens donen el seu consentiment, aquestes dades de localització es recullen de manera anònima de manera que no poden utilitzar-se per a identificar-lo personalment, i són usats per a subministrar i millorar els seus productes i serveis de localització.",
+        "Pàgines web i serveis de tercers",
+        "Les aplicacions poden contindre enllaços a pàgines web, productes i serveis de tercers. També poden utilitzar o oferir productes o serveis de tercers. La recollida de dades per part de tercers, introduint de dades sobre ubicacions geogràfiques o dades de contacte, es guiarà per les seues respectives polítiques de privacitat. Li recomanem consultar les polítiques de privacitat d'aqueixos tercers."
+
+      ],
+
+      
+      "Sign_Up":"Registre",
+      "Sign_Up_Email":"Correu electrònic",
+      "Palceholder_Email":"Introduïsca el correu",
+      "Sign_Up_Email_HasError":"¡¡Error!! El email existix o incompleix requisits.",
+      "Sign_Up_Email_HasCorrect":"Email correcte",
+      "Sign_Up_Password":"Contrasenya",
+      "Palceholder_Password":"Introduïsca la contrasenya",
+      "Sign_Up_Password_HasError":"¡¡Error!! La contrasenya no cumplix els requisits necesaris.",
+      "Sign_Up_Password_HasCorrect":"Cntrasenya correcta",
+      "Sign_Up_Password_Confirm":"Confirmar contrasenya",
+      "Palceholder_Password_Confirm":"Confirma la contrasenya",
+      "Sign_Up_Password_Confirm_HasError":"¡¡Error!! La contrasenya no coincideix.",
+      "Sign_Up_Password_Confirm_HasCorrect":"Cntrasenya correcta",
+      "Sign_Up_Button_Text":"Registrar-se",
+
+      "Login_Screen_Text":"No tens compte?",
+      "Login_Screen_Error":"Inici de sessio invalid",
+      "Login_Screen_Button_Text":"Entrar",
+
+      "Main_Screen_Filter_Title":"Opcions de Filtrat dels Documents",
+      "Main_Screen_Buscador":"Buscar TripDocs",
+      "Main_Screen_Cancel":"Cancel·lar",
+      "Main_Screen_Confirm":"Confirmar",
+
+      "DocViewer_Screen":"Visor Documento",
+      "DocPreview_Screen":"Vista prèvia document",
+      "DocInput_Screen":"Escàner",
+      "DocColection_Screen":"Col·lecció",
+
+      "Types": [
+        "Tots", "Identificatius", "Sanitaris", "Transports",
+        "Allotjaments", "Segurs", "Events", "Altres"
+      ],
+      "Types_Put": [
+        "Identificatius", "Sanitaris", "Transports",
+        "Allotjaments", "Segurs", "Events", "Altres"
+      ],
+
+      "DocRegister_Screen_Title":"Registre Document",
+      "DocRegister_Screen_Creating":"Creant Document",
+      "DocRegister_Screen_Doc_Name":"Nom del document: ",
+      "DocRegister_Screen_Doc_Placeholder":"Introduïsca el nom del document",
+      "DocRegister_Screen_Profile":"Perfil: ",
+      "DocRegister_Screen_Profile_Placeholder":"Introduïsca el propietari del document",
+      "DocRegister_Screem_Effective_Date": "Data de caducitat: ",
+      "DocRegister_Screen_HasError":"¡¡Error!! Nom no vàlid.",
+      "DocRegister_Screen_Correct":"Nom vàlid",
+      "DocRegister_Screen_Img_Text":"Afig la imatge pressionant sobre l'icona.",
+      "DocRegister_Screen_Cancel_Button": "Cancel·lar",
+      "DocRegister_Screen_Create_Button": "Crear",
+
+      
+      "DocUpRe_Screen_Button":"Actualitzar Document",
+      "DocUpRe_Screen_Deleting":"Borrant Document",
+      "DocUpRe_Screen_Updating":"Actualitzant Document",
+      "DocUpRe_Screen_Doc":"Nom del document:",
+      "DocUpRe_Screen_Doc_Placeholder":"Introduïsca del document",
+      "DocUpRe_Screen_Profile_Doc":"Perfil:",
+      "DocUpRe_Screen_Profile_Doc_Placeholder":"Introduïsca el propietari del document",
+      "DocUpRe_Screen_HasCorrect":"Nom vàlid",
+      "DocUpRe_Screen_HasError":"¡¡Error!! Nom no vàlid." ,
+      "DocUpRe_Screen_Img_Text":"Actualitza l'imatge pressionant en ella",
+      "DocUpRe_Screen_Update_Button": "Actualitzar",
+      "DocUpRe_Screen_Delete_Button": "Borrar",
+
+      
+      "Card_Medium_Warning_Title": "Caducitat",
+      "Card_Medium_Warning_Content": "Aquest document ja ha caducat o esta a punt de caducar.",
+      "Card_Medium_Document_Name": "Document: ",
+      "Card_Medium_Date": "Data: ",
+      "Card_Medium_Profile": "Perfil: ",
+      "Card_Medium_Collection": "Colec·ció: "
+    }
+  }

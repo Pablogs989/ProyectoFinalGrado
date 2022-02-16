@@ -3,8 +3,10 @@ import { StyleSheet, Dimensions, View } from "react-native";
 import { Button, Caption, Card, IconButton, Text, Title, Portal, Dialog } from "react-native-paper";
 import { api } from "../utils/Api";
 import { useNavigation } from "@react-navigation/native";
+import { useTranslation } from "react-i18next";
 
 const Card_Medium = (props) => {
+  const { t } = useTranslation();
   const navigation = useNavigation();
   const [visibleWarning, setVisibleWarning] = useState(false);
   const date = new Date(props.effective_date);
@@ -23,9 +25,9 @@ const Card_Medium = (props) => {
     >
       <Portal>
         <Dialog visible={visibleWarning} dismissable={true} onDismiss={() => setVisibleWarning(false)}>
-          <Dialog.Title>Caducitat</Dialog.Title>
+          <Dialog.Title>{t("Card_Medium_Warning_Title")}</Dialog.Title>
           <Dialog.Content>
-            <Text>Aquest document ja ha caducat o esta a punt de caducar.</Text>
+            <Text>{t("Card_Medium_Warning_Content")}</Text>
           </Dialog.Content>
           <Dialog.Actions>
             <Button onPress={() => setVisibleWarning(false)}>Ok</Button>
@@ -38,10 +40,10 @@ const Card_Medium = (props) => {
       >
         <View style={{ flex: 2 }}>
           <Card.Content style={{ borderWidth: 0 }}>
-            <Caption>Document: </Caption>
+            <Caption>{t("Card_Medium_Document_Name")}</Caption>
             <Title>{props.doc_name}</Title>
             <View style={{ flexDirection: "row", alignItems: "baseline" }}>
-              <Caption>Data: </Caption>
+              <Caption>{t("Card_Medium_Date")}</Caption>
               <Text>
                 {date.getDate().toString() +
                   "-" +
@@ -51,11 +53,11 @@ const Card_Medium = (props) => {
               </Text>
             </View>
             <View style={{ flexDirection: "row", alignItems: "baseline" }}>
-              <Caption>Titular: </Caption>
+              <Caption>{t("Card_Medium_Profile")}</Caption>
               <Text>{props.profile}</Text>
             </View>
             <View style={{ flexDirection: "row", alignItems: "baseline" }}>
-              <Caption>Colec·ció: </Caption>
+              <Caption>{t("Card_Medium_Collection")}</Caption>
               <Text>{props.collection}</Text>
             </View>
           </Card.Content>

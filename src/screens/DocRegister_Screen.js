@@ -140,7 +140,7 @@ const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
   //Logic Picker
   //Logic Document Types
   const types = t("Types_Put", { returnObjects: true });
-  const [typeDocument, setTypeDocument] = useState("Tipus de document:");
+  const [typeDocument, setTypeDocument] = useState(types[0]);
   const handleOnPress_typeDocument = (types) => {
     setTypeDocument(types);
     setExpanded(false);
@@ -163,7 +163,7 @@ const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
 
   const AndroidCalendar = (
     <Surface style={styles.box_DatePicker}>
-      <Caption style={styles.caption}>Data de caducitat:</Caption>
+      <Caption style={styles.caption}>{t("DocRegister_Screem_Effective_Date")}</Caption>
       <IconButton
         icon="calendar"
         size={24}
@@ -193,7 +193,7 @@ const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
 
   const IosCalendar = (
     <Surface style={styles.box_DatePicker}>
-      <Caption style={styles.caption}>Data de caducitat:</Caption>
+      <Caption style={styles.caption}>{t("DocRegister_Screem_Effective_Date")}</Caption>
       <DateTimePicker
         style={styles.dateTimePicker}
         testID="dateTimePicker"
@@ -217,7 +217,7 @@ const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
     <Provider>
       <Portal>
         <Dialog visible={creatingDocument} dismissable={false}>
-          <Dialog.Title>{t("DocRegister_Screen_Update")}</Dialog.Title>
+          <Dialog.Title>{t("DocRegister_Screen_Creating")}</Dialog.Title>
           <Dialog.Content>
             <ActivityIndicator animating={true} color="#DEB202" size="large" />
           </Dialog.Content>
@@ -225,7 +225,7 @@ const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
       </Portal>
       <Appbar_Common
         onPress={() => navigate("Main_Screen")}
-        title={t("DocRegister_Screen_Button")}
+        title={t("DocRegister_Screen_Title")}
       />
       <View style={styles.box}>
         <View style={styles.falseCard}>
@@ -235,8 +235,8 @@ const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
             <Surface style={styles.box_TextInput}>
               <TextInput
                 mode="outlined"
-                label={t("DocUpRe_Screen_Doc")}
-                placeholder={t("DocUpRe_Screen_Doc_Placeholder")}
+                label={t("DocRegister_Screen_Doc_Name")}
+                placeholder={t("DocRegister_Screen_Doc_Placeholder")}
                 activeOutlineColor="#0702F0"
                 onFocus={handleOnFocus_nameDocument}
                 onChangeText={handleChangeText_nameDocument}
@@ -244,26 +244,26 @@ const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
                 onBlur={handleOnBlur_nameDocument}
                 right={
                   <TextInput.Icon
-                    name={t("DocUpRe_Screen_Close")}
+                    name="close"
                     onPress={handleOnPress_IconClose_nameDocument}
                   />
                 }
               />
               <HelperText
                 visible={visible_nameDocument}
-                type={hasErrors_nameDocument() ? t("DocUpRe_Screen_Error") : t("DocUpRe_Screen_Info")}
+                type={hasErrors_nameDocument() ? "error" : "info"}
               >
                 {hasErrors_nameDocument()
-                  ? t("DocUpRe_Screen_HasError")
-                  : t("DocUpRe_Screen_HasCorrect")}
+                  ? t("DocRegister_Screen_HasError")
+                  : t("DocRegister_Screen_Correct")}
               </HelperText>
             </Surface>
 
             <Surface style={styles.box_TextInput}>
               <TextInput
                 mode="outlined"
-                label={t("DocUpRe_Screen_Profile_Doc")}
-                placeholder={t("DocUpRe_Screen_Profile_Doc_Placeholder")}
+                label={t("DocRegister_Screen_Profile")}
+                placeholder={t("DocRegister_Screen_Profile_Placeholder")}
                 activeOutlineColor="#0702F0"
                 onFocus={handleOnFocus_profile}
                 onChangeText={handleChangeText_profile}
@@ -271,16 +271,17 @@ const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
                 onBlur={handleOnBlur_profile}
                 right={
                   <TextInput.Icon
-                    name={t("DocUpRe_Screen_Close")}
+                    name="close"
                     onPress={handleOnPress_IconClose_profile}
                   />
                 }
               />
               <HelperText
                 visible={visible_profile}
-                type={hasErrors_profile() ? t("DocUpRe_Screen_Error") : t("DocUpRe_Screen_Info")}
+                type={hasErrors_profile() ? "error" : "info"}
               >
-                {hasErrors_profile() ? t("DocUpRe_Screen_HasError") : t("DocUpRe_Screen_HasCorrect")}
+                {hasErrors_profile() ? t("DocRegister_Screen_HasError")
+                  : t("DocRegister_Screen_Correct")}
               </HelperText>
             </Surface>
             {Platform.OS === "ios" ? IosCalendar : AndroidCalendar}
@@ -296,20 +297,20 @@ const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
 
               </Surface>
 
-              <Text>{t("DocRegister_Screen_Text_Img")}</Text>
+              <Text>{t("DocRegister_Screen_Img_Text")}</Text>
 
             </Surface>
 
             <View style={styles.box_doubleButton_Medium}>
               <Button_Small
-                title={t("Main_Screen_Cancel")}
+                title={t("DocRegister_Screen_Cancel_Button")}
                 onPress={() => navigation.navigate("Main_Screen")}
-                description={t("Main_Screen_Cancel")}
+                description={t("DocRegister_Screen_Cancel_Button")}
               />
               <Button_Small
-                title={t("Main_Screen_Create")}
+                title={t("DocRegister_Screen_Create_Button")}
                 onPress={() => docToServer(photoBase64)}
-                description={t("Main_Screen_Create")}
+                description={t("DocRegister_Screen_Create_Button")}
               />
             </View>
           </ScrollView>

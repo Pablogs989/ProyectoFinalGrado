@@ -1,6 +1,6 @@
 import React from 'react';
-import { Dimensions, StyleSheet, View, Image,Text } from 'react-native';
-import { Provider} from 'react-native-paper';
+import { Dimensions, StyleSheet, View, Image, Text } from 'react-native';
+import { Provider } from 'react-native-paper';
 import Button_Medium from '../components/Button_Medium';
 import Button_EmbeddedText from '../components/Button_EmbeddedText';
 
@@ -18,14 +18,14 @@ const Welcome_Screen = ({ navigation: { navigate } }) => {
                 </View>
 
                 <View style={styles.description}>
-                
-                {welcome_Screen.map((text, index) => {
-            
-                          return <Text style={styles.subheading}>{text}</Text>
-                            
-                        })}
 
-                    
+                    {welcome_Screen.map((text, index) => {
+
+                        return <Text key={index} style={styles.subheading}>{text}</Text>
+
+                    })}
+
+
                 </View>
                 <View style={styles.buttons}>
                     <View style={styles.box_doubleButton_Mediano}>
@@ -33,7 +33,7 @@ const Welcome_Screen = ({ navigation: { navigate } }) => {
                         <Button_Medium title={t("Text_Login")} onPress={() => navigate('LogIn_Screen')} description={t("Text_Login")} />
                     </View>
                     <Button_EmbeddedText
-                     onPress={() => navigate('PrivacyPolicy_Screen')} description={t("Privacy_Policy")} />
+                        onPress={() => navigate('PrivacyPolicy_Screen')} description={t("Privacy_Policy")} />
                 </View>
             </View>
         </Provider>
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
 
     description: {
         flex: 4,
-        paddingTop:40
+        paddingTop: 40
     },
 
     subheading: {
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         padding: 1,
         lineHeight: 15,
-        paddingTop:22,
+        paddingTop: 22,
     },
 
     image: {

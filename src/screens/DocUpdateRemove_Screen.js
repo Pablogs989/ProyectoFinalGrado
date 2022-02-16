@@ -231,13 +231,13 @@ const DocUpdateRemove_Screen = (props) => {
     <Provider>
       <Portal>
         <Dialog visible={updatingDocument} dismissable={false}>
-          <Dialog.Title>{t("DocUpRe_Screen_Update")}</Dialog.Title>
+          <Dialog.Title>{t("DocUpRe_Screen_Updating")}</Dialog.Title>
           <Dialog.Content>
             <ActivityIndicator animating={true} color="#DEB202" size="large" />
           </Dialog.Content>
         </Dialog>
         <Dialog visible={removingDocument} dismissable={false}>
-          <Dialog.Title>{t("DocUpRe_Screen_Delete")}</Dialog.Title>
+          <Dialog.Title>{t("DocUpRe_Screen_Deleting")}</Dialog.Title>
           <Dialog.Content>
             <ActivityIndicator animating={true} color="#DEB202" size="large" />
           </Dialog.Content>
@@ -264,14 +264,14 @@ const DocUpdateRemove_Screen = (props) => {
                 onBlur={handleOnBlur_nameDocument}
                 right={
                   <TextInput.Icon
-                    name={t("DocUpRe_Screen_Close")}
+                    name="close"
                     onPress={handleOnPress_IconClose_nameDocument}
                   />
                 }
               />
               <HelperText
                 visible={visible_nameDocument}
-                type={hasErrors_nameDocument() ? t("DocUpRe_Screen_Error") : t("DocUpRe_Screen_Info")}
+                type={hasErrors_nameDocument() ? "error" : "info"}
               >
                 {hasErrors_nameDocument()
                   ? t("DocUpRe_Screen_HasError")
@@ -291,14 +291,14 @@ const DocUpdateRemove_Screen = (props) => {
                 onBlur={handleOnBlur_profile}
                 right={
                   <TextInput.Icon
-                    name={t("DocUpRe_Screen_Close")}
+                    name="close"
                     onPress={handleOnPress_IconClose_profile}
                   />
                 }
               />
               <HelperText
                 visible={visible_profile}
-                type={hasErrors_profile() ? t("DocUpRe_Screen_Error") : t("DocUpRe_Screen_Info")}
+                type={hasErrors_profile() ? "error" : "info"}
               >
                 {hasErrors_profile() ? t("DocUpRe_Screen_HasError") : t("DocUpRe_Screen_HasCorrect")}
               </HelperText>
@@ -316,20 +316,20 @@ const DocUpdateRemove_Screen = (props) => {
 
               </Surface>
 
-              <Text>{t("DocRegister_Screen_Text_Img")}</Text>
+              <Text>{t("DocUpRe_Screen_Img_Text")}</Text>
 
             </Surface>
 
             <View style={styles.box_doubleButton_Medium}>
               <Button_Small
-                title={t("DocUpRe_Screen_Delete")}
+                title={t("DocUpRe_Screen_Delete_Button")}
                 onPress={() => removeDoc(photoBase64)}
-                description={t("DocUpRe_Screen_Delete")}
+                description={t("DocUpRe_Screen_Delete_Button")}
               />
               <Button_Small
-                title={t("DocUpRe_Screen_Update")}
+                title={t("DocUpRe_Screen_Update_Button")}
                 onPress={() => updateDoc(photoBase64)}
-                description={t("DocUpRe_Screen_Update")}
+                description={t("DocUpRe_Screen_Update_Button")}
               />
             </View>
           </ScrollView>

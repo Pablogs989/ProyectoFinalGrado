@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Dimensions, StyleSheet, View, KeyboardAvoidingView,} from "react-native";
-import { Surface, Provider, TextInput, Text, HelperText,} from "react-native-paper";
+import { Dimensions, StyleSheet, View, KeyboardAvoidingView, } from "react-native";
+import { Surface, Provider, TextInput, Text, HelperText, } from "react-native-paper";
 import { authentication } from "../utils/Authentication";
 import { api } from "../utils/Api";
 import Appbar_Common from "../components/Appbar_Common";
@@ -88,7 +88,7 @@ const LogIn_Screen = ({ navigation }) => {
 
               <TextInput
                 mode="outlined"
-                label={t("Sing_Up_Email")}
+                label={t("Sign_Up_Email")}
                 placeholder={t("Palceholder_Email")}
                 activeOutlineColor="#0702F0"
                 keyboardType="email-address"
@@ -108,7 +108,7 @@ const LogIn_Screen = ({ navigation }) => {
             <Surface style={styles.box_TextInput}>
               <TextInput
                 mode="outlined"
-                label={t("Sing_Up_Password")}
+                label={t("Sign_Up_Password")}
                 placeholder={t("Palceholder_Password")}
                 activeOutlineColor="#0702F0"
                 keyboardType="default"
@@ -120,7 +120,7 @@ const LogIn_Screen = ({ navigation }) => {
                 autoCapitalize="none"
                 right={
                   <TextInput.Icon
-                    name={t("DocUpRe_Screen_Close")}
+                    name="close"
                     onPress={handleOnPress_IconClose_Password}
                   />
                 }
@@ -128,9 +128,9 @@ const LogIn_Screen = ({ navigation }) => {
             </Surface>
             <View style={styles.box_Button}>
               <Button_Medium
-                title={t("Main_Screen_Confirm")}
+                title={t("Login_Screen_Button_Text")}
                 onPress={() => login(email, password)}
-                description={t("Main_Screen_Confirm")}
+                description={t("Login_Screen_Button_Text")}
               />
             </View>
             <View style={styles.register_Box}>

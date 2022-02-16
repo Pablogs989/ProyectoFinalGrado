@@ -1,13 +1,10 @@
 {
     "translation": {
       "Welcome_Screen": ["Una App per gestionar tots els","documents necesaris","per al teu viatge.","Una App per a trobar-los, una ","App per a atraure'ls a tots i","lligar-los en les tenebres en la","Terra de Mordor on s'estenen","les Ombres."],
-      
       "Text_Register":"Registrar-se",
       "Text_Login":"Iniciar sesió",
-
       
       "Privacy_Policy":"Politiques de privacitat",
-
       "Text_PrivacyPolicy":[
         "Recollida i tractament de dades de caràcter personal",
         "Les dades de caràcter personal són els que poden ser utilitzats per a identificar a una persona o posar-se en contacte amb ella.'TripDocs' pot sol·licitar dades personals d'usuaris en accedir a aplicacions de l'empresa o d'altres empreses afiliades així com la possibilitat que entre aquestes empreses puguen compartir aqueixes dades per a millorar els productes i serveis oferits. Si no es faciliten aqueixes dades personals, en molts casos no podrem oferir els productes o serveis sol·licitats. Aquests són alguns exemples de les categories de dades de caràcter personal que 'TripDocs' pot recollir i la finalitat per als quals pot dur a terme el tractament d'aquestes dades.",
@@ -68,62 +65,33 @@
 
       
       "Sign_Up":"Registre",
-
-      "Sing_Up_Email":"Correu electrònic",
+      "Sign_Up_Email":"Correu electrònic",
       "Palceholder_Email":"Introduïsca el correu",
-      "Sing_Up_Email_HasError":"¡¡Error!! El email existix o incompleix requisits.",
-      "Sing_Up_Email_HasCorrect":"Email correcte",
-
-      "Sing_Up_Password":"Contrasenya",
+      "Sign_Up_Email_HasError":"¡¡Error!! El email existix o incompleix requisits.",
+      "Sign_Up_Email_HasCorrect":"Email correcte",
+      "Sign_Up_Password":"Contrasenya",
       "Palceholder_Password":"Introduïsca la contrasenya",
-      "Sing_Up_Password_HasError":"¡¡Error!! La contrasenya no cumplix els requisits necesaris.",
-      "Sing_Up_Password_HasCorrect":"Cntrasenya correcta",
-
-      "Sing_Up_Password_Confirm":"Confirmar contrasenya",
+      "Sign_Up_Password_HasError":"¡¡Error!! La contrasenya no cumplix els requisits necesaris.",
+      "Sign_Up_Password_HasCorrect":"Cntrasenya correcta",
+      "Sign_Up_Password_Confirm":"Confirmar contrasenya",
       "Palceholder_Password_Confirm":"Confirma la contrasenya",
-      "Sing_Up_Password_Confirm_HasError":"¡¡Error!! La contrasenya no coincideix.",
-      "Sing_Up_Password_Confirm_HasCorrect":"Cntrasenya correcta",
-      
-      "Main_Screen_Filter_Title":"Opcions de Filtrat dels Documents",
-      "Main_Screen_Cancel":"Cancel·lar",
-      "Main_Screen_Confirm":"Confirmar",
-      "Main_Screen_Buscador":"Buscar TripDocs",
-      "Main_Screen_Create":"Crear",
+      "Sign_Up_Password_Confirm_HasError":"¡¡Error!! La contrasenya no coincideix.",
+      "Sign_Up_Password_Confirm_HasCorrect":"Cntrasenya correcta",
+      "Sign_Up_Button_Text":"Registrar-se",
 
       "Login_Screen_Text":"No tens compte?",
       "Login_Screen_Error":"Inici de sessio invalid",
+      "Login_Screen_Button_Text":"Entrar",
+
+      "Main_Screen_Filter_Title":"Opcions de Filtrat dels Documents",
+      "Main_Screen_Buscador":"Buscar TripDocs",
+      "Main_Screen_Cancel":"Cancel·lar",
+      "Main_Screen_Confirm":"Confirmar",
 
       "DocViewer_Screen":"Visor Documento",
       "DocPreview_Screen":"Vista prèvia document",
       "DocInput_Screen":"Escàner",
       "DocColection_Screen":"Col·lecció",
-
-
-
-      "DocRegister_Screen_Text_Img":"Afig la imatge pressionant sobre l'icona.",
-
-
-      "DocRegister_Screen_Button":"Resgistre Document",
-      "DocUpRe_Screen_Button":"Actualitzar Document",
-
-      "DocUpRe_Screen_Doc":"Nom del document:",
-      "DocUpRe_Screen_Doc_Placeholder":"Introduïsca del document",
-
-      "DocUpRe_Screen_Profile_Doc":"Perfil:",
-      "DocUpRe_Screen_Profile_Doc_Placeholder":"Introduïsca el propietari del document",
-
-      "DocUpRe_Screen_Close":"Tancar",
-
-      "DocUpRe_Screen_Info":"info",
-      "DocUpRe_Screen_Error":"error",
-
-      "DocUpRe_Screen_HasCorrect":"Nom vàlid",
-      "DocUpRe_Screen_HasError":"¡¡Error!! Nom no vàlid." ,
-
-      "DocUpRe_Screen_Delete":"Borrar",
-      "DocUpRe_Screen_Update":"Actualiztar",
-
-      "DocRegister_Screen_Update":"Creant Document",
 
       "Types": [
         "Tots", "Identificatius", "Sanitaris", "Transports",
@@ -133,6 +101,40 @@
         "Identificatius", "Sanitaris", "Transports",
         "Allotjaments", "Segurs", "Events", "Altres"
       ],
-      "errorMail": "ERROR"
+
+      "DocRegister_Screen_Title":"Registre Document",
+      "DocRegister_Screen_Creating":"Creant Document",
+      "DocRegister_Screen_Doc_Name":"Nom del document: ",
+      "DocRegister_Screen_Doc_Placeholder":"Introduïsca el nom del document",
+      "DocRegister_Screen_Profile":"Perfil: ",
+      "DocRegister_Screen_Profile_Placeholder":"Introduïsca el propietari del document",
+      "DocRegister_Screem_Effective_Date": "Data de caducitat: ",
+      "DocRegister_Screen_HasError":"¡¡Error!! Nom no vàlid.",
+      "DocRegister_Screen_Correct":"Nom vàlid",
+      "DocRegister_Screen_Img_Text":"Afig la imatge pressionant sobre l'icona.",
+      "DocRegister_Screen_Cancel_Button": "Cancel·lar",
+      "DocRegister_Screen_Create_Button": "Crear",
+
+      
+      "DocUpRe_Screen_Button":"Actualitzar Document",
+      "DocUpRe_Screen_Deleting":"Borrant Document",
+      "DocUpRe_Screen_Updating":"Actualitzant Document",
+      "DocUpRe_Screen_Doc":"Nom del document:",
+      "DocUpRe_Screen_Doc_Placeholder":"Introduïsca del document",
+      "DocUpRe_Screen_Profile_Doc":"Perfil:",
+      "DocUpRe_Screen_Profile_Doc_Placeholder":"Introduïsca el propietari del document",
+      "DocUpRe_Screen_HasCorrect":"Nom vàlid",
+      "DocUpRe_Screen_HasError":"¡¡Error!! Nom no vàlid." ,
+      "DocUpRe_Screen_Img_Text":"Actualitza l'imatge pressionant en ella",
+      "DocUpRe_Screen_Update_Button": "Actualitzar",
+      "DocUpRe_Screen_Delete_Button": "Borrar",
+
+      
+      "Card_Medium_Warning_Title": "Caducitat",
+      "Card_Medium_Warning_Content": "Aquest document ja ha caducat o esta a punt de caducar.",
+      "Card_Medium_Document_Name": "Document: ",
+      "Card_Medium_Date": "Data: ",
+      "Card_Medium_Profile": "Perfil: ",
+      "Card_Medium_Collection": "Colec·ció: "
     }
   }

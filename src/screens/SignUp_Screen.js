@@ -120,7 +120,7 @@ const SignUp_Screen = ({ navigation }) => {
 
   const { t } = useTranslation();
   return (
-    
+
     <Provider>
       <Appbar_Common
         onPress={() => navigation.navigate("Welcome_Screen")}
@@ -136,7 +136,7 @@ const SignUp_Screen = ({ navigation }) => {
             <Surface style={styles.box_TextInput}>
               <TextInput
                 mode="outlined"
-                label={t("Sing_Up_Email")}
+                label={t("Sign_Up_Email")}
                 placeholder={t("Palceholder_Email")}
                 activeOutlineColor="#0702F0"
                 keyboardType="email-address"
@@ -157,14 +157,14 @@ const SignUp_Screen = ({ navigation }) => {
                 type={hasErrors_Email() ? "error" : "info"}
               >
                 {hasErrors_Email()
-                  ? t("Sing_Up_Email_HasError")
-                  : t("Sing_Up_Email_HasCorrect")}
+                  ? t("Sign_Up_Email_HasError")
+                  : t("Sign_Up_Email_HasCorrect")}
               </HelperText>
             </Surface>
             <Surface style={styles.box_TextInput}>
               <TextInput
                 mode="outlined"
-                label={t("Sing_Up_Password")}
+                label={t("Sign_Up_Password")}
                 placeholder={t("Palceholder_Password")}
                 activeOutlineColor="#0702F0"
                 keyboardType="default"
@@ -186,15 +186,15 @@ const SignUp_Screen = ({ navigation }) => {
                 type={hasErrors_Password() ? "error" : "info"}
               >
                 {hasErrors_Password()
-                  ? t("Sing_Up_Password_HasError")
-                  : t("Sing_Up_Password_HasCorrect")}
+                  ? t("Sign_Up_Password_HasError")
+                  : t("Sign_Up_Password_HasCorrect")}
               </HelperText>
             </Surface>
 
             <Surface style={styles.box_TextInput}>
               <TextInput
                 mode="outlined"
-                label={t("Sing_Up_Password_Confirm")}
+                label={t("Sign_Up_Password_Confirm")}
                 placeholder={t("Palceholder_Password_Confirm")}
                 activeOutlineColor="#0702F0"
                 keyboardType="default"
@@ -216,8 +216,8 @@ const SignUp_Screen = ({ navigation }) => {
                 type={hasErrors_Password_Config() ? "error" : "info"}
               >
                 {hasErrors_Password_Config()
-                  ? t("Sing_Up_Password_Confirm_HasError")
-                  : t("Sing_Up_Password_Confirm_HasCorrect")}
+                  ? t("Sign_Up_Password_Confirm_HasError")
+                  : t("Sign_Up_Password_Confirm_HasCorrect")}
               </HelperText>
               <View style={styles.checkbox}>
                 <Checkbox
@@ -230,9 +230,9 @@ const SignUp_Screen = ({ navigation }) => {
                 <Text
                   style={styles.register_Button}
                   onPress={() => navigation.navigate('PrivacyPolicy_Screen')}
-                  >
-                    {t("Privacy_Policy")}
-                  </Text>               
+                >
+                  {t("Privacy_Policy")}
+                </Text>
               </View>
 
             </Surface>
@@ -290,7 +290,7 @@ const styles = StyleSheet.create({
   checkbox: {
     flexDirection: 'row',
     marginBottom: 12,
-    alignItems:"baseline",
+    alignItems: "baseline",
   },
 
   register_Button: {

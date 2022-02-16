@@ -80,7 +80,7 @@ const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
   };
   const handleChangeText_nameDocument = (event) => {
     setNameDocument(event);
-    setVisible_nameDocument(nameDocument.length > 0);
+    setVisible_nameDocument(nameDocument.length >= 0);
   };
   const handleOnBlur_nameDocument = () => {
     setVisible_nameDocument(nameDocument.length > 0);

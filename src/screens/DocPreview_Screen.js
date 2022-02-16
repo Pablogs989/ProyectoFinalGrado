@@ -1,13 +1,14 @@
 import React from 'react';
 import { Dimensions, StyleSheet, View } from 'react-native';
-import { Appbar, Caption, Button, Headline, Paragraph, Provider, Subheading, Text, Title } from 'react-native-paper';
+import { Provider,} from 'react-native-paper';
 import Appbar_Common from '../components/Appbar_Common';
-
+import { useTranslation } from "react-i18next";
 
 const DocPreview_Screen = ({ navigation }) => {
+    const { t } = useTranslation();
     return (
         <Provider>
-            <Appbar_Common alPresionar={() => navigation.navigate("Main_Screen")} titulo="Preview Documento" />
+            <Appbar_Common OnPress={() => navigation.navigate("Main_Screen")} titulo={t("DocPreview_Screen")} />
             <View style={styles.box}>
                 <Surface style={styles.falseCard}>
 

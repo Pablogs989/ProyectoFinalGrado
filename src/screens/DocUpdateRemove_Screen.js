@@ -1,20 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Dimensions, ScrollView, StyleSheet, View, Image, TouchableOpacity } from "react-native";
 import {
-  HelperText,
-  IconButton,
-  Provider,
-  Surface,
-  Text,
-  TextInput,
-  Caption,
-  List,
-  Portal,
-  Dialog,
-  ActivityIndicator,
+  HelperText, IconButton, Provider, Surface, Text, TextInput, Caption, List, Portal, Dialog, ActivityIndicator,
 } from "react-native-paper";
 import { api } from "../utils/Api";
-import { authentication } from "../utils/Authentication";
 import { useNavigation } from "@react-navigation/native";
 import Appbar_Common from "../components/Appbar_Common";
 import Button_Small from "../components/Button_Small";
@@ -23,29 +12,54 @@ import axios from "axios";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { useTranslation } from "react-i18next";
 
-const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
+
+const DocUpdateRemove_Screen = (props) => {
   const { t } = useTranslation();
-  const navigation = useNavigation();
-  const [photo, setPhoto] = useState("");
-  const [photoLoaded, setPhotoLoaded] = useState(false)
-  const [photoBase64, setPhotoBase64] = useState("");
-  const [creatingDocument, setCreatingDocument] = useState(false);
-  //Logic send Image to server
-  const docToServer = async (base64) => {
+  //Logic Remove Doc
+  const [removingDocument, setRemovingDocument] = useState(false);
+  const removeDoc = async (base64) => {
     if (photoLoaded) {
+
       try {
-        setCreatingDocument(true);
-        const response = await axios.post(api.post, {
-          type: "createDocument",
-          user_id: authentication.id,
+        setRemovingDocument(true);
+        let response = await axios.delete(api.post, {
+          data: {
+            "type": "removeDocument",
+            "_id": parameters.img_url
+          }
+        });
+        setRemovingDocument(false);
+        navigation.navigate("Main_Screen")
+        // navigate("Main_Screen");
+      } catch (error) {
+      }
+    }
+  };
+
+  const parameters = props.route.params;
+  const navigation = useNavigation();
+  const [photo, setPhoto] = useState(api.apache + parameters.img_url + ".jpg" + '?' + new Date());
+  const [photoLoaded, setPhotoLoaded] = useState(true)
+  const [photoBase64, setPhotoBase64] = useState("");
+  const [updatingDocument, setUpdatingDocument] = useState(false);
+  //Logic update Doc
+  const updateDoc = async (base64) => {
+    if (photoLoaded) {
+
+      try {
+        setUpdatingDocument(true);
+        let response = await axios.put(api.post, {
+          type: "updateDocument",
+          _id: parameters.img_url,
           doc_name: nameDocument,
           effective_date: date,
           profile: profile,
           collection: typeDocument,
-          img_base64: base64,
+          img_base64: photoBase64
         });
-        setCreatingDocument(false);
-        navigate("Main_Screen");
+        setUpdatingDocument(false);
+        navigation.navigate("Main_Screen")
+        // navigate("Main_Screen");
       } catch (error) {
       }
     }
@@ -73,7 +87,7 @@ const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
   };
 
   //Logic Document Name
-  const [nameDocument, setNameDocument] = useState("");
+  const [nameDocument, setNameDocument] = useState(parameters.doc_name);
   const [visible_nameDocument, setVisible_nameDocument] = useState(false);
   const handleOnFocus_nameDocument = () => {
     setVisible_nameDocument(nameDocument.length > 0);
@@ -97,7 +111,7 @@ const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
   };
 
   //Logic Profile Name
-  const [profile, setProfile] = useState("");
+  const [profile, setProfile] = useState(parameters.profile);
   const [visible_profile, setVisible_profile] = useState(false);
   const handleOnFocus_profile = () => {
     setVisible_profile(profile.length > 0);
@@ -118,7 +132,7 @@ const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
   };
 
   //Logic DatePicker
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState(new Date(parameters.effective_date));
   const [mode, setMode] = useState("date");
   const [show, setShow] = useState(false);
 
@@ -140,7 +154,7 @@ const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
   //Logic Picker
   //Logic Document Types
   const types = t("Types_Put", { returnObjects: true });
-  const [typeDocument, setTypeDocument] = useState(types[0]);
+  const [typeDocument, setTypeDocument] = useState(parameters.collection);
   const handleOnPress_typeDocument = (types) => {
     setTypeDocument(types);
     setExpanded(false);
@@ -163,7 +177,7 @@ const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
 
   const AndroidCalendar = (
     <Surface style={styles.box_DatePicker}>
-      <Caption style={styles.caption}>{t("DocRegister_Screem_Effective_Date")}</Caption>
+      <Caption style={styles.caption}>Data de caducitat:</Caption>
       <IconButton
         icon="calendar"
         size={24}
@@ -193,7 +207,7 @@ const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
 
   const IosCalendar = (
     <Surface style={styles.box_DatePicker}>
-      <Caption style={styles.caption}>{t("DocRegister_Screem_Effective_Date")}</Caption>
+      <Caption style={styles.caption}>Data de caducitat:</Caption>
       <DateTimePicker
         style={styles.dateTimePicker}
         testID="dateTimePicker"
@@ -216,16 +230,22 @@ const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
   return (
     <Provider>
       <Portal>
-        <Dialog visible={creatingDocument} dismissable={false}>
-          <Dialog.Title>{t("DocRegister_Screen_Creating")}</Dialog.Title>
+        <Dialog visible={updatingDocument} dismissable={false}>
+          <Dialog.Title>{t("DocUpRe_Screen_Updating")}</Dialog.Title>
+          <Dialog.Content>
+            <ActivityIndicator animating={true} color="#DEB202" size="large" />
+          </Dialog.Content>
+        </Dialog>
+        <Dialog visible={removingDocument} dismissable={false}>
+          <Dialog.Title>{t("DocUpRe_Screen_Deleting")}</Dialog.Title>
           <Dialog.Content>
             <ActivityIndicator animating={true} color="#DEB202" size="large" />
           </Dialog.Content>
         </Dialog>
       </Portal>
       <Appbar_Common
-        onPress={() => navigate("Main_Screen")}
-        title={t("DocRegister_Screen_Title")}
+        onPress={() => navigation.navigate("Main_Screen")}
+        title={t("DocUpRe_Screen_Button")}
       />
       <View style={styles.box}>
         <View style={styles.falseCard}>
@@ -235,8 +255,8 @@ const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
             <Surface style={styles.box_TextInput}>
               <TextInput
                 mode="outlined"
-                label={t("DocRegister_Screen_Doc_Name")}
-                placeholder={t("DocRegister_Screen_Doc_Placeholder")}
+                label={t("DocUpRe_Screen_Doc")}
+                placeholder={t("DocUpRe_Screen_Doc_Placeholder")}
                 activeOutlineColor="#0702F0"
                 onFocus={handleOnFocus_nameDocument}
                 onChangeText={handleChangeText_nameDocument}
@@ -254,16 +274,16 @@ const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
                 type={hasErrors_nameDocument() ? "error" : "info"}
               >
                 {hasErrors_nameDocument()
-                  ? t("DocRegister_Screen_HasError")
-                  : t("DocRegister_Screen_Correct")}
+                  ? t("DocUpRe_Screen_HasError")
+                  : t("DocUpRe_Screen_HasCorrect")}
               </HelperText>
             </Surface>
 
             <Surface style={styles.box_TextInput}>
               <TextInput
                 mode="outlined"
-                label={t("DocRegister_Screen_Profile")}
-                placeholder={t("DocRegister_Screen_Profile_Placeholder")}
+                label={t("DocUpRe_Screen_Profile_Doc")}
+                placeholder={t("DocUpRe_Screen_Profile_Doc_Placeholder")}
                 activeOutlineColor="#0702F0"
                 onFocus={handleOnFocus_profile}
                 onChangeText={handleChangeText_profile}
@@ -280,8 +300,7 @@ const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
                 visible={visible_profile}
                 type={hasErrors_profile() ? "error" : "info"}
               >
-                {hasErrors_profile() ? t("DocRegister_Screen_HasError")
-                  : t("DocRegister_Screen_Correct")}
+                {hasErrors_profile() ? t("DocUpRe_Screen_HasError") : t("DocUpRe_Screen_HasCorrect")}
               </HelperText>
             </Surface>
             {Platform.OS === "ios" ? IosCalendar : AndroidCalendar}
@@ -297,20 +316,20 @@ const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
 
               </Surface>
 
-              <Text>{t("DocRegister_Screen_Img_Text")}</Text>
+              <Text>{t("DocUpRe_Screen_Img_Text")}</Text>
 
             </Surface>
 
             <View style={styles.box_doubleButton_Medium}>
               <Button_Small
-                title={t("DocRegister_Screen_Cancel_Button")}
-                onPress={() => navigation.navigate("Main_Screen")}
-                description={t("DocRegister_Screen_Cancel_Button")}
+                title={t("DocUpRe_Screen_Delete_Button")}
+                onPress={() => removeDoc(photoBase64)}
+                description={t("DocUpRe_Screen_Delete_Button")}
               />
               <Button_Small
-                title={t("DocRegister_Screen_Create_Button")}
-                onPress={() => docToServer(photoBase64)}
-                description={t("DocRegister_Screen_Create_Button")}
+                title={t("DocUpRe_Screen_Update_Button")}
+                onPress={() => updateDoc(photoBase64)}
+                description={t("DocUpRe_Screen_Update_Button")}
               />
             </View>
           </ScrollView>
@@ -321,7 +340,7 @@ const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
   );
 };
 
-export default DocRegister_Screen;
+export default DocUpdateRemove_Screen;
 
 const styles = StyleSheet.create({
   box: {

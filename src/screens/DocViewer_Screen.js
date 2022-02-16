@@ -4,15 +4,17 @@ import { Provider, Surface } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 import Appbar_Common from "../components/Appbar_Common";
 import ImageViewer from "react-native-image-zoom-viewer";
+import { useTranslation } from "react-i18next";
 
 const DocViewer_Screen = (props) => {
   const navigation = useNavigation();
   const images = [{ url: props.route.params.image }];
+  const { t } = useTranslation();
   return (
     <Provider>
       <Appbar_Common
         onPress={() => navigation.navigate("Main_Screen")}
-        title="Visor Documento"
+        title={t("DocViewer_Screen")}
       />
       <View style={styles.box}>
         <Surface style={styles.falseCard}>

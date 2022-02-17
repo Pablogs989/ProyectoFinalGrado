@@ -7,12 +7,14 @@
 ----
 
 ### 1.	Integrantes de equipo de desarrollo
- 
-- Josep Iborra Pons  https://github.com/josep-iborra
--	Ximo Quintana Ferrer https://github.com/xiqufe
--	Manuel Bas Sáez https://github.com/manubasa
--	Pablo González Sánchez https://github.com/Pablogs989
--	Enrique Izquierdo Jiménez https://github.com/Enrique-Izquierdo
+
+| Membres        | Email           | Avatar  |
+| ------------- |:-------------:| :-----:|
+| Josep Iborra Pons     | josersillero@gmail.com | <img src="https://avatars.githubusercontent.com/u/57388708?v=4" alt="Josep" width="100" height="100"/> |
+| Ximo Quintana Ferrer     | xquintanaf.denia@gmail.com | <img src="https://avatars.githubusercontent.com/u/90713625?v=4" alt="Ximo" width="100" height="100"/> |
+| Enrique Izquierdo Jiménez     | enrique.izquierdo@gmail.com | <img src="https://avatars.githubusercontent.com/u/73492386?v=4" alt="Enrique" width="100" height="100"/> |
+| Pablo González Sánchez     | pablogonsan2001@gmail.com | <img src="https://avatars.githubusercontent.com/u/73492474?v=4" alt="Pablo" width="100" height="100"/> |
+| Manuel Bas Sáez     | mabasa03@floridauniversitaria.es | <img src="https://avatars.githubusercontent.com/u/57366240?v=4" alt="Manuel" width="100" height="100"/> |
 
 
 ### 2.	Descripción del proyecto

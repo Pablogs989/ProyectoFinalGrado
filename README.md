@@ -3,7 +3,7 @@
 # Trip Docs
 ## *All Documents at Hand*
 ### Un proyecto desarrollado por **Visoft** (Florida-Universitaria)
-
+![QR](/../master/assets/qr.png)
 ----
 
 ### 1.	Integrantes de equipo de desarrollo

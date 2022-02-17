@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Dimensions, ScrollView, StyleSheet, View, Image, TouchableOpacity } from "react-native";
 import {
-  HelperText, IconButton, Provider, Surface, Text, TextInput, Caption, List, Portal, Dialog, ActivityIndicator,
+  HelperText, IconButton, Provider, Surface, Text, TextInput, Caption, List, Portal, Dialog, ActivityIndicator, Button
 } from "react-native-paper";
 import { api } from "../utils/Api";
 import { useNavigation } from "@react-navigation/native";
@@ -16,6 +16,7 @@ import { useTranslation } from "react-i18next";
 const DocUpdateRemove_Screen = (props) => {
   const { t } = useTranslation();
   //Logic Remove Doc
+  const [confirmRemoving, setConfirmRemoving] = useState(false);
   const [removingDocument, setRemovingDocument] = useState(false);
   const removeDoc = async (base64) => {
     if (photoLoaded) {
@@ -177,7 +178,7 @@ const DocUpdateRemove_Screen = (props) => {
 
   const AndroidCalendar = (
     <Surface style={styles.box_DatePicker}>
-      <Caption style={styles.caption}>Data de caducitat:</Caption>
+      <Caption style={styles.caption}>{t("DocRegister_Screem_Effective_Date")}</Caption>
       <IconButton
         icon="calendar"
         size={24}
@@ -207,7 +208,7 @@ const DocUpdateRemove_Screen = (props) => {
 
   const IosCalendar = (
     <Surface style={styles.box_DatePicker}>
-      <Caption style={styles.caption}>Data de caducitat:</Caption>
+      <Caption style={styles.caption}>{t("DocRegister_Screem_Effective_Date")}</Caption>
       <DateTimePicker
         style={styles.dateTimePicker}
         testID="dateTimePicker"
@@ -235,6 +236,19 @@ const DocUpdateRemove_Screen = (props) => {
           <Dialog.Content>
             <ActivityIndicator animating={true} color="#DEB202" size="large" />
           </Dialog.Content>
+        </Dialog>
+        <Dialog visible={confirmRemoving} dismissable={false}>
+          <Dialog.Title>{t("DocUpRe_Screen_DeletingConfirmation_Title")}</Dialog.Title>
+          <Dialog.Content>
+            <Text>{t("DocUpRe_Screen_DeletingConfirmation_Text")}</Text>
+          </Dialog.Content>
+          <Dialog.Actions>
+            <Button onPress={() => setConfirmRemoving(false)}>{t("DocUpRe_Screen_DeletingConfirmation_No")}</Button>
+            <Button onPress={() => {
+              setConfirmRemoving(false)
+              removeDoc(photoBase64)
+            }}>{t("DocUpRe_Screen_DeletingConfirmation_Yes")}</Button>
+          </Dialog.Actions>
         </Dialog>
         <Dialog visible={removingDocument} dismissable={false}>
           <Dialog.Title>{t("DocUpRe_Screen_Deleting")}</Dialog.Title>
@@ -323,7 +337,9 @@ const DocUpdateRemove_Screen = (props) => {
             <View style={styles.box_doubleButton_Medium}>
               <Button_Small
                 title={t("DocUpRe_Screen_Delete_Button")}
-                onPress={() => removeDoc(photoBase64)}
+                onPress={() => {
+                  setConfirmRemoving(true)
+                }}
                 description={t("DocUpRe_Screen_Delete_Button")}
               />
               <Button_Small

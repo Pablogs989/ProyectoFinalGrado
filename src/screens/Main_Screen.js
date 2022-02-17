@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import {
-  Dimensions, Image, ScrollView, StyleSheet, View,
+  Dimensions, Image, ScrollView, StyleSheet, View, BackHandler
 } from "react-native";
 import {
-  Appbar, Button, Provider, Searchbar, ActivityIndicator, Dialog, Surface, RadioButton, Portal, Text,
+  Appbar, Button, Provider, Searchbar, ActivityIndicator, Dialog, Surface, RadioButton, Portal, Text, List,
 } from "react-native-paper";
 import { api } from "../utils/Api";
 import { authentication } from "../utils/Authentication";
@@ -12,12 +12,15 @@ import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import axios from "axios";
 import Card_Big from "../components/Card_Big";
 import Button_Small from '../components/Button_Small';
+import Button_Medium from '../components/Button_Medium';
+import i18n from "i18next";
 
 import { useTranslation } from "react-i18next";
 
 
 const Main_Screen = ({ route, navigation: { navigate } }) => {
   const { t } = useTranslation();
+  const types = t("Types", { returnObjects: true });
   const isFocused = useIsFocused();
   useEffect(() => {
     let isApiSubscribed = true;
@@ -49,13 +52,20 @@ const Main_Screen = ({ route, navigation: { navigate } }) => {
         }
       });
 
+    BackHandler.addEventListener('hardwareBackPress', function () {
+
+      return true;
+    });
+
     return () => {
       // cancel the subscription
       isApiSubscribed = false;
     };
+
+
   }, [isFocused])
 
-  const [collectionValue, setCollectionValue] = useState("Tots");
+  const [collectionValue, setCollectionValue] = useState(types[0]);
   const [isLoading, setLoading] = useState(true);
   const [documents, setDocuments] = useState([]);
   const [filteredDocuments, setFilteredDocuments] = useState([]);
@@ -89,7 +99,7 @@ const Main_Screen = ({ route, navigation: { navigate } }) => {
     for (let j = 0; j < filteredDocuments.length; j++) {
 
       if (filteredDocuments[j].profile === arrayOwners[i]) {
-        if (collectionValue !== "Tots") {
+        if (collectionValue !== types[0]) {
           if (filteredDocuments[j].collection == collectionValue) {
             arrayDocsSameOwner.push(filteredDocuments[j]);
           }
@@ -110,40 +120,96 @@ const Main_Screen = ({ route, navigation: { navigate } }) => {
       <ActivityIndicator animating={true} color="#DEB202" size="large" />
     </View>
   );
-  const types = t("Types", { returnObjects: true });
+
 
   const filter = (
-    <Portal>
-      <Dialog visible={filterDialog} onDismiss={() => setFilterDialog(false)}>
-        <Dialog.Title style={{ alignSelf: "center" }}>{t("Main_Screen_Filter_Title")}</Dialog.Title>
-        <Dialog.Content>
-          <Surface style={{ borderWidth: 1, borderRadius: 10, elevation: 10, marginVertical: 20 }}>
-            <RadioButton.Group onValueChange={newValue => setCollectionValue(newValue)} value={collectionValue}>
-              {types.map((types, index) => {
-                return (<Surface style={styles.view} key={index}>
-                  <RadioButton value={types} />
-                  <Text>{types}</Text>
-                </Surface>)
-              })}
-            </RadioButton.Group>
-          </Surface>
-        </Dialog.Content>
-        <Dialog.Actions style={styles.box_doubleButton_Small}>
-          <Button_Small title={t("Main_Screen_Cancel")} onPress={() => setFilterDialog(false)} description={t("Main_Screen_Cancel")} />
-          <Button_Small title={t("Main_Screen_Confirm")} onPress={() => setFilterDialog(false)} description={t("Main_Screen_Confirm")} />
-        </Dialog.Actions>
-      </Dialog>
-    </Portal>
+    <Dialog visible={filterDialog} onDismiss={() => setFilterDialog(false)}>
+      <Dialog.Title style={{ alignSelf: "center" }}>{t("Main_Screen_Filter_Title")}</Dialog.Title>
+      <Dialog.Content>
+        <Surface style={{ borderWidth: 1, borderRadius: 10, elevation: 10, marginVertical: 20 }}>
+          <RadioButton.Group onValueChange={newValue => setCollectionValue(newValue)} value={collectionValue}>
+            {types.map((types, index) => {
+              return (<Surface style={styles.view} key={index}>
+                <RadioButton value={types} />
+                <Text>{types}</Text>
+              </Surface>)
+            })}
+          </RadioButton.Group>
+        </Surface>
+      </Dialog.Content>
+      <Dialog.Actions style={styles.box_doubleButton_Small}>
+        <Button_Small title={t("Main_Screen_Cancel")} onPress={() => setFilterDialog(false)} description={t("Main_Screen_Cancel")} />
+        <Button_Small title={t("Main_Screen_Confirm")} onPress={() => setFilterDialog(false)} description={t("Main_Screen_Confirm")} />
+      </Dialog.Actions>
+    </Dialog>
   )
 
-  
+  const [visibleUserInfo, setVisibleUserInfo] = useState(false);
+  const valencia = ["Valencia", "https://ih1.redbubble.net/image.341819860.7405/flat,128x128,075,t-pad,128x128,f8f8f8.u8.jpg"]
+  const english = ["English", "https://www.shareicon.net/data/256x256/2016/08/18/815625_world_512x512.png"]
+  const [userInfoDetails, setUserInfoDetails] = useState(valencia)
+  const [expanded, setExpanded] = React.useState(false);
+
+  const handlePress = () => setExpanded(!expanded);
+  const userInfo = (
+    <Dialog visible={visibleUserInfo} onDismiss={() => setVisibleUserInfo(false)}>
+      <Dialog.Title style={{ alignSelf: "center" }}>{t("Main_Screen_UserDialog_Title")}</Dialog.Title>
+      <Dialog.Content>
+        <List.Accordion
+          title={userInfoDetails[0]}
+          // left={props => <List.Icon {...props} icon="folder" />}
+          left={props => (
+            <Image style={{ width: 24, height: 24, marginTop: 5 }} source={{ uri: userInfoDetails[1] }} />
+          )}
+          expanded={expanded}
+          style={styles.list}
+          onPress={handlePress}>
+          {userInfoDetails[0] === "Valencia" ? <List.Item
+            title={english[0]}
+            style={styles.list}
+            left={props => <Image style={{ width: 24, height: 24, marginTop: 6 }} source={{ uri: english[1] }} />}
+            onPress={() => {
+              setUserInfoDetails(english)
+              i18n.changeLanguage("en");
+              setCollectionValue("All")
+            }}
+          /> : <List.Item
+            style={styles.list}
+            title={valencia[0]}
+            left={props => <Image style={{ width: 24, height: 24, marginTop: 6 }} source={{ uri: valencia[1] }} />}
+            onPress={() => {
+              setUserInfoDetails(valencia)
+              i18n.changeLanguage("va");
+              setCollectionValue("Tots")
+            }
+            }
+          />}
+
+
+        </List.Accordion>
+
+      </Dialog.Content>
+      <Dialog.Actions style={styles.box_doubleButton_Small}>
+        <Button_Medium title={t("Main_Screen_UserDialog_SignOut")} onPress={() => navigate("LogIn_Screen")} description={t("Main_Screen_UserDialog_SignOut")} />
+        {/* <Button_Small title={t("Main_Screen_Confirm")} onPress={() => setFilterDialog(false)} description={t("Main_Screen_Confirm")} /> */}
+      </Dialog.Actions>
+    </Dialog>
+  )
+
+
 
   return (
     <Provider>
-      {filter}
+      <Portal>
+        {filter}
+        {userInfo}
+      </Portal>
+
       <Appbar.Header style={styles.background}>
 
-        <Appbar.Action icon="account" size={30} onPress={() => { }} style={{ width: Dimensions.get("window").width * 11 / 100 }} />
+        <Appbar.Action icon="account" size={30} onPress={() => {
+          setVisibleUserInfo(true)
+        }} style={{ width: Dimensions.get("window").width * 11 / 100 }} />
         <Searchbar
           placeholder={t("Main_Screen_Buscador")}
           placeholderTextColor="#000"
@@ -241,5 +307,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "baseline",
     backgroundColor: "transparent"
+  },
+  list: {
+    borderColor: "#858585",
+    backgroundColor: "#FFFFFF",
+    borderWidth: 1,
+    borderRadius: 2,
   }
 });

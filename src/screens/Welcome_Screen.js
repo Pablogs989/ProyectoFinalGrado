@@ -18,26 +18,22 @@ const Welcome_Screen = ({ navigation: { navigate } }) => {
                 </View>
 
                 <View style={styles.description}>
-
-                    {/* {welcome_Screen.map((text, index) => {
-
-                        return <Text key={index} style={styles.subheading}>{text}</Text>
-
-                    })} */}
+                
                     <Text
                         numberOfLines={3}
                         adjustsFontSizeToFit
                         style={styles.subheading}
                         >
-                        Una App per gestionar tots els documents necesaris per al teu viatge.
+                        {t("Welcome_Screen_Title")}
                     </Text>
                     <Text
                         numberOfLines={4}
                         adjustsFontSizeToFit
                         style={styles.subheading}
                         >
-                        Una App per a trobar-los, una App per a atraure'ls a tots i lligar-los en les tenebres en la Terra de Mordor on s'estenen les Ombres.
+                            {t("Welcome_Screen_SubTitle")}
                     </Text>
+
 
                 </View>
                 <View style={styles.buttons}>

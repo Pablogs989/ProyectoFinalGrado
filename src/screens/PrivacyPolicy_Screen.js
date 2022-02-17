@@ -9,15 +9,15 @@ const LogIn_Screen = ({ navigation }) => {
     const privacyPolicy = t("Text_PrivacyPolicy", { returnObjects: true });
     return (
         <Provider>
-            <Appbar_Common onPress={() => navigation.navigate("Welcome_Screen")} title={t("Text_PrivacyPolicy")} />
+            <Appbar_Common onPress={() => navigation.navigate("Welcome_Screen")} title={t("Privacy_Policy")} />
             <View style={styles.box}>
                 <Surface style={styles.falseCard}>
                     <ScrollView>
                         {privacyPolicy.map((text, index) => {
                             if (text.length < 60) {
-                                return <Title>{text}</Title>
+                                return <Title key={index}>{text}</Title>
                             } else {
-                                return <Text style={styles.text}>{text}</Text>
+                                return <Text key={index} style={styles.text}>{text}</Text>
                             }
                         })}
                     </ScrollView>

@@ -74,7 +74,7 @@
       "Sign_Up_Email_HasCorrect":"Email correcte",
       "Sign_Up_Password":"Contrasenya",
       "Palceholder_Password":"Introduïsca la contrasenya",
-      "Sign_Up_Password_HasError":"¡¡Error!! La contrasenya no cumplix els requisits necesaris.",
+      "Sign_Up_Password_HasError":"¡¡Error!! Es necessita 8 caràcters mínim, 1 majúscula, 1 minúscula, 1 numero i un alfanumèric.",
       "Sign_Up_Password_HasCorrect":"Contrasenya correcta",
       "Sign_Up_Password_Confirm":"Confirmar contrasenya",
       "Palceholder_Password_Confirm":"Confirma la contrasenya",
@@ -91,7 +91,7 @@
       "Main_Screen_Cancel":"Cancel·lar",
       "Main_Screen_Confirm":"Confirmar",
       "Main_Screen_UserDialog_Title": "Informació D'usuari",
-      "Main_Screen_UserDialog_SignOut": "Cerrar Sessió",
+      "Main_Screen_UserDialog_SignOut": "Tancar Sessió",
       "Main_Screen_UserDialog_Valencian": "Valencia",
       "Main_Screen_UserDialog_English": "Angles",
 
@@ -138,7 +138,7 @@
       "DocUpRe_Screen_HasError":"¡¡Error!! Nom no vàlid." ,
       "DocUpRe_Screen_Img_Text":"Actualitza l'imatge pressionant en ella",
       "DocUpRe_Screen_Update_Button": "Actualitzar",
-      "DocUpRe_Screen_Delete_Button": "Borrar",
+      "DocUpRe_Screen_Delete_Button": "Esborrar",
 
       
       "Card_Medium_Warning_Title": "Caducitat",

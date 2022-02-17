@@ -27,6 +27,6 @@ const styles = StyleSheet.create({
         marginVertical: 10,
         padding: 0,
         elevation: 10,
-        width: 145,
+        width: 155,
     },
 })

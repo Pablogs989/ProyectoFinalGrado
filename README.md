@@ -1,4 +1,5 @@
 # Projecte_Integrat_2DAM
+![Logo Trip Docs](/../enrique/src/assets/Logo.png)
 # Trip Docs
 ## *All Documents at Hand*
 ### Un proyecto desarrollado por **Visoft** (Florida-Universitaria)
@@ -91,3 +92,5 @@ En el desarrollo de la aplicación está previsto emplear distintos tipos de len
 -	API: escaneado (foto) documento, 
 
 La estrategia de programación planteada para poder gestionar los documentos guardados en formato imagen, consiste en crear una capa de metadatos (json), asociado a las imágenes guardadas, que contenga una plantilla con los campos que caracterizan a cada tipo de documento. Y que todos los datos, tanto archivos json como las imágenes de los documentos estén encriptadas para garantizar la confidencialidad de la información.
+
+![Logo Trip Docs small](/../enrique/src/assets/logoPequenyoColorInvertido.png)

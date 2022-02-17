@@ -8,7 +8,7 @@
 
 ### 1.	Integrantes de equipo de desarrollo
  
--   Josep Iborra Pons  https://github.com/josep-iborra
+- Josep Iborra Pons  https://github.com/josep-iborra
 -	Ximo Quintana Ferrer https://github.com/xiqufe
 -	Manuel Bas Sáez https://github.com/manubasa
 -	Pablo González Sánchez https://github.com/Pablogs989
@@ -65,14 +65,14 @@ A continuación, detallamos un listado de la documentación que es posible tener
 ### 5.	Funcionalidades de la aplicación
 
 Las principales funcionalidades implementadas en la aplicación son:
--	Acceso mediante usuario y contraseña.
+-	Acceso mediante usuario y contraseña encriptada.
 - Organización de la información por:
     -   perfiles (campo de texto libre), y
     -   colecciones (identificativos, sanitarios, transportes, alojamientos, seguros, eventos, otros).
 -	Registro de la documentación mediante:
     -   toma de una foto del documento con la app, e 
     -   introducción del nombre del documento, fecha de interes (caducidad, utilización, etc.), colección y perfil al que pertenece el documento.
--	Almacenamiento (persistencia) de la información registrada en una base de datos encriptada en Azure.
+-	Almacenamiento (persistencia) de la información registrada en una base de datos en Azure.
 - Acceso a la información almacenada mediante un sistema constituido por tarjetas que muestra la información organizada por perfiles, permite filtrarla por colecciones y buscarla por el contenido del nombre del documento. 
 -	Visualización de la imagen del documento al presionar sobre la terjeta seleccionada.
 - Alertas por proximidad de la fecha de interes (caducidad, utilización, etc.) establecida al registrar el documento.
@@ -87,9 +87,8 @@ En el desarrollo de la aplicación está previsto emplear distintos tipos de len
 -	Lenguajes de marcas: json
 -	Entornos de desarrollo y editores de código: Eclipse, Visual Studio Code
 -	Gestores de bases de datos no solo relacionales: MongoDB
--	Librerías: React Native, React Native Paper, React Native Vector Icons, React Navigation, React Native Image Zoom Viewer, React Native Data Picker, MD5
--	Servicio de bases de datos en la nube: Azure
--	API: escaneado (foto) documento, 
+-	Librerías: React Native, React Native Paper, React Native Vector Icons, React Navigation, React Native Image Zoom Viewer, React Native Date Picker, MD5, i18next, Expo Image Picker, Axios
+-	Servicio de servidor en la nube: Azure
 
 La estrategia de programación planteada para poder gestionar los documentos guardados en formato imagen, consiste en crear una capa de metadatos (json), asociado a las imágenes guardadas, que contenga una plantilla con los campos que caracterizan a cada tipo de documento. Y que todos los datos, tanto archivos json como las imágenes de los documentos estén encriptadas para garantizar la confidencialidad de la información.
 

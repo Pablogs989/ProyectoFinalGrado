@@ -62,7 +62,7 @@ A continuación, detallamos un listado de la documentación que es posible tener
     -	Actividades
 
  
-### 7.	Funcionalidades de la aplicación
+### 5.	Funcionalidades de la aplicación
 
 Las principales funcionalidades implementadas en la aplicación son:
 -	Acceso mediante usuario y contraseña.
@@ -80,7 +80,7 @@ Las principales funcionalidades implementadas en la aplicación son:
 - Multiidioma (inglés, valenciano).
 
  
-### 8.	Medios técnicos utilizados: tecnologías, lenguajes y estrategias de programación
+### 6.	Medios técnicos utilizados: tecnologías, lenguajes y estrategias de programación
 
 En el desarrollo de la aplicación está previsto emplear distintos tipos de lenguajes y tecnologías, destacando las siguientes:
 -	Lenguajes de programación: java, javascript, jsx

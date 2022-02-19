@@ -55,7 +55,7 @@
       "'TripDocs' shall ensure the accuracy and quality of personal data shall be retained for the time necessary to fulfil the purposes for which it was collected, unless the law requires it to be retained for longer.",
 
       "Access to personal data",
-      "With respect to the personal data we hold, 'TripDocs' offers you access to it for any purpose, including requests for rectification if it is incorrect or deletion if we are not required to hold it by law or for legitimate business reasons. We reserve the right not to process requests that are inappropriate or vexatious, that jeopardise the privacy of third parties, that are impracticable or for which local law does not require a right of access. Requests for access, correction or deletion may be sent to our address *XXDIRECTIONXX or e-mail account *XXMAILXX.",
+      "With respect to the personal data we hold, 'TripDocs' offers you access to it for any purpose, including requests for rectification if it is incorrect or deletion if we are not required to hold it by law or for legitimate business reasons. We reserve the right not to process requests that are inappropriate or vexatious, that jeopardise the privacy of third parties, that are impracticable or for which local law does not require a right of access. Requests for access, correction or deletion may be sent to our address Carrer del Rei En Jaume I, 2, 46470 Catarroja, Valencia or e-mail account support@visoft.com.",
 
       "Children and education",
       "'TripDocs' is aware of the need for additional precautions to preserve the privacy and security of minors using the applications and to require parental consent if they are under the minimum age required by law (in Spain, 14 years). If personal data has been collected from a child under the age of 14, without the necessary consent, the information must be deleted as soon as possible.",
@@ -75,7 +75,7 @@
     "Sign_Up_Email_HasCorrect":"Correct email address",
     "Sign_Up_Password":"Password",
     "Palceholder_Password":"Enter your password",
-    "Sign_Up_Password_HasError":"¡¡Error!! The password does not meet the necessary requirements.",
+    "Sign_Up_Password_HasError":"Error! You need 8 characters minimum, 1 uppercase, 1 lowercase, 1 number and 1 alphanumeric.",
     "Sign_Up_Password_HasCorrect":"Correct password",
     "Sign_Up_Password_Confirm":"Confirm password",
     "Palceholder_Password_Confirm":"Confirm password",

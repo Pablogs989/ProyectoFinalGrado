@@ -54,7 +54,7 @@
         "'TripDocs' garantirà l'exactitud i la qualitat de les dades personals, es conservaran durant el temps necessari per a complir els fins per als quals van ser recaptats, llevat que la llei exigisca conservar-los durant més temps.",
 
         "Accés a les dades de caràcter personal",
-        "Respecte a les dades de caràcter personal que conservem, 'TripDocs' li ofereix accés a ells per a qualsevol fi, incloent les sol·licituds de rectificació en cas que siguen incorrectes o d'eliminació en cas de no estar obligats a conservar-los per imperatiu legal o per raons legítimes de negoci. Ens reservem el dret a no tramitar aquelles sol·licituds que siguen improcedents o vexatòries, que posen en risc la privacitat de tercers, que resulten inviables o per a les quals la legislació local no exigisca dret d'accés. Les sol·licituds d'accés, rectificació o eliminació podran enviar-se a la nostra adreça *XXDIRECCIONXX o en el compte de correu electrònic *XXMAILXX.",
+        "Respecte a les dades de caràcter personal que conservem, 'TripDocs' li ofereix accés a ells per a qualsevol fi, incloent les sol·licituds de rectificació en cas que siguen incorrectes o d'eliminació en cas de no estar obligats a conservar-los per imperatiu legal o per raons legítimes de negoci. Ens reservem el dret a no tramitar aquelles sol·licituds que siguen improcedents o vexatòries, que posen en risc la privacitat de tercers, que resulten inviables o per a les quals la legislació local no exigisca dret d'accés. Les sol·licituds d'accés, rectificació o eliminació podran enviar-se a la nostra adreça Carrer del Rei En Jaume I, 2, 46470 Catarroja, Valencia o en el compte de correu electrònic support@visoft.es.",
 
         "Xiquets i educació",
         "'TripDocs' és conscient de la necessitat d'establir precaucions addicionals per a preservar la privacitat i la seguretat dels menors que utilitzen les aplicacions i exigir consentiment dels seus progenitors en cas que no tinguen l'edat mínima exigida per la legislació (a Espanya, 14 anys). Si s'han recopilat dades personals d'un menor de 14 anys, sense el consentiment necessari, s'ha d'eliminar aqueixa informació al més prompte possible",
@@ -74,7 +74,7 @@
       "Sign_Up_Email_HasCorrect":"Email correcte",
       "Sign_Up_Password":"Contrasenya",
       "Palceholder_Password":"Introduïsca la contrasenya",
-      "Sign_Up_Password_HasError":"¡¡Error!! La contrasenya no cumplix els requisits necesaris.",
+      "Sign_Up_Password_HasError":"¡¡Error!! Es necessita 8 caràcters mínim, 1 majúscula, 1 minúscula, 1 numero i un alfanumèric.",
       "Sign_Up_Password_HasCorrect":"Contrasenya correcta",
       "Sign_Up_Password_Confirm":"Confirmar contrasenya",
       "Palceholder_Password_Confirm":"Confirma la contrasenya",
@@ -91,7 +91,7 @@
       "Main_Screen_Cancel":"Cancel·lar",
       "Main_Screen_Confirm":"Confirmar",
       "Main_Screen_UserDialog_Title": "Informació D'usuari",
-      "Main_Screen_UserDialog_SignOut": "Cerrar Sessió",
+      "Main_Screen_UserDialog_SignOut": "Tancar Sessió",
       "Main_Screen_UserDialog_Valencian": "Valencia",
       "Main_Screen_UserDialog_English": "Angles",
 
@@ -126,7 +126,7 @@
       "DocUpRe_Screen_Button":"Actualitzar Document",
       "DocUpRe_Screen_Deleting":"Borrant Document",
       "DocUpRe_Screen_DeletingConfirmation_Title":"Confirmacio",
-      "DocUpRe_Screen_DeletingConfirmation_Text":"Segur que vols borrar el Document?",
+      "DocUpRe_Screen_DeletingConfirmation_Text":"Segur que vols esborrar el Document?",
       "DocUpRe_Screen_DeletingConfirmation_Yes":"Si",
       "DocUpRe_Screen_DeletingConfirmation_No":"No",
       "DocUpRe_Screen_Updating":"Actualitzant Document",
@@ -138,7 +138,7 @@
       "DocUpRe_Screen_HasError":"¡¡Error!! Nom no vàlid." ,
       "DocUpRe_Screen_Img_Text":"Actualitza l'imatge pressionant en ella",
       "DocUpRe_Screen_Update_Button": "Actualitzar",
-      "DocUpRe_Screen_Delete_Button": "Borrar",
+      "DocUpRe_Screen_Delete_Button": "Esborrar",
 
       
       "Card_Medium_Warning_Title": "Caducitat",

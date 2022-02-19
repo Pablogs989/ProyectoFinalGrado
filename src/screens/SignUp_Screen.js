@@ -55,13 +55,15 @@ const SignUp_Screen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [visible_Email, setVisible_Email] = useState(false);
   const handleOnFocus_Email = () => {
-    setVisible_Email(false);
+    // setVisible_Email(false);
+    setVisible_Email(true);
   };
   const handleChangeText_Email = (event) => {
     setEmail(event);
   };
   const handleOnBlur_Email = () => {
-    setVisible_Email(email.length > 0);
+    // setVisible_Email(email.length > 0);
+    setVisible_Email(true);
   };
   const handleOnPress_IconClose_Email = () => {
     setEmail("");
@@ -75,13 +77,15 @@ const SignUp_Screen = ({ navigation }) => {
   const [password, setPassword] = useState("");
   const [visible_Password, setVisible_Password] = useState(false);
   const handleOnFocus_Password = () => {
-    setVisible_Password(false);
+    // setVisible_Password(false);
+    setVisible_Password(true);
   };
   const handleChangeText_Password = (event) => {
     setPassword(event);
   };
   const handleOnBlur_Password = () => {
-    setVisible_Password(password.length > 0);
+    // setVisible_Password(password.length > 0);
+    setVisible_Password(true);
   };
   const handleOnPress_IconClose_Password = () => {
     setPassword("");
@@ -102,12 +106,14 @@ const SignUp_Screen = ({ navigation }) => {
 
   const handleOnFocus_Password_Config = () => {
     setVisible_Password_Config(false);
+    // setVisible_Password_Config(true);
   };
   const handleChangeText_Password_Config = (event) => {
     setPassword_Config(event);
   };
   const handleOnBlur_Password_Config = () => {
     setVisible_Password_Config(password_Config.length > 0);
+    // setVisible_Password_Config(true);
   };
   const handleOnPress_IconClose_Password_Config = () => {
     setPassword_Config("");
@@ -232,7 +238,7 @@ const SignUp_Screen = ({ navigation }) => {
                   style={styles.register_Button}
                   onPress={() => navigation.navigate('PrivacyPolicy_Screen')}
                 >
-                  {t("Privacy_Policy")}
+                  * {t("Privacy_Policy")}
                 </Text>
               </View>
 

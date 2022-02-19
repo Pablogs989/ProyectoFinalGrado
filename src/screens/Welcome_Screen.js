@@ -18,20 +18,20 @@ const Welcome_Screen = ({ navigation: { navigate } }) => {
                 </View>
 
                 <View style={styles.description}>
-                
+
                     <Text
                         numberOfLines={3}
                         adjustsFontSizeToFit
                         style={styles.subheading}
-                        >
+                    >
                         {t("Welcome_Screen_Title")}
                     </Text>
                     <Text
                         numberOfLines={4}
                         adjustsFontSizeToFit
                         style={styles.subheading}
-                        >
-                            {t("Welcome_Screen_SubTitle")}
+                    >
+                        {t("Welcome_Screen_SubTitle")}
                     </Text>
 
 
@@ -61,13 +61,13 @@ const styles = StyleSheet.create({
 
     imageFLex: {
         flex: 5,
-        justifyContent:"flex-end",
-        alignItems:"center",
+        justifyContent: "flex-end",
+        alignItems: "center",
     },
 
     image: {
-        maxHeight: Dimensions.get("window").width * 60 / 100,
-        maxWidth: Dimensions.get("window").width * 80 / 100,
+        // maxHeight: Dimensions.get("window").width * 60 / 100,
+        // maxWidth: Dimensions.get("window").width * 80 / 100,
 
     },
 
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
         flex: 5,
         paddingVertical: Dimensions.get("window").height * 5 / 100,
         paddingHorizontal: Dimensions.get("window").width * 6 / 100,
-        justifyContent:"center",
+        justifyContent: "center",
     },
 
     subheading: {

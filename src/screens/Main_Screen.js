@@ -145,8 +145,8 @@ const Main_Screen = ({ route, navigation: { navigate } }) => {
   )
 
   const [visibleUserInfo, setVisibleUserInfo] = useState(false);
-  const valencia = ["Valencia", "https://ih1.redbubble.net/image.341819860.7405/flat,128x128,075,t-pad,128x128,f8f8f8.u8.jpg"]
-  const english = ["English", "https://www.shareicon.net/data/256x256/2016/08/18/815625_world_512x512.png"]
+  let valencia = ["Valencia", "https://ih1.redbubble.net/image.341819860.7405/flat,128x128,075,t-pad,128x128,f8f8f8.u8.jpg"]
+  let english = ["English", "https://static.wikia.nocookie.net/cyberpunk/images/7/7c/Cyberpunk_2020_UK.png/revision/latest?cb=20191206205307"]
   const [userInfoDetails, setUserInfoDetails] = useState(valencia)
   const [expanded, setExpanded] = React.useState(false);
 
@@ -164,7 +164,7 @@ const Main_Screen = ({ route, navigation: { navigate } }) => {
           expanded={expanded}
           style={styles.list}
           onPress={handlePress}>
-          {userInfoDetails[0] === "Valencia" ? <List.Item
+          {userInfoDetails[0] === "Valencia" || userInfoDetails[0] === "Valencian" ? <List.Item
             title={english[0]}
             style={styles.list}
             left={props => <Image style={{ width: 24, height: 24, marginTop: 6 }} source={{ uri: english[1] }} />}

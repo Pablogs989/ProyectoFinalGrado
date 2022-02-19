@@ -19,7 +19,7 @@ const DocUpdateRemove_Screen = (props) => {
   const [confirmRemoving, setConfirmRemoving] = useState(false);
   const [removingDocument, setRemovingDocument] = useState(false);
   const removeDoc = async (base64) => {
-    if (photoLoaded) {
+    if (photoLoaded && !hasErrors_nameDocument() && !hasErrors_profile()) {
 
       try {
         setRemovingDocument(true);
@@ -45,7 +45,7 @@ const DocUpdateRemove_Screen = (props) => {
   const [updatingDocument, setUpdatingDocument] = useState(false);
   //Logic update Doc
   const updateDoc = async (base64) => {
-    if (photoLoaded) {
+    if (photoLoaded && !hasErrors_nameDocument() && !hasErrors_profile()) {
 
       try {
         setUpdatingDocument(true);
@@ -91,14 +91,16 @@ const DocUpdateRemove_Screen = (props) => {
   const [nameDocument, setNameDocument] = useState(parameters.doc_name);
   const [visible_nameDocument, setVisible_nameDocument] = useState(false);
   const handleOnFocus_nameDocument = () => {
-    setVisible_nameDocument(nameDocument.length > 0);
+    // setVisible_nameDocument(nameDocument.length > 0);
+    setVisible_nameDocument(true);
   };
   const handleChangeText_nameDocument = (event) => {
     setNameDocument(event);
     setVisible_nameDocument(nameDocument.length > 0);
   };
   const handleOnBlur_nameDocument = () => {
-    setVisible_nameDocument(nameDocument.length > 0);
+    // setVisible_nameDocument(nameDocument.length > 0);
+    setVisible_nameDocument(true);
   };
   const handleOnPress_IconClose_nameDocument = () => {
     setNameDocument("");
@@ -119,10 +121,12 @@ const DocUpdateRemove_Screen = (props) => {
   };
   const handleChangeText_profile = (event) => {
     setProfile(event);
-    setVisible_profile(profile.length > 0);
+    // setVisible_profile(profile.length > 0);
+    setVisible_profile(true);
   };
   const handleOnBlur_profile = () => {
-    setVisible_profile(profile.length > 0);
+    // setVisible_profile(profile.length > 0);
+    setVisible_profile(true);
   };
   const handleOnPress_IconClose_profile = () => {
     setProfile("");

@@ -32,7 +32,7 @@ const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
   const [creatingDocument, setCreatingDocument] = useState(false);
   //Logic send Image to server
   const docToServer = async (base64) => {
-    if (photoLoaded) {
+    if (photoLoaded && !hasErrors_nameDocument() && !hasErrors_profile()) {
       try {
         setCreatingDocument(true);
         const response = await axios.post(api.post, {
@@ -76,14 +76,16 @@ const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
   const [nameDocument, setNameDocument] = useState("");
   const [visible_nameDocument, setVisible_nameDocument] = useState(false);
   const handleOnFocus_nameDocument = () => {
-    setVisible_nameDocument(nameDocument.length > 0);
+    // setVisible_nameDocument(nameDocument.length > 0);
+    setVisible_nameDocument(true);
   };
   const handleChangeText_nameDocument = (event) => {
     setNameDocument(event);
     setVisible_nameDocument(nameDocument.length >= 0);
   };
   const handleOnBlur_nameDocument = () => {
-    setVisible_nameDocument(nameDocument.length > 0);
+    // setVisible_nameDocument(nameDocument.length > 0);
+    setVisible_nameDocument(true);
   };
   const handleOnPress_IconClose_nameDocument = () => {
     setNameDocument("");
@@ -100,14 +102,16 @@ const DocRegister_Screen = ({ route, navigation: { navigate } }) => {
   const [profile, setProfile] = useState("");
   const [visible_profile, setVisible_profile] = useState(false);
   const handleOnFocus_profile = () => {
-    setVisible_profile(profile.length > 0);
+    // setVisible_profile(profile.length > 0);
+    setVisible_profile(true);
   };
   const handleChangeText_profile = (event) => {
     setProfile(event);
     setVisible_profile(profile.length > 0);
   };
   const handleOnBlur_profile = () => {
-    setVisible_profile(profile.length > 0);
+    // setVisible_profile(profile.length > 0);
+    setVisible_profile(true);
   };
   const handleOnPress_IconClose_profile = () => {
     setProfile("");

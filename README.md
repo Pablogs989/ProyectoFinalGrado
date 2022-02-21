@@ -98,23 +98,27 @@ La estrategia de programación planteada para poder gestionar los documentos gua
 
 
 Viabilidad económica
+
 La aplicación ha necesitado de 5 programadores, trabajando 8 horas diarias durante 14 días a 15€ la hora el coste total de la aplicación en caso de venta será de 8400€. El coste de mantenimiento de la aplicación partiría de los 10€ al mes en mantener el servidor, aumentando este a medida que más usuarios utilicen nuestros servicios.
 
 
 Viabilidad humana
-Coste total
+
 El equipo de trabajo actual tiene los conocimientos técnicos necesarios para el desarrollo total del producto mínimo viable por lo tanto no será necesario contratar a nadie más para el desarrollo básico de la aplicación. Una de las funcionalidades extras planteadas requeriría de un especialista con conocimientos de machine learning. A la hora de promocionar la aplicación necesitaríamos contratar a una persona capacitada para la creación y gestión de los anuncios y promociones como trabajador de la empresa, o contratar a una empresa externa para realizar todas estas gestiones.
 
 
 Viabilidad técnica
+
 Las herramientas utilizadas para el desarrollo de la app han sido React Native utilizando Expo para el front-end, Java, MongDB y Apache para el back-end, Axure para el diseño del mockup y Trello para la organización del equipo. Se han utilizado 5 ordenadores portátiles, uno por cada integrante del equipo y varios teléfonos móviles para las pruebas de la aplicación.
 
 
 Monetización
+
 La aplicación se publicara en la play store de android y la app store de iOS, no tendrá anuncios en pantalla, por lo tanto se monetizara a través de un sistema de suscripción mensual de 5€ que será necesario para desbloquear ciertas funciones exclusivas para suscriptores. Con la versión gratuita se podrán guardar hasta 5 documentos y utilizar un único perfil mientras que con la de pago podrás tener tantos documentos y perfiles como quieras. De esta forma, las suscripciones de los usuarios cubrirán los costes de mantenimiento del servidor, que irán creciendo a medida que crezca la base de usuarios de la aplicación.
 
 
 Marketing
+
 La aplicación se publicitara mediante servicios como google ads o Facebook ads, ya que la precisión a la hora de buscar potenciales clientes permitirá mostrar el anuncio únicamente a personas interesadas en viajar, o que viajen habitualmente. También se podrá promocionar mediante colaboraciones pagadas con influencers dedicados al nicho de los viajes, consiguiendo así llegar a potenciales usuarios de nuestros servicios de forma directa.
 
 ![Logo Trip Docs small](/../enrique/src/assets/logoPequenyoColorInvertido.png)
